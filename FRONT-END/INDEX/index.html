@@ -2,66 +2,91 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exploración de Exoplanetas con IA - Inicio</title>
-    <link rel="icon" href="/FRONT-END/RECURSOS/nasa_icono.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/FRONT-END/INDEX/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exoplanetas | IA y Exploración</title>
+  <link rel="icon" href="/FRONT-END/RECURSOS/nasa_icono.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/FRONT-END/INDEX/style.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
 
-    <header>
-        <h1>Exploración de Exoplanetas con IA</h1>
-    </header>
+  <!-- === Encabezado con video de fondo === -->
+  <header class="video-header">
+    <video autoplay muted loop id="bg-video">
+      <source src="/FRONT-END/RECURSOS/luna.mp4" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
+    <div class="overlay"></div>
 
-    <div class="container">
-
-        <section id="bienvenida">
-            <h2>Bienvenido/a</h2>
-            <p>Durante las últimas décadas, telescopios espaciales como <b>Kepler, K2 y TESS</b> han observado millones de
-                estrellas para descubrir mundos fuera de nuestro sistema solar. Estos planetas, llamados
-                <b>exoplanetas</b>, se detectan principalmente mediante el <b>método de tránsito</b>, que consiste en
-                registrar la leve disminución de luz de una estrella cuando un planeta pasa frente a ella.</p>
-            <p>El proyecto que tienes en tus manos combina estos datos astronómicos con la potencia de la <b>inteligencia
-                artificial</b>. Así, cualquier persona puede explorar, analizar y descubrir cómo funcionan los modelos que
-                ayudan a identificar posibles nuevos planetas en los datos reales de la NASA.</p>
-            <p>Esta plataforma no es solo una herramienta científica, también es una ventana al futuro de la exploración
-                espacial: <b>acercar la búsqueda de otros mundos a todos.</b></p>
-        </section>
-
-        <section id="numeros">
-            <h2>Descubrimientos en números</h2>
-            <ul>
-                <li>🔭 <b>+5,500 exoplanetas</b> confirmados hasta la fecha (NASA, 2025).</li>
-                <li>🌠 Miles de candidatos planetarios aún en revisión, que podrían convertirse en descubrimientos
-                    futuros.</li>
-            </ul>
-
-            <h3>🛰️ Misiones clave:</h3>
-            <ul>
-                <li><b>Kepler (2009-2018):</b> más de 2,600 planetas confirmados.</li>
-                <li><b>K2 (2014-2018):</b> cientos de hallazgos adicionales tras el éxito de Kepler.</li>
-                <li><b>TESS (2018 - presente):</b> más de 400 confirmados y miles de candidatos en observación.</li>
-            </ul>
-            <p>Cada punto de luz que ves en el cielo puede ocultar sistemas planetarios completos. Gracias al análisis
-                automatizado, la ciencia avanza más rápido que nunca en la búsqueda de mundos que algún día podríamos
-                explorar.</p>
-        </section>
-
-        <section id="interaccion">
-            <h2>🚀 ¡Comienza tu exploración!</h2>
-            <p>Pulsa el botón para simular una consulta inicial a nuestro modelo de IA y ver su mensaje de bienvenida.
-            </p>
-            <button id="btn-explorar">Activar Modelo de IA</button>
-            <div id="mensaje-ia">
-                <p>Esperando activación...</p>
-            </div>
-        </section>
-
+    <div class="header-content">
+      <h1>Exoplanetas</h1>
+      <p>
+        Durante las últimas décadas, telescopios espaciales como <b>Kepler, K2 y TESS</b> han observado millones de
+        estrellas para descubrir mundos fuera de nuestro sistema solar. Estos planetas, llamados
+        <b>exoplanetas</b>.
+      </p>
+      <a href="#bienvenida" class="btn">Prueba</a>
     </div>
+  </header>
 
-    <script src="script.js" defer></script>
+  <!-- === Contenido principal === -->
+  <div class="container">
+
+    <section id="bienvenida">
+      <h2>Exploración de Exoplanetas con IA</h2>
+      <p>
+        Durante las últimas décadas, telescopios espaciales como <b>Kepler, K2 y TESS</b> han observado millones de
+        estrellas para descubrir mundos fuera de nuestro sistema solar. Estos planetas, llamados
+        <b>exoplanetas</b>, se detectan principalmente mediante el <b>método de tránsito</b>, que consiste en
+        registrar la leve disminución de luz de una estrella cuando un planeta pasa frente a ella.
+      </p>
+      <p>
+        El proyecto que tienes en tus manos combina estos datos astronómicos con la potencia de la
+        <b>inteligencia artificial</b>. Así, cualquier persona puede explorar, analizar y descubrir cómo funcionan los modelos que
+        ayudan a identificar posibles nuevos planetas en los datos reales de la NASA.
+      </p>
+      <p>
+        Esta plataforma no es solo una herramienta científica, también es una ventana al futuro de la exploración
+        espacial: <b>acercar la búsqueda de otros mundos a todos.</b>
+      </p>
+    </section>
+
+    <section id="numeros">
+      <h2>Descubrimientos en números</h2>
+      <ul>
+        <li>🔭 <b>+5,500 exoplanetas</b> confirmados hasta la fecha (NASA, 2025).</li>
+        <li>🌠 Miles de candidatos planetarios aún en revisión, que podrían convertirse en descubrimientos futuros.</li>
+      </ul>
+
+      <h3>🛰️ Misiones clave:</h3>
+      <ul>
+        <li><b>Kepler (2009-2018):</b> más de 2,600 planetas confirmados.</li>
+        <li><b>K2 (2014-2018):</b> cientos de hallazgos adicionales tras el éxito de Kepler.</li>
+        <li><b>TESS (2018 - presente):</b> más de 400 confirmados y miles de candidatos en observación.</li>
+      </ul>
+      <p>
+        Cada punto de luz que ves en el cielo puede ocultar sistemas planetarios completos. Gracias al análisis
+        automatizado, la ciencia avanza más rápido que nunca en la búsqueda de mundos que algún día podríamos explorar.
+      </p>
+    </section>
+
+    <section id="interaccion">
+      <h2>🚀 ¡Comienza tu exploración!</h2>
+      <p>Pulsa el botón para simular una consulta inicial a nuestro modelo de IA y ver su mensaje de bienvenida.</p>
+      <button id="btn-explorar">Activar Modelo de IA</button>
+      <div id="mensaje-ia">
+        <p>Esperando activación...</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>© 2025 Programa de Exploración de Exoplanetas | Inspirado en el estilo NASA</p>
+  </footer>
+
 </body>
 
 </html>

@@ -34,3 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
         mensajeDiv.innerHTML = '<p>Pulsa <strong>Activar Modelo de IA</strong> para comenzar la simulación.</p>';
     }
 });
+
+// Efecto de desvanecimiento del header al hacer scroll
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('.video-header');
+  const opacity = 1 - window.scrollY / 600;
+  header.style.opacity = opacity > 0 ? opacity : 0;
+});
+
+// Simulación básica de IA
+document.getElementById('btn-explorar').addEventListener('click', () => {
+  const mensaje = document.getElementById('mensaje-ia');
+  mensaje.innerHTML = '<p class="ia-response-text">🌌 Bienvenido/a al sistema de detección inteligente de exoplanetas.</p>';
+});
