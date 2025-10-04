@@ -78,3 +78,29 @@ document.getElementById('btn-explorar').addEventListener('click', () => {
   const mensaje = document.getElementById('mensaje-ia');
   mensaje.innerHTML = '<p class="ia-response-text">🌌 Bienvenido/a al sistema de detección inteligente de exoplanetas.</p>';
 });
+
+
+function openNav() {
+  const sidebar = document.getElementById("mySidebar");
+  sidebar.style.width = "350px";
+  sidebar.classList.add("active");
+  document.getElementById("main").style.marginLeft = "350px";
+}
+
+function closeNav() {
+  const sidebar = document.getElementById("mySidebar");
+  sidebar.style.width = "0";
+  sidebar.classList.remove("active");
+  document.getElementById("main").style.marginLeft = "0";
+}
+
+// Botón “Prueba”
+document.getElementById("btn-prueba").addEventListener("click", () => {
+  alert("Iniciando simulación del programa de detección de exoplanetas...");
+});
+
+// Botón IA (tu interacción existente)
+document.getElementById("btn-explorar").addEventListener("click", () => {
+  const msg = document.getElementById("mensaje-ia");
+  msg.innerHTML = '<p class="ia-response-text">🌌 ¡Modelo activado! Bienvenido/a a la detección de exoplanetas IA.</p>';
+});

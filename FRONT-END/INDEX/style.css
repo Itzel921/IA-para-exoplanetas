@@ -1,25 +1,16 @@
-/* ===== Variables originales ===== */
 :root {
-    --color-primario: #105bd8;
-    /* Azul Brillante */
-    --color-primario-oscuro: #061f4a;
-    /* Azul Profundo (Fondo principal) */
-    --color-base: #212121;
-    /* Negro/Gris muy oscuro (Texto base) */
-    --color-gris-oscuro: #323a45;
-    /* Gris Oscuro (Contenedores/Fondo secundario) */
-    --color-gris-claro: #aeb0b5;
-    /* Gris claro (Énfasis sutil) */
-    --color-blanco: #ffffff;
-    /* Blanco (Texto principal) */
-    --color-acento-secundario: #dd361c;
-    /* Rojo (Énfasis/Botón hover) */
-    --color-acento-alt: #02bfe7;
-    /* Azul Turquesa (Énfasis sutil) */
-    --sidebar-width: 350px; /* Ancho de la barra lateral */
+  --color-primario: #105bd8;
+  --color-primario-oscuro: #061f4a;
+  --color-base: #212121;
+  --color-gris-oscuro: #323a45;
+  --color-gris-claro: #aeb0b5;
+  --color-blanco: #ffffff;
+  --color-acento-secundario: #dd361c;
+  --color-acento-alt: #02bfe7;
+  --sidebar-width: 350px;
 }
 
-/* ===== RESET GENERAL ===== */
+/* ===== RESET ===== */
 body {
   font-family: 'Arial', sans-serif;
   background-color: var(--color-primario-oscuro);
@@ -27,117 +18,10 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-    overflow-x: hidden; /* Evita el scroll horizontal al "ocultar" los enlaces */
+  overflow-x: hidden;
 }
 
-/* ------------------- BARRA LATERAL Y MENÚ ------------------- */
-
-.sidebar {
-    height: 100%; /* Altura completa */
-    width: 0; /* Cerrada por defecto */
-    position: fixed; /* Fija en la pantalla */
-    z-index: 10; /* Encima de otros elementos */
-    top: 0;
-    left: 0;
-    /* Fondo Azul Profundo */
-    background-color: var(--color-primario-oscuro); 
-    overflow: hidden; /* Importante para ocultar lo que "sale" del sidebar */
-    padding-top: 60px;
-    /* Animación de apertura/cierre del sidebar en sí */
-    transition: 0.5s; 
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
-}
-
-.sidebar-title {
-    padding: 15px 15px;
-    font-size: 1.3em;
-    font-weight: bold;
-    color: var(--color-acento-alt); /* Título en turquesa */
-    text-align: center;
-    margin-bottom: 10px;
-    border-bottom: 2px solid var(--color-acento-alt);
-}
-
-/* Estilos iniciales para los enlaces: transparentes y fuera de vista a la izquierda */
-.sidebar a {
-    padding: 15px 8px 15px 32px;
-    text-decoration: none;
-    font-size: 18px;
-    color: var(--color-blanco); 
-    display: block;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    
-    /* Propiedades para el efecto de slide-in horizontal */
-    opacity: 0; /* Empiezan invisibles */
-    transform: translateX(-100%); /* Empiezan fuera de la pantalla a la izquierda */
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Transición para ambos */
-    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
-}
-
-.sidebar a:hover {
-    /* Resaltado de opción con el azul brillante */
-    color: var(--color-primario); 
-    background-color: var(--color-gris-oscuro);
-}
-
-.sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 40px;
-    margin-left: 50px;
-    font-weight: 100;
-    opacity: 0; /* Invisibles al inicio */
-    transition: opacity 0.5s ease 0.3s; /* Aparece más tarde que los enlaces */
-}
-
-/* CLASE PARA MOSTRAR LOS ENLACES CUANDO EL SIDEBAR ESTÁ ABIERTO */
-.sidebar.active .sidebar-link, .sidebar.active .closebtn {
-    opacity: 1; /* Hacemos visibles los enlaces y el botón de cierre */
-    transform: translateX(0); /* Los movemos a su posición final */
-}
-
-/* 🟢 CORRECCIÓN CLAVE: Usamos .sidebar-link:nth-of-type() para asegurar el orden. */
-/* Se reinicia la numeración solo para elementos <a> con la clase .sidebar-link */
-.sidebar.active .sidebar-link:nth-of-type(1) { transition-delay: 0.1s; }
-.sidebar.active .sidebar-link:nth-of-type(2) { transition-delay: 0.15s; }
-.sidebar.active .sidebar-link:nth-of-type(3) { transition-delay: 0.2s; }
-.sidebar.active .sidebar-link:nth-of-type(4) { transition-delay: 0.25s; }
-.sidebar.active .sidebar-link:nth-of-type(5) { transition-delay: 0.3s; }
-.sidebar.active .sidebar-link:nth-of-type(6) { transition-delay: 0.35s; }
-
-
-
-/* 🆕 ESTILOS DEL CONTENIDO PRINCIPAL (#main) */
-#main {
-    /* Inicia en posición 0, se desplaza al abrir */
-    transition: margin-left .5s; 
-    padding: 0; 
-}
-
-.openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    /* Color de botón primario */
-    background-color: var(--color-primario); 
-    color: var(--color-blanco);
-    padding: 10px 15px;
-    border: none;
-    position: fixed; /* Permanece visible */
-    top: 15px;
-    left: 15px;
-    z-index: 5;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.openbtn:hover {
-    background-color: #0b3d91; /* Primario más oscuro */
-}
-
-/* ------------------- CONTENIDO PRINCIPAL ------------------- */
-
-/* ======== ENCABEZADO CON VIDEO ======== */
+/* ======= HEADER CON VIDEO ======= */
 .video-header {
   position: relative;
   height: 100vh;
@@ -185,14 +69,107 @@ body {
   max-width: 600px;
 }
 
-h1 {
-    color: var(--color-blanco);
-    font-size: 40px;
-    font-size: 2.5em;
-    margin: 0;
+.hero-btn {
+  background-color: var(--color-acento-alt);
+  color: var(--color-base);
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  font-weight: bold;
 }
 
-/* ======== CONTENIDO ======== */
+.hero-btn:hover {
+  background-color: var(--color-acento-secundario);
+  color: var(--color-blanco);
+  transform: translateY(-2px);
+}
+
+/* ====== SIDEBAR Y MENÚ ====== */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: var(--color-primario-oscuro);
+  overflow: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.sidebar-title {
+  padding: 15px;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: var(--color-acento-alt);
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--color-acento-alt);
+}
+
+.sidebar a {
+  padding: 15px 8px 15px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: var(--color-blanco);
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.sidebar a:hover {
+  color: var(--color-primario);
+  background-color: var(--color-gris-oscuro);
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 40px;
+  margin-left: 50px;
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+}
+
+.sidebar.active .sidebar-link,
+.sidebar.active .closebtn {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#main {
+  transition: margin-left 0.5s;
+  padding: 0;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  padding: 10px 15px;
+  border: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 5;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.openbtn:hover {
+  background-color: #0b3d91;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
 .container {
   max-width: 1000px;
   margin: 60px auto;
@@ -215,27 +192,7 @@ h2 {
   font-size: 2em;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  margin-bottom: 10px;
-  padding-left: 1.5em;
-  position: relative;
-  color: var(--color-blanco);
-}
-
-li::before {
-  content: '🚀';
-  position: absolute;
-  left: 0;
-}
-
-/* ------------------- SECCIÓN DE INTERACCIÓN ------------------- */
-
-/* ======== BOTÓN DE INTERACCIÓN ======== */
+/* ===== BOTONES E INTERACCIÓN ===== */
 #btn-explorar {
   background-color: var(--color-primario);
   color: var(--color-blanco);
@@ -251,35 +208,28 @@ li::before {
 }
 
 #btn-explorar:hover {
-    /* Hover con el color secundario (Rojo) para una alerta visual (uso con moderación) */
-    background-color: var(--color-acento-secundario);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-acento-secundario);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* ======== MENSAJE IA ======== */
 #mensaje-ia {
-    margin-top: 25px;
-    padding: 15px;
-    /* Fondo del mensaje un tono de azul más claro/frío de la paleta: dce4ef */
-    background-color: #dce4ef;
-    /* Borde en el azul primario */
-    border: 2px solid var(--color-primario);
-    border-radius: 5px;
-    text-align: center;
+  margin-top: 25px;
+  padding: 15px;
+  background-color: #dce4ef;
+  border: 2px solid var(--color-primario);
+  border-radius: 5px;
+  text-align: center;
 }
 
 #mensaje-ia p {
-    color: var(--color-base);
-    /* Color base (Negro/Gris oscuro) */
-    font-weight: 600;
-    margin: 0; /* Aseguramos que no haya margen extra */
+  color: var(--color-base);
+  font-weight: 600;
+  margin: 0;
 }
 
-/* 🆕 CLASE AÑADIDA PARA RESALTAR EL TEXTO DE LA IA */
 .ia-response-text {
-    /* Usamos el color Azul brillante para la respuesta real de la IA */
-    color: var(--color-primario) !important; 
-    font-weight: bold;
-    font-size: 1.1em;
+  color: var(--color-primario) !important;
+  font-weight: bold;
+  font-size: 1.1em;
 }
