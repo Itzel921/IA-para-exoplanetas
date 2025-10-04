@@ -116,7 +116,7 @@ body {
     font-weight: bold;
     color: var(--color-blanco);
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     border-bottom: 2px solid var(--color-blanco);
     display: flex;
     align-items: center;
