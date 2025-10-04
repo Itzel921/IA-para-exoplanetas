@@ -4,9 +4,10 @@ NASA Space Apps Challenge 2025
 
 Main API application with ensemble ML model serving
 Target: 83.08% accuracy using Stacking ensemble
+MongoDB integration for data persistence
 """
 
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
@@ -19,6 +20,18 @@ import io
 import logging
 from datetime import datetime
 import json
+import uuid
+import time
+
+# MongoDB integration
+from database import (
+    database,
+    PredictionService,
+    BatchAnalysisService,
+    UserSessionService,
+    PredictionStatus,
+    ExoplanetFeatures as DBExoplanetFeatures
+)
 
 # Configure logging
 logging.basicConfig(
@@ -49,6 +62,29 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# MongoDB event handlers
+@app.on_event("startup")
+async def startup_event():
+    """Initialize database connection and load ML models"""
+    try:
+        # Connect to MongoDB
+        await database.connect_to_database()
+        logger.info("Database connection established")
+        
+        # Load ML models
+        load_models()
+        logger.info("ML models loaded successfully")
+        
+    except Exception as e:
+        logger.error(f"Startup failed: {e}")
+        raise
+
+@app.on_event("shutdown") 
+async def shutdown_event():
+    """Close database connection"""
+    await database.close_database_connection()
+    logger.info("Application shutdown complete")
+
 # Serve static files (HTML/CSS/JS frontend)
 app.mount("/static", StaticFiles(directory="web/frontend"), name="static")
 
@@ -56,6 +92,15 @@ app.mount("/static", StaticFiles(directory="web/frontend"), name="static")
 model = None
 preprocessor = None
 feature_names = []
+
+# Session management
+async def get_or_create_session(session_id: str = None) -> str:
+    """Get or create user session"""
+    if not session_id:
+        session_id = str(uuid.uuid4())
+    
+    await UserSessionService.create_or_update_session(session_id)
+    return session_id
 
 # Pydantic models for API validation
 class ExoplanetFeatures(BaseModel):
@@ -212,14 +257,18 @@ async def read_root():
         """)
 
 @app.post("/api/predict", response_model=PredictionResponse)
-async def predict_single(features: ExoplanetFeatures):
+async def predict_single(features: ExoplanetFeatures, session_id: Optional[str] = None):
     """
-    Single exoplanet prediction
+    Single exoplanet prediction with MongoDB persistence
     
     Uses ensemble ML model with 83.08% target accuracy
+    Stores results in MongoDB for tracking and analytics
     """
     try:
-        start_time = datetime.now()
+        start_time = time.time()
+        
+        # Get or create user session
+        session_id = await get_or_create_session(session_id)
         
         # Convert to DataFrame
         feature_dict = features.dict()
@@ -240,6 +289,42 @@ async def predict_single(features: ExoplanetFeatures):
         # Feature importance
         importance = get_feature_importance(model, feature_dict)
         
+        # Processing time
+        processing_time_ms = (time.time() - start_time) * 1000
+        
+        # Convert features to DB format
+        db_features = DBExoplanetFeatures(
+            period=features.period,
+            radius=features.radius,
+            temp=features.temp,
+            star_radius=features.starRadius,
+            star_mass=features.starMass,
+            star_temp=features.starTemp,
+            depth=features.depth,
+            duration=features.duration,
+            snr=features.snr
+        )
+        
+        # Determine prediction status
+        prediction_status = PredictionStatus.CONFIRMED if prediction == 1 else PredictionStatus.FALSE_POSITIVE
+        
+        # Save to MongoDB
+        await PredictionService.save_prediction(
+            features=db_features,
+            prediction=prediction_status,
+            confidence=float(max(probabilities)),
+            probabilities={
+                "CONFIRMED": float(probabilities[1]),
+                "FALSE_POSITIVE": float(probabilities[0])
+            },
+            processing_time_ms=processing_time_ms,
+            user_session=session_id,
+            feature_importance=importance
+        )
+        
+        # Update session stats
+        await UserSessionService.increment_prediction_count(session_id)
+        
         # Prepare response
         result = PredictionResponse(
             prediction="CONFIRMED" if prediction == 1 else "FALSE_POSITIVE",
@@ -249,10 +334,10 @@ async def predict_single(features: ExoplanetFeatures):
                 "FALSE_POSITIVE": float(probabilities[0])
             },
             feature_importance=importance,
-            analysis_timestamp=start_time.isoformat()
+            analysis_timestamp=datetime.now().isoformat()
         )
         
-        logger.info(f"Prediction completed: {result.prediction} (confidence: {result.confidence:.3f})")
+        logger.info(f"Prediction completed and saved: {result.prediction} (confidence: {result.confidence:.3f})")
         return result
         
     except Exception as e:
@@ -344,13 +429,79 @@ async def get_model_info():
         target_accuracy=0.83
     )
 
+# New MongoDB-powered endpoints
+
+@app.get("/api/recent-predictions")
+async def get_recent_predictions(limit: int = 50, session_id: Optional[str] = None):
+    """Get recent predictions from database"""
+    try:
+        predictions = await PredictionService.get_recent_predictions(limit=limit, user_session=session_id)
+        return [
+            {
+                "id": str(pred.id),
+                "prediction": pred.prediction,
+                "confidence": pred.confidence,
+                "timestamp": pred.timestamp.isoformat(),
+                "features": pred.features.dict()
+            }
+            for pred in predictions
+        ]
+    except Exception as e:
+        logger.error(f"Error getting recent predictions: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/prediction-stats")
+async def get_prediction_statistics(days: int = 7):
+    """Get prediction statistics for the last N days"""
+    try:
+        stats = await PredictionService.get_prediction_stats(days=days)
+        return stats
+    except Exception as e:
+        logger.error(f"Error getting prediction stats: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/batch-analysis/{batch_id}")
+async def get_batch_analysis(batch_id: str):
+    """Get batch analysis results by ID"""
+    try:
+        batch = await BatchAnalysisService.get_batch_analysis(batch_id)
+        if not batch:
+            raise HTTPException(status_code=404, detail="Batch analysis not found")
+        
+        return {
+            "batch_id": batch.batch_id,
+            "filename": batch.filename,
+            "total_objects": batch.total_objects,
+            "confirmed_planets": batch.confirmed_planets,
+            "false_positives": batch.false_positives,
+            "status": batch.status,
+            "processing_start": batch.processing_start.isoformat(),
+            "processing_end": batch.processing_end.isoformat() if batch.processing_end else None,
+            "average_confidence": batch.average_confidence,
+            "high_confidence_detections": batch.high_confidence_detections,
+            "results": batch.results
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting batch analysis: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.get("/api/health")
 async def health_check():
-    """Health check endpoint"""
+    """Health check endpoint with database status"""
+    try:
+        # Test database connection
+        stats = await PredictionService.get_prediction_stats(days=1)
+        db_healthy = True
+    except:
+        db_healthy = False
+    
     return {
-        'status': 'healthy',
+        'status': 'healthy' if db_healthy else 'degraded',
         'timestamp': datetime.now().isoformat(),
         'model_loaded': model is not None,
+        'database_connected': db_healthy,
         'api_version': '1.0.0'
     }
 
