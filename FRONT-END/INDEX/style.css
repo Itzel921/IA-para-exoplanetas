@@ -16,6 +16,7 @@
     /* Rojo (Énfasis/Botón hover) */
     --color-acento-alt: #02bfe7;
     /* Azul Turquesa (Énfasis sutil) */
+    --sidebar-width: 280px; /* Nuevo: Ancho de la barra lateral */
 }
 
 body {
@@ -29,6 +30,87 @@ body {
     line-height: 1.6;
 }
 
+/* ------------------- BARRA LATERAL Y MENÚ ------------------- */
+
+.sidebar {
+    height: 100%; /* Altura completa */
+    width: 0; /* Cerrada por defecto */
+    position: fixed; /* Fija en la pantalla */
+    z-index: 10; /* Encima de otros elementos */
+    top: 0;
+    left: 0;
+    /* Fondo Azul Profundo */
+    background-color: var(--color-primario-oscuro); 
+    overflow-x: hidden; /* Deshabilita scroll horizontal */
+    padding-top: 60px;
+    /* Animación de apertura/cierre */
+    transition: 0.5s; 
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.sidebar-title {
+    padding: 15px 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--color-acento-alt); /* Título en turquesa */
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--color-acento-alt);
+}
+
+.sidebar a {
+    padding: 15px 8px 15px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--color-blanco); 
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar a:hover {
+    /* Resaltado de opción con el azul brillante */
+    color: var(--color-primario); 
+    background-color: var(--color-gris-oscuro);
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 40px;
+    margin-left: 50px;
+    font-weight: 100;
+}
+
+#main {
+    /* Inicia en posición 0, se desplaza al abrir */
+    transition: margin-left .5s; 
+    padding: 0; 
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    /* Color de botón primario */
+    background-color: var(--color-primario); 
+    color: var(--color-blanco);
+    padding: 10px 15px;
+    border: none;
+    position: fixed; /* Permanece visible */
+    top: 15px;
+    left: 15px;
+    z-index: 5;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.openbtn:hover {
+    background-color: #0b3d91; /* Primario más oscuro */
+}
+
+/* ------------------- CONTENIDO PRINCIPAL ------------------- */
+
 header {
     /* Fondo Azul Brillante/Primario */
     background-color: var(--color-primario);
@@ -39,7 +121,6 @@ header {
 
 h1 {
     color: var(--color-blanco);
-    font-size: 40px;
     font-size: 2.5em;
     margin: 0;
 }
@@ -91,6 +172,8 @@ li::before {
     left: 0;
 }
 
+/* ------------------- SECCIÓN DE INTERACCIÓN ------------------- */
+
 /* Estilos para el botón de interacción con JS */
 #btn-explorar {
     /* Botón en Azul Brillante */
@@ -108,7 +191,7 @@ li::before {
 }
 
 #btn-explorar:hover {
-    /* Hover con el color secundario (Rojo) para una alerta visual (uso con moderación) */
+    /* Hover con el color secundario (Rojo) para una alerta visual */
     background-color: var(--color-acento-secundario);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
@@ -118,7 +201,7 @@ li::before {
 #mensaje-ia {
     margin-top: 25px;
     padding: 15px;
-    /* Fondo del mensaje un tono de azul más claro/frío de la paleta: dce4ef */
+    /* Fondo del mensaje un tono de azul más claro/frío de la paleta */
     background-color: #dce4ef;
     /* Borde en el azul primario */
     border: 2px solid var(--color-primario);
@@ -131,13 +214,13 @@ li::before {
     color: var(--color-base);
     /* Color base (Negro/Gris oscuro) */
     font-weight: 600;
-    margin: 0; /* Aseguramos que no haya margen extra */
+    margin: 0;
 }
 
-/* 🆕 CLASE AÑADIDA PARA RESALTAR EL TEXTO DE LA IA */
+/* CLASE AÑADIDA PARA RESALTAR EL TEXTO DE LA IA */
 .ia-response-text {
     /* Usamos el color Azul brillante para la respuesta real de la IA */
-    color: var(--color-primario) !important; 
+    color: var(--color-primario) !important;
     font-weight: bold;
     font-size: 1.1em;
 }
