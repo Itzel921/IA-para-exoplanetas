@@ -75,20 +75,20 @@ body {
 }
 
 .hero-btn {
-  background-color: var(--color-acento-alt);
-  color: var(--color-base);
+  background-color: #d8442d;
   border: none;
-  padding: 12px 25px;
-  font-size: 1.1em;
+  padding: 15px 28px;
+  font-size: 20px;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease, transform 0.1s ease;
   font-weight: bold;
+  color: #fff;
+  
 }
 
 .hero-btn:hover {
-  background-color: var(--color-acento-secundario);
-  color: var(--color-blanco);
+  background-color: #dd361c;
   transform: translateY(-2px);
 }
 
