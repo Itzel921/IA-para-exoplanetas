@@ -58,7 +58,8 @@ body {
   position: relative;
   z-index: 2;
   max-width: 800px;
-  padding: 15% 5% 10% 5%;
+  padding: 20% 15% 10% 5%;
+  /* 20% superior, 10% inferior */
   color: white;
 }
 
