@@ -17,15 +17,17 @@
     /* Azul Turquesa (Énfasis sutil) */
     --sidebar-width: 350px;
 
-    /* Fondo transparente del sidebar */
     --color-sidebar-fondo: rgba(6, 31, 74, 0.95);
-    /* Color de hover: ligeramente más claro que el fondo (gris oscuro transparente) */
     --color-sidebar-hover: rgba(255, 255, 255, 0.08);
+
+    /* Colores extraídos de tu estilo hero-btn para consistencia */
+    --color-azul-frio: #205493;
+    --color-azul-frio-claro: #4773aa;
 }
 
-/* ===== RESET, BASE Y TIPOGRAFÍA (Se mantiene) ===== */
+/* ===== RESET ===== */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     background-color: var(--color-primario-oscuro);
     color: var(--color-blanco);
     margin: 0;
@@ -34,7 +36,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Encabezado sin video para la página de exploración */
+/* ======= ENCABEZADO DE PÁGINA (SIN VIDEO) ======= */
 .page-header {
     background-color: var(--color-primario);
     padding: 60px 0;
@@ -55,6 +57,7 @@ body {
     margin: 0 auto;
     padding: 0 20px;
     font-size: 1.1em;
+    line-height: 2.0;
 }
 
 /* Contenedor principal de secciones */
@@ -62,30 +65,72 @@ body {
     max-width: 1200px;
     margin: 60px auto;
     padding: 0 20px;
+    opacity: 0.95;
 }
 
 section {
     background-color: var(--color-gris-oscuro);
     padding: 30px;
+    line-height: 1.8;
     margin-bottom: 30px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
 }
 
 h2 {
-    color: var(--color-acento-alt);
-    border-bottom: 2px solid var(--color-acento-alt);
+    border-bottom: 4px solid var(--color-primario);
+    color: var(--color-blanco);
     padding-bottom: 10px;
     margin-top: 0;
     font-size: 2em;
 }
 
-/* ====== SIDEBAR ESTILOS (Formato requerido) ====== */
+/* ====== BOTONES Y UTILIDADES (Basado en hero-btn) ====== */
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color-blanco);
+    padding: 10px 15px;
+    border: 1px solid var(--color-blanco);
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
+}
+
+.openbtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-acento-alt);
+}
+
+.hero-btn, .run-btn {
+    background-color: var(--color-azul-frio);
+    color: var(--color-blanco);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-weight: bold;
+}
+
+.hero-btn:hover, .run-btn:hover {
+    background-color: var(--color-azul-frio-claro);
+    color: var(--color-blanco);
+    transform: translateY(-2px);
+}
+
+/* ====== SIDEBAR Y MENÚ (Formato Requerido) ====== */
 .sidebar {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 100;
+    z-index: 1000;
     top: 0;
     left: 0;
     background-color: var(--color-sidebar-fondo);
@@ -153,55 +198,18 @@ h2 {
 }
 
 /* Retrasos escalonados */
-.sidebar.active .sidebar-link:nth-child(3) {
-    transition-delay: 0.1s;
-}
-
-.sidebar.active .sidebar-link:nth-child(4) {
-    transition-delay: 0.15s;
-}
-
-.sidebar.active .sidebar-link:nth-child(5) {
-    transition-delay: 0.2s;
-}
-
-.sidebar.active .sidebar-link:nth-child(6) {
-    transition-delay: 0.25s;
-}
-
-.sidebar.active .sidebar-link:nth-child(7) {
-    transition-delay: 0.3s;
-}
+.sidebar.active .sidebar-link:nth-child(3) { transition-delay: 0.1s; }
+.sidebar.active .sidebar-link:nth-child(4) { transition-delay: 0.15s; }
+.sidebar.active .sidebar-link:nth-child(5) { transition-delay: 0.2s; }
+.sidebar.active .sidebar-link:nth-child(6) { transition-delay: 0.25s; }
+.sidebar.active .sidebar-link:nth-child(7) { transition-delay: 0.3s; }
+.sidebar.active .sidebar-link:nth-child(8) { transition-delay: 0.35s; }
 
 #main {
     transition: margin-left 0.5s;
     padding: 0;
 }
 
-.openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    background-color: transparent;
-    color: var(--color-blanco);
-    padding: 10px 15px;
-    border: 1px solid var(--color-blanco);
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 10;
-    border-radius: 4px;
-    transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
-}
-
-.openbtn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: var(--color-acento-alt);
-}
-
-.sidebar.active~#main .openbtn {
-    opacity: 0;
-    pointer-events: none;
-}
 
 /* ------------------------------------------- */
 /* ====== ESTILOS ESPECÍFICOS DE DETECTAR ====== */
@@ -209,7 +217,7 @@ h2 {
 
 .detect-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: flex-start;
     margin-top: 40px;
@@ -217,7 +225,7 @@ h2 {
 }
 
 .detection-panel {
-    min-height: 350px; /* Altura mínima para que ambos paneles se vean parejos */
+    min-height: 350px;
 }
 
 /* Estilos de la caja de carga */
@@ -243,6 +251,15 @@ h2 {
     cursor: pointer;
     margin: 15px 0 10px 0;
     padding: 10px 20px;
+    /* Usar el estilo hero-btn para que se vea como un botón */
+    background-color: var(--color-azul-frio);
+    color: var(--color-blanco);
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.upload-label:hover {
+    background-color: var(--color-azul-frio-claro);
 }
 
 .file-status {
@@ -314,11 +331,11 @@ h2 {
 
 /* Colores específicos para el estado de la predicción */
 .status-confirmed {
-    color: var(--color-acento-alt); /* Turquesa para Confirmado */
+    color: var(--color-acento-alt);
 }
 .status-candidate {
-    color: #ff9d1e; /* Color Oro/Amarillo para Candidato */
+    color: #ff9d1e;
 }
 .status-false {
-    color: var(--color-acento-secundario); /* Rojo para Falso Positivo */
+    color: var(--color-acento-secundario);
 }

@@ -17,15 +17,17 @@
     /* Azul Turquesa (Énfasis sutil) */
     --sidebar-width: 350px;
 
-    /* Fondo transparente del sidebar */
     --color-sidebar-fondo: rgba(6, 31, 74, 0.95);
-    /* Color de hover: ligeramente más claro que el fondo (gris oscuro transparente) */
     --color-sidebar-hover: rgba(255, 255, 255, 0.08);
+
+    /* Colores extraídos de tu estilo hero-btn para consistencia */
+    --color-azul-frio: #205493;
+    --color-azul-frio-claro: #4773aa;
 }
 
-/* ===== RESET, BASE Y TIPOGRAFÍA ===== */
+/* ===== RESET ===== */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     background-color: var(--color-primario-oscuro);
     color: var(--color-blanco);
     margin: 0;
@@ -34,7 +36,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Encabezado sin video para la página de exploración */
+/* ======= ENCABEZADO DE PÁGINA (SIN VIDEO) ======= */
 .page-header {
     /* Usamos el color primario brillante para el fondo */
     background-color: var(--color-primario);
@@ -43,7 +45,7 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     color: var(--color-blanco);
     z-index: 10;
-    position: relative; /* Asegura que el z-index funcione */
+    position: relative;
 }
 
 .page-header h1 {
@@ -56,26 +58,29 @@ body {
     margin: 0 auto;
     padding: 0 20px;
     font-size: 1.1em;
+    line-height: 2.0;
 }
 
 /* Contenedor principal de secciones */
 .container {
-    max-width: 1200px; /* Ancho ampliado para mejor vista de datos */
+    max-width: 1300px;
     margin: 60px auto;
     padding: 0 20px;
+    opacity: 0.95; /* Ligeramente transparente sobre el fondo principal */
 }
 
 section {
     background-color: var(--color-gris-oscuro);
     padding: 30px;
+    line-height: 1.8;
     margin-bottom: 30px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
 }
 
 h2 {
-    color: var(--color-acento-alt);
-    border-bottom: 2px solid var(--color-acento-alt);
+    border-bottom: 4px solid var(--color-primario);
+    color: var(--color-blanco);
     padding-bottom: 10px;
     margin-top: 0;
     font-size: 2em;
@@ -106,9 +111,8 @@ li::before {
     left: 0;
 }
 
-/* ====== BOTONES Y UTILIDADES ====== */
+/* ====== BOTONES Y UTILIDADES (Basado en hero-btn) ====== */
 
-/* Botón flotante de menú (transparente) */
 .openbtn {
     font-size: 20px;
     cursor: pointer;
@@ -119,7 +123,7 @@ li::before {
     position: fixed;
     top: 15px;
     left: 15px;
-    z-index: 10;
+    z-index: 100;
     border-radius: 4px;
     transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
 }
@@ -129,9 +133,9 @@ li::before {
     border-color: var(--color-acento-alt);
 }
 
-.hero-btn {
-    background-color: var(--color-acento-alt);
-    color: var(--color-base);
+.hero-btn, .filter-btn {
+    background-color: var(--color-azul-frio);
+    color: var(--color-blanco);
     border: none;
     padding: 12px 25px;
     font-size: 1.1em;
@@ -141,39 +145,18 @@ li::before {
     font-weight: bold;
 }
 
-.hero-btn:hover {
-    background-color: var(--color-acento-secundario);
+.hero-btn:hover, .filter-btn:hover {
+    background-color: var(--color-azul-frio-claro);
     color: var(--color-blanco);
     transform: translateY(-2px);
 }
 
-/* Área de simulación de IA (Mantenida por si se usa en otras secciones) */
-#mensaje-ia {
-    margin-top: 25px;
-    padding: 15px;
-    background-color: #dce4ef;
-    border: 2px solid var(--color-primario);
-    border-radius: 5px;
-    text-align: center;
-    min-height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.ia-response-text {
-    color: var(--color-primario) !important;
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-
-/* ====== SIDEBAR ESTILOS ====== */
+/* ====== SIDEBAR Y MENÚ (Formato Requerido) ====== */
 .sidebar {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 100;
+    z-index: 1000; /* Sidebar: Mayor Z-Index para cubrir el botón al abrir */
     top: 0;
     left: 0;
     background-color: var(--color-sidebar-fondo);
@@ -246,40 +229,17 @@ li::before {
 }
 
 /* Retrasos escalonados */
-.sidebar.active .sidebar-link:nth-child(3) {
-    transition-delay: 0.1s;
-}
-
-.sidebar.active .sidebar-link:nth-child(4) {
-    transition-delay: 0.15s;
-}
-
-.sidebar.active .sidebar-link:nth-child(5) {
-    transition-delay: 0.2s;
-}
-
-.sidebar.active .sidebar-link:nth-child(6) {
-    transition-delay: 0.25s;
-}
-
-.sidebar.active .sidebar-link:nth-child(7) {
-    transition-delay: 0.3s;
-}
-
-.sidebar.active .sidebar-link:nth-child(8) {
-    transition-delay: 0.35s;
-}
+.sidebar.active .sidebar-link:nth-child(3) { transition-delay: 0.1s; }
+.sidebar.active .sidebar-link:nth-child(4) { transition-delay: 0.15s; }
+.sidebar.active .sidebar-link:nth-child(5) { transition-delay: 0.2s; }
+.sidebar.active .sidebar-link:nth-child(6) { transition-delay: 0.25s; }
+.sidebar.active .sidebar-link:nth-child(7) { transition-delay: 0.3s; }
+.sidebar.active .sidebar-link:nth-child(8) { transition-delay: 0.35s; }
 
 #main {
     transition: margin-left 0.5s;
     padding: 0;
 }
-
-.sidebar.active~#main .openbtn {
-    opacity: 0;
-    pointer-events: none;
-}
-
 
 /* ------------------------------------------- */
 /* ====== ESTILOS ESPECÍFICOS DE EXPLORAR ====== */
@@ -288,7 +248,7 @@ li::before {
 /* Layout de dos columnas para filtros y contenido */
 .explore-layout {
     display: flex;
-    gap: 30px;
+    gap: 40px;
     align-items: flex-start;
     margin-top: 40px;
     padding-bottom: 60px;
@@ -332,15 +292,14 @@ li::before {
     background-color: var(--color-primario-oscuro);
     color: var(--color-blanco);
     font-size: 1em;
-    -webkit-appearance: none; /* Eliminar estilo nativo en Chrome/Safari */
-    -moz-appearance: none; /* Eliminar estilo nativo en Firefox */
-    appearance: none; /* Eliminar estilo nativo */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .range-input {
     width: 100%;
     margin-top: 5px;
-    /* Estilo básico de rango (se vería mejor con librerías o más CSS avanzado) */
 }
 
 #radio-valor, #periodo-valor {
@@ -366,7 +325,7 @@ li::before {
 .tabs {
     display: flex;
     border-bottom: 2px solid var(--color-gris-oscuro);
-    margin-bottom: 0; /* Quitamos margin para que se pegue al tab-content */
+    margin-bottom: 0;
 }
 
 .tab-btn {
@@ -385,7 +344,7 @@ li::before {
 }
 
 .tab-btn.active {
-    color: var(--color-primario); /* Color principal azul para el acento */
+    color: var(--color-primario);
     border-bottom: 3px solid var(--color-primario);
     font-weight: bold;
 }
@@ -394,7 +353,7 @@ li::before {
 .tab-content {
     background-color: var(--color-gris-oscuro);
     padding: 30px;
-    border-radius: 0 8px 8px 8px; /* Bordes redondeados excepto arriba a la izquierda */
+    border-radius: 0 8px 8px 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
     margin-top: 0;
 }
@@ -436,7 +395,7 @@ li::before {
     background-color: var(--color-primario);
     color: var(--color-blanco);
     font-weight: bold;
-    position: sticky; /* Fija los encabezados al hacer scroll */
+    position: sticky;
     top: 0;
     z-index: 5;
 }
@@ -458,7 +417,7 @@ li::before {
     background-color: var(--color-primario-oscuro);
     padding: 20px;
     border-radius: 6px;
-    min-height: 300px; /* Altura mínima para gráficos */
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
