@@ -9,15 +9,13 @@
   --color-acento-alt: #02bfe7;
   --sidebar-width: 350px;
 
-  /* 🆕 NUEVOS COLORES PARA EL SIDEBAR OSCURO */
-  --color-sidebar-fondo: #011124;
-  /* Un azul muy oscuro, casi negro */
-  --color-sidebar-hover: #105bd8;
-  /* Usamos el color primario brillante */
+  /* Fondo transparente del sidebar */
+  --color-sidebar-fondo: rgba(6, 31, 74, 0.95);
+  /* Color de hover: ligeramente más claro que el fondo (gris oscuro transparente) */
+  --color-sidebar-hover: rgba(255, 255, 255, 0.08);
 }
 
-/* ===== RESET, HEADER Y CONTENIDO PRINCIPAL (Se mantienen) ===== */
-
+/* ===== RESET ===== */
 body {
   font-family: 'Arial', sans-serif;
   background-color: var(--color-primario-oscuro);
@@ -99,14 +97,14 @@ body {
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   top: 0;
   left: 0;
-  /* 🟢 CAMBIO: Fondo más oscuro para el sidebar */
   background-color: var(--color-sidebar-fondo);
   overflow: hidden;
   padding-top: 60px;
   transition: 0.5s;
+  border-right: none;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
 }
 
@@ -114,54 +112,53 @@ body {
   padding: 15px;
   font-size: 1.3em;
   font-weight: bold;
-  color: var(--color-acento-alt);
+  color: var(--color-blanco);
   text-align: center;
   margin-bottom: 10px;
-  border-bottom: 2px solid var(--color-acento-alt);
+  border-bottom: 2px solid var(--color-blanco);
 }
 
 .sidebar a {
-  padding: 15px 8px 15px 32px;
+  padding: 20px 8px 20px 32px;
   text-decoration: none;
   font-size: 18px;
   color: var(--color-blanco);
   display: block;
+  transition: background-color 0.3s, color 0.3s;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
-/* 🟢 CAMBIO: Nuevo color de hover para las opciones del menú */
-.sidebar a:hover {
-  color: var(--color-blanco);
-  /* El texto sigue siendo blanco */
-  background-color: var(--color-sidebar-hover);
-  /* Fondo azul brillante */
+/* 🟢 AÑADIMOS EL BORDE SOLO CUANDO EL SIDEBAR ESTÁ ABIERTO */
+.sidebar.active {
+    border-right: 2px solid var(--color-blanco);
 }
 
-/* 🟢 CORRECCIÓN DE ALINEACIÓN Y APARIENCIA DE LA 'X' */
+.sidebar a:hover {
+  color: var(--color-blanco);
+  background-color: var(--color-sidebar-hover);
+}
+
 .sidebar .closebtn {
   position: absolute;
   top: 0;
   right: 0;
-  /* 🟢 CAMBIO: Alineado a la derecha del todo */
   padding: 10px 15px;
-  /* 🟢 CAMBIO: Padding para darle espacio y área de hover */
   font-size: 40px;
   color: var(--color-gris-claro);
-  /* Color gris claro para la 'X' */
   opacity: 0;
   transition: opacity 0.5s ease 0.4s, color 0.3s;
-  /* El margen que veías desalineado era el margen del link 'a' */
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  line-height: 1;
 }
 
-/* 🟢 CAMBIO: Hover específico para la 'X' */
 .sidebar .closebtn:hover {
   color: var(--color-acento-secundario);
-  /* Rojo de acento al pasar el cursor */
   background-color: transparent;
-  /* Sin fondo de color al hacer hover */
 }
 
 .sidebar.active .sidebar-link,
@@ -196,29 +193,53 @@ body {
   padding: 0;
 }
 
-/* 🟢 CAMBIO: Botón de menú transparente */
 .openbtn {
   font-size: 20px;
   cursor: pointer;
   background-color: transparent;
-  /* 🟢 TRANSPARENTE */
   color: var(--color-blanco);
   padding: 10px 15px;
   border: 1px solid var(--color-blanco);
-  /* Borde blanco sutil para visibilidad */
   position: fixed;
   top: 15px;
   left: 15px;
-  z-index: 5;
+  z-index: 10;
+  /* 🟢 Botón de menú con Z-Index bajo */
   border-radius: 4px;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
+  /* Añadir opacidad a la transición */
 }
 
 .openbtn:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  /* Fondo muy sutil al pasar el cursor */
   border-color: var(--color-acento-alt);
 }
+
+/* 🟢 CAMBIO CLAVE 1: La barra azul superior (video-header) */
+.video-header {
+  /* Mantener position: relative; z-index: 2; y todo el resto de propiedades */
+  z-index: 20;
+  /* 🟢 Z-Index mayor que el botón de menú (10) para que lo cubra */
+  position: relative;
+  /* Es necesario para que z-index funcione correctamente */
+  /* El alto de 100vh asegura que es más grande que el botón de menú */
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 🟢 CAMBIO CLAVE 2: Ocultar el botón de menú cuando el sidebar está abierto (usando la clase del body) */
+.sidebar.active~#main .openbtn {
+  opacity: 0;
+  pointer-events: none;
+  /* Deshabilita clics cuando es invisible */
+}
+
+/* 🟢 Asegurar que el overlay del header también tenga el z-index correcto */
+.overlay {
+  z-index: 15;
+  /* Mayor que el openbtn (10) */
+}
+
 
 /* ===== CONTENIDO PRINCIPAL Y BOTONES (Se mantienen) ===== */
 .container {
@@ -270,6 +291,10 @@ h2 {
   border: 2px solid var(--color-primario);
   border-radius: 5px;
   text-align: center;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #mensaje-ia p {
