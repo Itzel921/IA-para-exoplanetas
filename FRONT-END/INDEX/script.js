@@ -1,7 +1,11 @@
 // Función para simular la activación y respuesta de la IA
 function activarExploracion() {
     const mensajeElemento = document.getElementById('mensaje-ia');
+<<<<<<< HEAD
     if (!mensajeElemento) return; // Previene errores si el elemento no existe
+=======
+    if (!mensajeElemento) return;
+>>>>>>> ba9cf12f5edb537d2656c8333d2feb354617a780
     const mensajes = [
         "IA: 'Análisis de datos iniciado. 12 nuevos candidatos detectados en el sector TESS.'",
         "IA: 'Módulo de aprendizaje profundo cargado. Preparando curva de luz.'",
@@ -22,14 +26,15 @@ const botonExplorar = document.getElementById('btn-explorar');
 const mensajeInicialDiv = document.getElementById('mensaje-ia');
 
 // 2. Asigna la función al evento 'click' del botón si el elemento existe
-if (botonExplorar) {
+if (botonExplorar && typeof activarExploracion === 'function') {
     botonExplorar.addEventListener('click', activarExploracion);
 }
 
 // Opcional: Mostrar un mensaje inicial al cargar la página (se ejecuta al inicio)
 document.addEventListener('DOMContentLoaded', () => {
     // Usamos el color de texto base para el mensaje de espera
-    if (mensajeInicialDiv) {
-        mensajeInicialDiv.innerHTML = '<p>Pulsa <strong>Activar Modelo de IA</strong> para comenzar la simulación.</p>';
+    const mensajeDiv = document.getElementById('mensaje-ia');
+    if (mensajeDiv) {
+        mensajeDiv.innerHTML = '<p>Pulsa <strong>Activar Modelo de IA</strong> para comenzar la simulación.</p>';
     }
 });
