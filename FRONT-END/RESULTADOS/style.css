@@ -248,6 +248,7 @@ li::before {
 .sidebar.active .sidebar-link:nth-child(5) { transition-delay: 0.2s; }
 .sidebar.active .sidebar-link:nth-child(6) { transition-delay: 0.25s; }
 .sidebar.active .sidebar-link:nth-child(7) { transition-delay: 0.3s; }
+.sidebar.active .sidebar-link:nth-child(8) { transition-delay: 0.35s; }
 
 #main {
     transition: margin-left 0.5s;
