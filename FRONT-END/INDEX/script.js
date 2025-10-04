@@ -1,6 +1,7 @@
 // Función para simular la activación y respuesta de la IA
 function activarExploracion() {
     const mensajeElemento = document.getElementById('mensaje-ia');
+    if (!mensajeElemento) return; // Previene errores si el elemento no existe
     const mensajes = [
         "IA: 'Análisis de datos iniciado. 12 nuevos candidatos detectados en el sector TESS.'",
         "IA: 'Módulo de aprendizaje profundo cargado. Preparando curva de luz.'",

@@ -2,7 +2,7 @@
 :root {
     --color-primario: #105bd8;
     /* Azul Brillante */
-    --color-primario-oscuro: #061f4a;
+    --color-primario-oscuro: #fff;
     /* Azul Profundo (Fondo principal) */
     --color-base: #212121;
     /* Negro/Gris muy oscuro (Texto base) */
@@ -130,13 +130,14 @@ li::before {
     color: var(--color-base);
     /* Color base (Negro/Gris oscuro) */
     font-weight: 600;
-    margin: 0; /* Aseguramos que no haya margen extra */
+    margin: 0;
+    /* Aseguramos que no haya margen extra */
 }
 
 /* 🆕 CLASE AÑADIDA PARA RESALTAR EL TEXTO DE LA IA */
 .ia-response-text {
     /* Usamos el color Azul brillante para la respuesta real de la IA */
-    color: var(--color-primario) !important; 
+    color: var(--color-primario) !important;
     font-weight: bold;
     font-size: 1.1em;
 }
