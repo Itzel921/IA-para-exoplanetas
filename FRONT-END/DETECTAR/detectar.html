@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detectar Exoplanetas con IA</title>
+    <link rel="icon" href="/FRONT-END/RECURSOS/nasa_icono.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/FRONT-END/DETECTAR/style.css" />
+</head>
+
+<body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <div class="sidebar-title">MENÚ</div>
+        <a href="../INDEX/index.html" class="sidebar-link">🏠 INICIO</a> 
+        <a href="../EXPLORAR/explore.html" class="sidebar-link">🔭 EXPLORAR DATOS</a>
+        <a href="../DETECTAR/detectar.html" class="sidebar-link active-link">🧠 DETECTAR EXOPLANETAS</a>
+        <a href="#resultados" class="sidebar-link">📈 RESULTADOS</a>
+        <a href="#aprende" class="sidebar-link">📚 APRENDE MÁS</a>
+        <a href="#sobre" class="sidebar-link">ℹ️ SOBRE NOSOTROS</a>
+    </div>
+
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">☰ Menú</button>
+
+        <header class="page-header">
+            <div class="header-content">
+                <h1>🌠 Detectar exoplanetas</h1>
+                <p>
+                    ¿Quieres probar cómo trabaja la IA? Aquí podrás cargar tus propios datos astronómicos en formatos simples (**CSV, FITS o JSON**). El sistema analizará las curvas de luz y te dirá si contienen la señal de un posible planeta.
+                </p>
+            </div>
+        </header>
+
+        <div class="container detect-layout">
+
+            <section id="upload-form" class="detection-panel">
+                <h2>Cargar Curva de Luz</h2>
+                <div class="upload-box">
+                    <p>Arrastra o selecciona un archivo (CSV, FITS, JSON)</p>
+                    <input type="file" id="file-upload" accept=".csv, .fits, .json" class="hidden-input">
+                    <label for="file-upload" class="upload-label hero-btn">Seleccionar Archivo</label>
+                    <span id="file-name" class="file-status">Ningún archivo seleccionado.</span>
+                </div>
+
+                <button id="run-analysis-btn" class="hero-btn run-btn" disabled>
+                    Ejecutar Análisis de IA
+                </button>
+            </section>
+
+            <section id="prediction-results" class="detection-panel">
+                <h2>🔍 Resultados de la predicción</h2>
+                <div id="result-box" class="result-display">
+                    <p class="initial-message">Carga un archivo y ejecuta el análisis para obtener una predicción.</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="/FRONT-END/DETECTAR/script.js" defer></script>
+</body>
+
+</html>

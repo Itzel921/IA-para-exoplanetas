@@ -1,0 +1,324 @@
+:root {
+    --color-primario: #105bd8;
+    /* Azul Brillante */
+    --color-primario-oscuro: #061f4a;
+    /* Azul Profundo (Fondo principal) */
+    --color-base: #212121;
+    /* Negro/Gris muy oscuro (Texto base) */
+    --color-gris-oscuro: #323a45;
+    /* Gris Oscuro (Contenedores/Fondo secundario) */
+    --color-gris-claro: #aeb0b5;
+    /* Gris claro (Énfasis sutil) */
+    --color-blanco: #ffffff;
+    /* Blanco (Texto principal) */
+    --color-acento-secundario: #dd361c;
+    /* Rojo (Énfasis/Botón hover) */
+    --color-acento-alt: #02bfe7;
+    /* Azul Turquesa (Énfasis sutil) */
+    --sidebar-width: 350px;
+
+    /* Fondo transparente del sidebar */
+    --color-sidebar-fondo: rgba(6, 31, 74, 0.95);
+    /* Color de hover: ligeramente más claro que el fondo (gris oscuro transparente) */
+    --color-sidebar-hover: rgba(255, 255, 255, 0.08);
+}
+
+/* ===== RESET, BASE Y TIPOGRAFÍA (Se mantiene) ===== */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--color-primario-oscuro);
+    color: var(--color-blanco);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Encabezado sin video para la página de exploración */
+.page-header {
+    background-color: var(--color-primario);
+    padding: 60px 0;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: var(--color-blanco);
+    z-index: 10;
+    position: relative;
+}
+
+.page-header h1 {
+    font-size: 3em;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 1.1em;
+}
+
+/* Contenedor principal de secciones */
+.container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+section {
+    background-color: var(--color-gris-oscuro);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+h2 {
+    color: var(--color-acento-alt);
+    border-bottom: 2px solid var(--color-acento-alt);
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 2em;
+}
+
+/* ====== SIDEBAR ESTILOS (Formato requerido) ====== */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: var(--color-sidebar-fondo);
+    overflow: hidden;
+    padding-top: 20px;
+    transition: 0.5s;
+    border-right: none;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.sidebar.active {
+    border-right: 2px solid var(--color-blanco);
+}
+
+.sidebar-title {
+    padding: 10px 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--color-blanco);
+    text-align: center;
+    margin-bottom: 0px;
+    border-bottom: 2px solid var(--color-blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+}
+
+.sidebar a {
+    padding: 22px 8px 22px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--color-blanco);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.sidebar a:hover {
+    color: var(--color-blanco);
+    background-color: var(--color-sidebar-hover);
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 15px;
+    font-size: 40px;
+    color: var(--color-gris-claro);
+    opacity: 0;
+    transition: opacity 0.5s ease 0.4s, color 0.3s;
+    margin: 0;
+    border: none;
+    line-height: 1;
+}
+
+.sidebar.active .sidebar-link,
+.sidebar.active .closebtn {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Retrasos escalonados */
+.sidebar.active .sidebar-link:nth-child(3) {
+    transition-delay: 0.1s;
+}
+
+.sidebar.active .sidebar-link:nth-child(4) {
+    transition-delay: 0.15s;
+}
+
+.sidebar.active .sidebar-link:nth-child(5) {
+    transition-delay: 0.2s;
+}
+
+.sidebar.active .sidebar-link:nth-child(6) {
+    transition-delay: 0.25s;
+}
+
+.sidebar.active .sidebar-link:nth-child(7) {
+    transition-delay: 0.3s;
+}
+
+#main {
+    transition: margin-left 0.5s;
+    padding: 0;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color-blanco);
+    padding: 10px 15px;
+    border: 1px solid var(--color-blanco);
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
+}
+
+.openbtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-acento-alt);
+}
+
+.sidebar.active~#main .openbtn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ------------------------------------------- */
+/* ====== ESTILOS ESPECÍFICOS DE DETECTAR ====== */
+/* ------------------------------------------- */
+
+.detect-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 40px;
+    align-items: flex-start;
+    margin-top: 40px;
+    padding-bottom: 60px;
+}
+
+.detection-panel {
+    min-height: 350px; /* Altura mínima para que ambos paneles se vean parejos */
+}
+
+/* Estilos de la caja de carga */
+.upload-box {
+    border: 3px dashed var(--color-gris-claro);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 20px;
+    transition: border-color 0.3s ease;
+}
+
+.upload-box:hover {
+    border-color: var(--color-acento-alt);
+}
+
+.hidden-input {
+    display: none;
+}
+
+.upload-label {
+    display: inline-block;
+    cursor: pointer;
+    margin: 15px 0 10px 0;
+    padding: 10px 20px;
+}
+
+.file-status {
+    display: block;
+    font-size: 0.9em;
+    color: var(--color-gris-claro);
+    margin-top: 5px;
+}
+
+.run-btn {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.run-btn:disabled {
+    background-color: var(--color-gris-claro);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Estilos de la caja de resultados */
+.result-display {
+    background-color: var(--color-primario-oscuro);
+    min-height: 200px;
+    border-radius: 6px;
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--color-gris-oscuro);
+}
+
+.initial-message {
+    color: var(--color-gris-claro);
+    font-style: italic;
+}
+
+.prediction-result h3 {
+    color: var(--color-acento-alt);
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+.probability {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--color-primario);
+    margin: 10px 0;
+}
+
+.confidence-bar {
+    width: 80%;
+    height: 15px;
+    background-color: var(--color-gris-oscuro);
+    border-radius: 7px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    background-color: var(--color-acento-alt);
+    transition: width 1s ease-out;
+}
+
+/* Colores específicos para el estado de la predicción */
+.status-confirmed {
+    color: var(--color-acento-alt); /* Turquesa para Confirmado */
+}
+.status-candidate {
+    color: #ff9d1e; /* Color Oro/Amarillo para Candidato */
+}
+.status-false {
+    color: var(--color-acento-secundario); /* Rojo para Falso Positivo */
+}
