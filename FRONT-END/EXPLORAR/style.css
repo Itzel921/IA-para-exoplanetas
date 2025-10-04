@@ -39,7 +39,7 @@ body {
 /* ======= ENCABEZADO DE PÁGINA (SIN VIDEO) ======= */
 .page-header {
     /* Usamos el color primario brillante para el fondo */
-    background-color: var(--color-primario);
+    background-color: var(--color-azul-frio);
     padding: 60px 0;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
