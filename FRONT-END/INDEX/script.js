@@ -8,7 +8,7 @@ function activarExploracion() {
         "IA: '¡Bienvenido/a al panel de control! Tu primera tarea: verificar la señal Kepler-1647b.'",
         "IA: 'Procesando tránsitos. La probabilidad de falso positivo es del 1.5%.'",
     ];
-    
+
     // Selecciona un mensaje aleatorio
     const mensajeAleatorio = mensajes[Math.floor(Math.random() * mensajes.length)];
 
