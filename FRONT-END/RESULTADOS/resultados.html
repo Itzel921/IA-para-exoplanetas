@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Historial de Resultados - IA</title>
+    <link rel="icon" href="../../RECURSOS/nasa.ico" type="image/x-icon" /> 
+    <link rel="stylesheet" href="/FRONT-END/RESULTADOS/style.css" />
+</head>
+
+<body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <div class="sidebar-title">MENÚ</div>
+        <a href="/FRONT-END/INDEX/index.html" class="sidebar-link">🏠 INICIO</a>
+        <a href="/FRONT-END/EXPLORAR/explorar.html" class="sidebar-link">🔭 EXPLORAR DATOS</a>
+        <a href="/FRONT-END/DETECTAR/detectar.html" class="sidebar-link">🧠 DETECTAR EXOPLANETAS</a>
+        <a href="/FRONT-END/RESULTADOS/resultados.html" class="sidebar-link active-link">📈 RESULTADOS</a>
+        <a href="/FRONT-END/APRENDE/aprende.html" class="sidebar-link">📚 APRENDE MÁS</a>
+        <a href="/FRONT-END/SOBRE/sobre.html" class="sidebar-link">ℹ️ SOBRE NOSOTROS</a>
+    </div>
+
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">☰ Menú</button>
+
+        <header class="page-header">
+            <div class="header-content">
+                <h1>Historial de Análisis</h1>
+                <p>
+                    Aquí encontrarás el historial de análisis recientes y podrás comparar predicciones con datos ya confirmados por la NASA.
+                </p>
+            </div>
+        </header>
+
+        <div class="container results-layout">
+
+            <aside id="gallery-sidebar" class="results-gallery">
+                <h2>🖼️ Galería de Descubrimientos</h2>
+                <div id="prediction-history" class="history-list">
+                    <p class="initial-message">Historial de predicciones vacío.</p>
+                </div>
+            </aside>
+
+            <div class="visual-area">
+                
+                <section id="curve-visualization">
+                    <h2>🌠 Curva de luz con tránsitos marcados</h2>
+                    <div id="light-curve-chart" class="chart-box">
+                        <p class="initial-message">Selecciona un resultado de la galería para ver la curva de luz.</p>
+                        </div>
+                </section>
+
+                <section id="comparison-area">
+                    <h2>🔗 Comparaciones con planetas conocidos</h2>
+                    <div id="comparison-details" class="comparison-box">
+                        <p>Relaciona tu predicción con exoplanetas similares en tamaño, periodo orbital o tipo.</p>
+                        <div id="similar-planets-list">
+                            </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/FRONT-END/RESULTADOS/script.js" defer></script>
+</body>
+
+</html>
