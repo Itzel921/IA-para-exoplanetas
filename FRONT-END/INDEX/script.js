@@ -1,6 +1,6 @@
 // --- LÓGICA DE BARRA LATERAL ---
 
-const sidebarWidth = "280px"; // Debe coincidir con --sidebar-width en CSS
+const sidebarWidth = "350px"; // Debe coincidir con --sidebar-width en CSS
 
 /* Función para abrir el sidebar y empujar el contenido principal */
 function openNav() {
@@ -9,6 +9,7 @@ function openNav() {
     if (sidebar && mainContent) {
         sidebar.style.width = sidebarWidth;
         mainContent.style.marginLeft = sidebarWidth;
+        sidebar.classList.add('active'); // 🆕 Añade la clase 'active' para animar los enlaces
     }
 }
 
@@ -19,11 +20,11 @@ function closeNav() {
     if (sidebar && mainContent) {
         sidebar.style.width = "0";
         mainContent.style.marginLeft = "0";
+        sidebar.classList.remove('active'); // 🆕 Elimina la clase 'active' para ocultar los enlaces
     }
 }
 
 // Para que las funciones openNav y closeNav sean accesibles desde el onclick del HTML
-// (Aunque no es la mejor práctica, se mantiene para la compatibilidad con el código HTML proporcionado)
 window.openNav = openNav;
 window.closeNav = closeNav;
 
@@ -59,7 +60,6 @@ if (botonExplorar && typeof activarExploracion === 'function') {
 
 // Opcional: Mostrar un mensaje inicial al cargar la página (se ejecuta al inicio)
 document.addEventListener('DOMContentLoaded', () => {
-    // Usamos el color de texto base para el mensaje de espera
     const mensajeDiv = document.getElementById('mensaje-ia');
     if (mensajeDiv) {
         mensajeDiv.innerHTML = '<p>Pulsa <strong>Activar Modelo de IA</strong> para comenzar la simulación.</p>';

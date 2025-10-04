@@ -16,7 +16,7 @@
     /* Rojo (Énfasis/Botón hover) */
     --color-acento-alt: #02bfe7;
     /* Azul Turquesa (Énfasis sutil) */
-    --sidebar-width: 280px; /* Nuevo: Ancho de la barra lateral */
+    --sidebar-width: 350px; /* Ancho de la barra lateral */
 }
 
 body {
@@ -28,6 +28,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    overflow-x: hidden; /* Evita el scroll horizontal al "ocultar" los enlaces */
 }
 
 /* ------------------- BARRA LATERAL Y MENÚ ------------------- */
@@ -41,9 +42,9 @@ body {
     left: 0;
     /* Fondo Azul Profundo */
     background-color: var(--color-primario-oscuro); 
-    overflow-x: hidden; /* Deshabilita scroll horizontal */
+    overflow: hidden; /* Importante para ocultar lo que "sale" del sidebar */
     padding-top: 60px;
-    /* Animación de apertura/cierre */
+    /* Animación de apertura/cierre del sidebar en sí */
     transition: 0.5s; 
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
 }
@@ -58,14 +59,20 @@ body {
     border-bottom: 2px solid var(--color-acento-alt);
 }
 
+/* Estilos iniciales para los enlaces: transparentes y fuera de vista a la izquierda */
 .sidebar a {
     padding: 15px 8px 15px 32px;
     text-decoration: none;
     font-size: 18px;
     color: var(--color-blanco); 
     display: block;
-    transition: 0.3s;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Propiedades para el efecto de slide-in horizontal */
+    opacity: 0; /* Empiezan invisibles */
+    transform: translateX(-100%); /* Empiezan fuera de la pantalla a la izquierda */
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Transición para ambos */
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
 }
 
 .sidebar a:hover {
@@ -81,8 +88,28 @@ body {
     font-size: 40px;
     margin-left: 50px;
     font-weight: 100;
+    opacity: 0; /* Invisibles al inicio */
+    transition: opacity 0.5s ease 0.3s; /* Aparece más tarde que los enlaces */
 }
 
+/* CLASE PARA MOSTRAR LOS ENLACES CUANDO EL SIDEBAR ESTÁ ABIERTO */
+.sidebar.active .sidebar-link, .sidebar.active .closebtn {
+    opacity: 1; /* Hacemos visibles los enlaces y el botón de cierre */
+    transform: translateX(0); /* Los movemos a su posición final */
+}
+
+/* 🟢 CORRECCIÓN CLAVE: Usamos .sidebar-link:nth-of-type() para asegurar el orden. */
+/* Se reinicia la numeración solo para elementos <a> con la clase .sidebar-link */
+.sidebar.active .sidebar-link:nth-of-type(1) { transition-delay: 0.1s; }
+.sidebar.active .sidebar-link:nth-of-type(2) { transition-delay: 0.15s; }
+.sidebar.active .sidebar-link:nth-of-type(3) { transition-delay: 0.2s; }
+.sidebar.active .sidebar-link:nth-of-type(4) { transition-delay: 0.25s; }
+.sidebar.active .sidebar-link:nth-of-type(5) { transition-delay: 0.3s; }
+.sidebar.active .sidebar-link:nth-of-type(6) { transition-delay: 0.35s; }
+
+
+
+/* 🆕 ESTILOS DEL CONTENIDO PRINCIPAL (#main) */
 #main {
     /* Inicia en posición 0, se desplaza al abrir */
     transition: margin-left .5s; 
