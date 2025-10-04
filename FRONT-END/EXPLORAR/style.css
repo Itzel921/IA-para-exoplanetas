@@ -265,6 +265,10 @@ li::before {
     transition-delay: 0.3s;
 }
 
+.sidebar.active .sidebar-link:nth-child(8) {
+    transition-delay: 0.35s;
+}
+
 #main {
     transition: margin-left 0.5s;
     padding: 0;
