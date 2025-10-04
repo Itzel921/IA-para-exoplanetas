@@ -194,7 +194,7 @@ li::before {
     font-weight: bold;
     color: var(--color-blanco);
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     border-bottom: 2px solid var(--color-blanco);
     display: flex;
     align-items: center;
@@ -230,6 +230,7 @@ li::before {
     opacity: 0;
     transition: opacity 0.5s ease 0.4s, color 0.3s;
     margin: 0;
+    border: none;
     line-height: 1;
 }
 
