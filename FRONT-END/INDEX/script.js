@@ -11,8 +11,9 @@ function activarExploracion() {
     // Selecciona un mensaje aleatorio
     const mensajeAleatorio = mensajes[Math.floor(Math.random() * mensajes.length)];
 
-    // Actualiza el contenido del div. Nota: El estilo (color de texto) se define en el CSS (ver #mensaje-ia p)
-    mensajeElemento.innerHTML = `<p><strong>${mensajeAleatorio}</strong></p>`;
+    // 🟢 CORRECCIÓN CLAVE: Usamos la nueva clase CSS 'ia-response-text'
+    // para que el texto sea del color visible (Azul primario)
+    mensajeElemento.innerHTML = `<p class="ia-response-text">${mensajeAleatorio}</p>`;
 }
 
 // 1. Obtener los elementos del DOM
@@ -24,6 +25,6 @@ botonExplorar.addEventListener('click', activarExploracion);
 
 // Opcional: Mostrar un mensaje inicial al cargar la página (se ejecuta al inicio)
 document.addEventListener('DOMContentLoaded', () => {
-    // Usamos el color de texto definido en el CSS para esta sección (color-base)
+    // Usamos el color de texto base para el mensaje de espera
     mensajeInicialDiv.innerHTML = '<p>Pulsa <strong>Activar Modelo de IA</strong> para comenzar la simulación.</p>';
 });
