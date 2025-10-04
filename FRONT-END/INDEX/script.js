@@ -20,11 +20,15 @@ function activarExploracion() {
 const botonExplorar = document.getElementById('btn-explorar');
 const mensajeInicialDiv = document.getElementById('mensaje-ia');
 
-// 2. Asigna la función al evento 'click' del botón
-botonExplorar.addEventListener('click', activarExploracion);
+// 2. Asigna la función al evento 'click' del botón si el elemento existe
+if (botonExplorar) {
+    botonExplorar.addEventListener('click', activarExploracion);
+}
 
 // Opcional: Mostrar un mensaje inicial al cargar la página (se ejecuta al inicio)
 document.addEventListener('DOMContentLoaded', () => {
     // Usamos el color de texto base para el mensaje de espera
-    mensajeInicialDiv.innerHTML = '<p>Pulsa <strong>Activar Modelo de IA</strong> para comenzar la simulación.</p>';
+    if (mensajeInicialDiv) {
+        mensajeInicialDiv.innerHTML = '<p>Pulsa <strong>Activar Modelo de IA</strong> para comenzar la simulación.</p>';
+    }
 });
