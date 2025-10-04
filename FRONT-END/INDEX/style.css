@@ -130,4 +130,13 @@ li::before {
     color: var(--color-base);
     /* Color base (Negro/Gris oscuro) */
     font-weight: 600;
+    margin: 0; /* Aseguramos que no haya margen extra */
+}
+
+/* 🆕 CLASE AÑADIDA PARA RESALTAR EL TEXTO DE LA IA */
+.ia-response-text {
+    /* Usamos el color Azul brillante para la respuesta real de la IA */
+    color: var(--color-primario) !important; 
+    font-weight: bold;
+    font-size: 1.1em;
 }
