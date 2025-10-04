@@ -8,14 +8,11 @@
     --color-acento-secundario: #dd361c;
     --color-acento-alt: #02bfe7;
     --sidebar-width: 350px;
-
-    --color-sidebar-fondo: rgba(6, 31, 74, 0.95);
-    --color-sidebar-hover: rgba(255, 255, 255, 0.08);
 }
 
 /* ===== RESET ===== */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     background-color: var(--color-primario-oscuro);
     color: var(--color-blanco);
     margin: 0;
@@ -26,7 +23,6 @@ body {
 
 /* ======= HEADER CON VIDEO ======= */
 .video-header {
-    /* Eliminado margin-top: 30px; innecesario aquí. */
     position: relative;
     height: 100vh;
     overflow: hidden;
@@ -57,7 +53,6 @@ body {
     position: relative;
     z-index: 20;
     max-width: 800px;
-    /* Aumentado padding-top a 20% para asegurar el espacio libre para el botón "Menú" */
     padding: 20% 5% 10% 5%;
     color: white;
 }
@@ -73,11 +68,12 @@ body {
     line-height: 1.6;
     margin-bottom: 2rem;
     max-width: 600px;
+    line-height: 2.0;
 }
 
 .hero-btn {
-    background-color: var(--color-acento-alt);
-    color: var(--color-base);
+    background-color: #205493;
+    color: var(--color-blanco);
     border: none;
     padding: 12px 25px;
     font-size: 1.1em;
@@ -88,7 +84,7 @@ body {
 }
 
 .hero-btn:hover {
-    background-color: var(--color-acento-secundario);
+    background-color: #4773aa;
     color: var(--color-blanco);
     transform: translateY(-2px);
 }
@@ -129,10 +125,7 @@ body {
 }
 
 .sidebar a {
-    /* 🟢 CORRECCIÓN: Eliminar margin-top negativo que desalineaba la 'X' */
-    /* El padding define la altura y asegura que el hover cubra toda la celda */
     padding: 22px 8px 22px 32px;
-    /* margin-top: -25px; <--- ELIMINADO */
     text-decoration: none;
     font-size: 18px;
     color: var(--color-blanco);
@@ -227,22 +220,24 @@ body {
 
 /* ===== CONTENIDO PRINCIPAL Y BOTONES (Se mantienen) ===== */
 .container {
-    max-width: 1000px;
+    max-width: 1300px;
     margin: 60px auto;
     padding: 0 20px;
+    opacity: 0.8;
 }
 
 section {
-    background-color: var(--color-gris-oscuro);
+    background-color: #323a45;
     padding: 30px;
+    line-height: 1.8;
     margin-bottom: 30px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
 }
 
 h2 {
-    color: var(--color-acento-alt);
-    border-bottom: 2px solid var(--color-acento-alt);
+    border-bottom: 4px solid #105bd8;
+    color: #ffffff;
     padding-bottom: 10px;
     margin-top: 0;
     font-size: 2em;
