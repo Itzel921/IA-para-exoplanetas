@@ -1,294 +1,294 @@
 :root {
-  --color-primario: #105bd8;
-  --color-primario-oscuro: #061f4a;
-  --color-base: #212121;
-  --color-gris-oscuro: #323a45;
-  --color-gris-claro: #aeb0b5;
-  --color-blanco: #ffffff;
-  --color-acento-secundario: #dd361c;
-  --color-acento-alt: #02bfe7;
-  --sidebar-width: 350px;
+    --color-primario: #105bd8;
+    --color-primario-oscuro: #061f4a;
+    --color-base: #212121;
+    --color-gris-oscuro: #323a45;
+    --color-gris-claro: #aeb0b5;
+    --color-blanco: #ffffff;
+    --color-acento-secundario: #dd361c;
+    --color-acento-alt: #02bfe7;
+    --sidebar-width: 350px;
 
-  /* Fondo transparente del sidebar */
-  --color-sidebar-fondo: rgba(6, 31, 74, 0.95);
-  /* Color de hover: ligeramente más claro que el fondo (gris oscuro transparente) */
-  --color-sidebar-hover: rgba(255, 255, 255, 0.08);
+    --color-sidebar-fondo: rgba(6, 31, 74, 0.95);
+    --color-sidebar-hover: rgba(255, 255, 255, 0.08);
 }
 
-/* ===== RESET, HEADER, etc. (se mantienen) ===== */
+/* ===== RESET ===== */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: var(--color-primario-oscuro);
-  color: var(--color-blanco);
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  overflow-x: hidden;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--color-primario-oscuro);
+    color: var(--color-blanco);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* ======= HEADER CON VIDEO (Se mantiene) ======= */
+/* ======= HEADER CON VIDEO ======= */
 .video-header {
-  margin-top: 30px;
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  z-index: 20;
+    /* Eliminado margin-top: 30px; innecesario aquí. */
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 20;
 }
 
 #bg-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
 }
 
 .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 15;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 15;
 }
 
 .header-content {
-  position: relative;
-  z-index: 20;
-  max-width: 800px;
-  padding: 5% 15% 10% 5%;
-  /* 20% superior, 10% inferior */
-  color: white;
+    position: relative;
+    z-index: 20;
+    max-width: 800px;
+    /* Aumentado padding-top a 20% para asegurar el espacio libre para el botón "Menú" */
+    padding: 20% 5% 10% 5%;
+    color: white;
 }
 
 .header-content h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
 }
 
 .header-content p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  max-width: 600px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 600px;
 }
 
 .hero-btn {
-  background-color: var(--color-acento-alt);
-  color: var(--color-base);
-  border: none;
-  padding: 12px 25px;
-  font-size: 1.1em;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, transform 0.1s ease;
-  font-weight: bold;
+    background-color: var(--color-acento-alt);
+    color: var(--color-base);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-weight: bold;
 }
 
 .hero-btn:hover {
-  background-color: var(--color-acento-secundario);
-  color: var(--color-blanco);
-  transform: translateY(-2px);
+    background-color: var(--color-acento-secundario);
+    color: var(--color-blanco);
+    transform: translateY(-2px);
 }
 
 /* ====== SIDEBAR Y MENÚ ====== */
 .sidebar {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  background-color: var(--color-sidebar-fondo);
-  overflow: hidden;
-  /* 🟢 SOLUCIÓN CLAVE: Reducir el padding superior (60px -> 20px) */
-  padding-top: 20px;
-  transition: 0.5s;
-  border-right: none;
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: var(--color-sidebar-fondo);
+    overflow: hidden;
+    /* 🟢 CORRECCIÓN: Ajustar padding-top (20px) para acercar las opciones sin usar margin negativo */
+    padding-top: 20px;
+    transition: 0.5s;
+    border-right: none;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
 }
 
 .sidebar.active {
-  border-right: 2px solid var(--color-blanco);
+    border-right: 2px solid var(--color-blanco);
 }
 
 .sidebar-title {
-  padding: 20px 20px;
-  font-size: 1.3em;
-  font-weight: bold;
-  color: var(--color-blanco);
-  text-align: center;
-  margin-bottom: 10x;
-  border-bottom: 2px solid var(--color-blanco);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 30px;
+    padding: 10px 15px; /* Reducido para achicar el área del título */
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--color-blanco);
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--color-blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
 }
 
 .sidebar a {
-  padding: 22px 8px 22px 32px;
-  margin-top: -25px;
-  text-decoration: none;
-  font-size: 18px;
-  color: var(--color-blanco);
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    /* 🟢 CORRECCIÓN: Eliminar margin-top negativo que desalineaba la 'X' */
+    /* El padding define la altura y asegura que el hover cubra toda la celda */
+    padding: 22px 8px 22px 32px;
+    /* margin-top: -25px; <--- ELIMINADO */
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--color-blanco);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
 .sidebar a:hover {
-  color: var(--color-blanco);
-  background-color: var(--color-sidebar-hover);
+    color: var(--color-blanco);
+    background-color: var(--color-sidebar-hover);
 }
 
 .sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px 15px;
-  font-size: 40px;
-  color: var(--color-gris-claro);
-  opacity: 0;
-  transition: opacity 0.5s ease 0.4s, color 0.3s;
-  margin: 0;
-  border: none;
-  line-height: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 15px;
+    font-size: 40px;
+    color: var(--color-gris-claro);
+    opacity: 0;
+    transition: opacity 0.5s ease 0.4s, color 0.3s;
+    margin: 0;
+    border: none;
+    line-height: 1;
 }
 
 .sidebar .closebtn:hover {
-  color: var(--color-acento-secundario);
-  background-color: transparent;
+    color: var(--color-acento-secundario);
+    background-color: transparent;
 }
 
 .sidebar.active .sidebar-link,
 .sidebar.active .closebtn {
-  opacity: 1;
-  transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* Retrasos escalonados (se mantienen) */
 .sidebar.active .sidebar-link:nth-child(3) {
-  transition-delay: 0.1s;
+    transition-delay: 0.1s;
 }
 
 .sidebar.active .sidebar-link:nth-child(4) {
-  transition-delay: 0.15s;
+    transition-delay: 0.15s;
 }
 
 .sidebar.active .sidebar-link:nth-child(5) {
-  transition-delay: 0.2s;
+    transition-delay: 0.2s;
 }
 
 .sidebar.active .sidebar-link:nth-child(6) {
-  transition-delay: 0.25s;
+    transition-delay: 0.25s;
 }
 
 .sidebar.active .sidebar-link:nth-child(7) {
-  transition-delay: 0.3s;
+    transition-delay: 0.3s;
 }
 
 #main {
-  transition: margin-left 0.5s;
-  padding: 0;
+    transition: margin-left 0.5s;
+    padding: 0;
 }
 
 .openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: transparent;
-  color: var(--color-blanco);
-  padding: 10px 15px;
-  border: 1px solid var(--color-blanco);
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  z-index: 10;
-  border-radius: 4px;
-  transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color-blanco);
+    padding: 10px 15px;
+    border: 1px solid var(--color-blanco);
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
 }
 
 .openbtn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: var(--color-acento-alt);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-acento-alt);
 }
 
 .sidebar.active~#main .openbtn {
-  opacity: 0;
-  pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* ===== CONTENIDO PRINCIPAL Y BOTONES (Se mantienen) ===== */
 .container {
-  max-width: 1000px;
-  margin: 60px auto;
-  padding: 0 20px;
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
 }
 
 section {
-  background-color: var(--color-gris-oscuro);
-  padding: 30px;
-  margin-bottom: 30px;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    background-color: var(--color-gris-oscuro);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
 }
 
 h2 {
-  color: var(--color-acento-alt);
-  border-bottom: 2px solid var(--color-acento-alt);
-  padding-bottom: 10px;
-  margin-top: 0;
-  font-size: 2em;
+    color: var(--color-acento-alt);
+    border-bottom: 2px solid var(--color-acento-alt);
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 2em;
 }
 
 #btn-explorar {
-  background-color: var(--color-primario);
-  color: var(--color-blanco);
-  border: none;
-  padding: 12px 25px;
-  font-size: 1.1em;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, transform 0.1s ease;
-  display: block;
-  margin: 20px auto 0;
-  font-weight: bold;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: block;
+    margin: 20px auto 0;
+    font-weight: bold;
 }
 
 #btn-explorar:hover {
-  background-color: var(--color-acento-secundario);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    background-color: var(--color-acento-secundario);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 #mensaje-ia {
-  margin-top: 25px;
-  padding: 15px;
-  background-color: #dce4ef;
-  border: 2px solid var(--color-primario);
-  border-radius: 5px;
-  text-align: center;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #dce4ef;
+    border: 2px solid var(--color-primario);
+    border-radius: 5px;
+    text-align: center;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #mensaje-ia p {
-  color: var(--color-base);
-  font-weight: 600;
-  margin: 0;
+    color: var(--color-base);
+    font-weight: 600;
+    margin: 0;
 }
 
 .ia-response-text {
-  color: var(--color-primario) !important;
-  font-weight: bold;
-  font-size: 1.1em;
+    color: var(--color-primario) !important;
+    font-weight: bold;
+    font-size: 1.1em;
 }
