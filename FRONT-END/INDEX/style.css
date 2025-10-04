@@ -1,13 +1,21 @@
 /* ===== Variables originales ===== */
 :root {
-  --color-primario: #061f4a;
-  --color-primario-oscuro: #000d;
-  --color-base: #212121;
-  --color-gris-oscuro: #323a45;
-  --color-gris-claro: #aeb0b5;
-  --color-blanco: #ffffff;
-  --color-acento-secundario: #dd361c;
-  --color-acento-alt: #02bfe7;
+    --color-primario: #105bd8;
+    /* Azul Brillante */
+    --color-primario-oscuro: #061f4a;
+    /* Azul Profundo (Fondo principal) */
+    --color-base: #212121;
+    /* Negro/Gris muy oscuro (Texto base) */
+    --color-gris-oscuro: #323a45;
+    /* Gris Oscuro (Contenedores/Fondo secundario) */
+    --color-gris-claro: #aeb0b5;
+    /* Gris claro (Énfasis sutil) */
+    --color-blanco: #ffffff;
+    /* Blanco (Texto principal) */
+    --color-acento-secundario: #dd361c;
+    /* Rojo (Énfasis/Botón hover) */
+    --color-acento-alt: #02bfe7;
+    /* Azul Turquesa (Énfasis sutil) */
 }
 
 /* ===== RESET GENERAL ===== */
@@ -19,6 +27,87 @@ body {
   padding: 0;
   line-height: 1.6;
 }
+
+/* ------------------- BARRA LATERAL Y MENÚ ------------------- */
+
+.sidebar {
+    height: 100%; /* Altura completa */
+    width: 0; /* Cerrada por defecto */
+    position: fixed; /* Fija en la pantalla */
+    z-index: 10; /* Encima de otros elementos */
+    top: 0;
+    left: 0;
+    /* Fondo Azul Profundo */
+    background-color: var(--color-primario-oscuro); 
+    overflow-x: hidden; /* Deshabilita scroll horizontal */
+    padding-top: 60px;
+    /* Animación de apertura/cierre */
+    transition: 0.5s; 
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.sidebar-title {
+    padding: 15px 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--color-acento-alt); /* Título en turquesa */
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--color-acento-alt);
+}
+
+.sidebar a {
+    padding: 15px 8px 15px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--color-blanco); 
+    display: block;
+    transition: 0.3s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar a:hover {
+    /* Resaltado de opción con el azul brillante */
+    color: var(--color-primario); 
+    background-color: var(--color-gris-oscuro);
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 40px;
+    margin-left: 50px;
+    font-weight: 100;
+}
+
+#main {
+    /* Inicia en posición 0, se desplaza al abrir */
+    transition: margin-left .5s; 
+    padding: 0; 
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    /* Color de botón primario */
+    background-color: var(--color-primario); 
+    color: var(--color-blanco);
+    padding: 10px 15px;
+    border: none;
+    position: fixed; /* Permanece visible */
+    top: 15px;
+    left: 15px;
+    z-index: 5;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.openbtn:hover {
+    background-color: #0b3d91; /* Primario más oscuro */
+}
+
+/* ------------------- CONTENIDO PRINCIPAL ------------------- */
 
 /* ======== ENCABEZADO CON VIDEO ======== */
 .video-header {
@@ -68,19 +157,11 @@ body {
   max-width: 600px;
 }
 
-.btn {
-  background-color: var(--color-acento-secundario);
-  color: white;
-  padding: 0.8rem 2rem;
-  border: none;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #b52b26;
+h1 {
+    color: var(--color-blanco);
+    font-size: 40px;
+    font-size: 2.5em;
+    margin: 0;
 }
 
 /* ======== CONTENIDO ======== */
@@ -124,6 +205,8 @@ li::before {
   left: 0;
 }
 
+/* ------------------- SECCIÓN DE INTERACCIÓN ------------------- */
+
 /* ======== BOTÓN DE INTERACCIÓN ======== */
 #btn-explorar {
   background-color: var(--color-primario);
@@ -140,32 +223,35 @@ li::before {
 }
 
 #btn-explorar:hover {
-  background-color: var(--color-acento-secundario);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    /* Hover con el color secundario (Rojo) para una alerta visual (uso con moderación) */
+    background-color: var(--color-acento-secundario);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* ======== MENSAJE IA ======== */
 #mensaje-ia {
-  margin-top: 25px;
-  padding: 15px;
-  background-color: #dce4ef;
-  border: 2px solid var(--color-primario);
-  border-radius: 5px;
-  text-align: center;
+    margin-top: 25px;
+    padding: 15px;
+    /* Fondo del mensaje un tono de azul más claro/frío de la paleta: dce4ef */
+    background-color: #dce4ef;
+    /* Borde en el azul primario */
+    border: 2px solid var(--color-primario);
+    border-radius: 5px;
+    text-align: center;
 }
 
 #mensaje-ia p {
-  color: var(--color-base);
-  font-weight: 600;
-  margin: 0;
+    color: var(--color-base);
+    /* Color base (Negro/Gris oscuro) */
+    font-weight: 600;
+    margin: 0; /* Aseguramos que no haya margen extra */
 }
 
-/* ======== FOOTER ======== */
-footer {
-  text-align: center;
-  padding: 2rem;
-  background: #000;
-  font-size: 0.9rem;
-  color: #aaa;
+/* 🆕 CLASE AÑADIDA PARA RESALTAR EL TEXTO DE LA IA */
+.ia-response-text {
+    /* Usamos el color Azul brillante para la respuesta real de la IA */
+    color: var(--color-primario) !important; 
+    font-weight: bold;
+    font-size: 1.1em;
 }
