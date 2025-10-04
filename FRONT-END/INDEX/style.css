@@ -21,39 +21,36 @@ body {
     overflow-x: hidden;
 }
 
-/* ======= HEADER CON VIDEO ======= */
-.video-header {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-    z-index: 20;
-}
-
-#bg-video {
-    position: absolute;
+/* ===== HEADER CON VIDEO ===== */
+/* CAMBIOS: El video y el overlay ahora se mueven al body y se fijan */
+#bg-video,
+.overlay {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
-    z-index: 0;
+    z-index: -1;
 }
 
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    z-index: 15;
+}
+
+.video-header {
+    position: relative;
+    padding-top: 10vh;
+    padding-bottom: 2rem;
+    overflow: hidden;
+    z-index: 20;
 }
 
 .header-content {
     position: relative;
     z-index: 20;
     max-width: 800px;
-    padding: 20% 5% 10% 5%;
+    padding: 10% 5% 0 5%;
     color: white;
 }
 
@@ -99,7 +96,6 @@ body {
     left: 0;
     background-color: var(--color-sidebar-fondo);
     overflow: hidden;
-    /* 🟢 CORRECCIÓN: Ajustar padding-top (20px) para acercar las opciones sin usar margin negativo */
     padding-top: 20px;
     transition: 0.5s;
     border-right: none;
@@ -111,7 +107,7 @@ body {
 }
 
 .sidebar-title {
-    padding: 10px 15px; /* Reducido para achicar el área del título */
+    padding: 10px 15px;
     font-size: 1.3em;
     font-weight: bold;
     color: var(--color-blanco);
@@ -223,7 +219,7 @@ body {
     max-width: 1300px;
     margin: 60px auto;
     padding: 0 20px;
-    opacity: 0.8;
+    opacity: 0.95;
 }
 
 section {
