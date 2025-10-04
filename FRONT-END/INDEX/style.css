@@ -1,4 +1,4 @@
-/* Variables CSS basadas en la paleta proporcionada */
+/* ===== Variables originales ===== */
 :root {
     --color-primario: #105bd8;
     /* Azul Brillante */
@@ -19,15 +19,14 @@
     --sidebar-width: 350px; /* Ancho de la barra lateral */
 }
 
+/* ===== RESET GENERAL ===== */
 body {
-    font-family: 'Arial', sans-serif;
-    /* Fondo Azul Profundo */
-    background-color: var(--color-primario-oscuro);
-    /* Texto Blanco para contraste */
-    color: var(--color-blanco);
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--color-primario-oscuro);
+  color: var(--color-blanco);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
     overflow-x: hidden; /* Evita el scroll horizontal al "ocultar" los enlaces */
 }
 
@@ -138,97 +137,131 @@ body {
 
 /* ------------------- CONTENIDO PRINCIPAL ------------------- */
 
-header {
-    /* Fondo Azul Brillante/Primario */
-    background-color: var(--color-primario);
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+/* ======== ENCABEZADO CON VIDEO ======== */
+.video-header {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 10% 5%;
+  color: white;
+}
+
+.header-content h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.header-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
 }
 
 h1 {
     color: var(--color-blanco);
+    font-size: 40px;
     font-size: 2.5em;
     margin: 0;
 }
 
+/* ======== CONTENIDO ======== */
 .container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 20px;
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 20px;
 }
 
 section {
-    /* Fondo Gris Oscuro para secciones */
-    background-color: var(--color-gris-oscuro);
-    padding: 30px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  background-color: var(--color-gris-oscuro);
+  padding: 30px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
 }
 
 h2 {
-    /* Títulos en Azul Brillante */
-    color: var(--color-primario);
-    border-bottom: 2px solid var(--color-acento-alt);
-    /* Línea de acento Turquesa */
-    padding-bottom: 10px;
-    margin-top: 0;
-    font-size: 2em;
+  color: var(--color-acento-alt);
+  border-bottom: 2px solid var(--color-acento-alt);
+  padding-bottom: 10px;
+  margin-top: 0;
+  font-size: 2em;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 li {
-    margin-bottom: 10px;
-    padding-left: 1.5em;
-    position: relative;
-    /* Texto de lista en blanco */
-    color: var(--color-blanco);
+  margin-bottom: 10px;
+  padding-left: 1.5em;
+  position: relative;
+  color: var(--color-blanco);
 }
 
 li::before {
-    content: '🚀';
-    /* Icono de cohete como viñeta */
-    color: var(--color-acento-alt);
-    /* Turquesa para que destaque */
-    position: absolute;
-    left: 0;
+  content: '🚀';
+  position: absolute;
+  left: 0;
 }
 
 /* ------------------- SECCIÓN DE INTERACCIÓN ------------------- */
 
-/* Estilos para el botón de interacción con JS */
+/* ======== BOTÓN DE INTERACCIÓN ======== */
 #btn-explorar {
-    /* Botón en Azul Brillante */
-    background-color: var(--color-primario);
-    color: var(--color-blanco);
-    border: none;
-    padding: 12px 25px;
-    font-size: 1.1em;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    display: block;
-    margin: 20px auto 0;
-    font-weight: bold;
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  display: block;
+  margin: 20px auto 0;
+  font-weight: bold;
 }
 
 #btn-explorar:hover {
-    /* Hover con el color secundario (Rojo) para una alerta visual */
+    /* Hover con el color secundario (Rojo) para una alerta visual (uso con moderación) */
     background-color: var(--color-acento-secundario);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Estilo para el mensaje que mostrará JS */
+/* ======== MENSAJE IA ======== */
 #mensaje-ia {
     margin-top: 25px;
     padding: 15px;
-    /* Fondo del mensaje un tono de azul más claro/frío de la paleta */
+    /* Fondo del mensaje un tono de azul más claro/frío de la paleta: dce4ef */
     background-color: #dce4ef;
     /* Borde en el azul primario */
     border: 2px solid var(--color-primario);
@@ -236,18 +269,17 @@ li::before {
     text-align: center;
 }
 
-/* El texto dentro del mensaje debe ser oscuro para cumplir la accesibilidad sobre el fondo claro */
 #mensaje-ia p {
     color: var(--color-base);
     /* Color base (Negro/Gris oscuro) */
     font-weight: 600;
-    margin: 0;
+    margin: 0; /* Aseguramos que no haya margen extra */
 }
 
-/* CLASE AÑADIDA PARA RESALTAR EL TEXTO DE LA IA */
+/* 🆕 CLASE AÑADIDA PARA RESALTAR EL TEXTO DE LA IA */
 .ia-response-text {
     /* Usamos el color Azul brillante para la respuesta real de la IA */
-    color: var(--color-primario) !important;
+    color: var(--color-primario) !important; 
     font-weight: bold;
     font-size: 1.1em;
 }
