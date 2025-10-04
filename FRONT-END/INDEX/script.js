@@ -6,11 +6,17 @@ const sidebarWidth = "350px"; // Debe coincidir con --sidebar-width en CSS
 function openNav() {
   const sidebar = document.getElementById("mySidebar");
   const mainContent = document.getElementById("main");
-  if (sidebar && mainContent) {
-    sidebar.style.width = sidebarWidth;
-    mainContent.style.marginLeft = sidebarWidth;
-    sidebar.classList.add('active'); // Añade la clase 'active' para animar los enlaces
+  if (!sidebar) {
+    console.error("Sidebar element with id 'mySidebar' not found.");
+    return;
   }
+  if (!mainContent) {
+    console.error("Main content element with id 'main' not found.");
+    return;
+  }
+  sidebar.style.width = sidebarWidth;
+  mainContent.style.marginLeft = sidebarWidth;
+  sidebar.classList.add('active'); // Añade la clase 'active' para animar los enlaces
 }
 
 /* Función para cerrar el sidebar y restaurar el contenido principal */

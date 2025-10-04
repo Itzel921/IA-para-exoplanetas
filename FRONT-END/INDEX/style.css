@@ -15,7 +15,7 @@
   --color-sidebar-hover: rgba(255, 255, 255, 0.08);
 }
 
-/* ===== RESET ===== */
+/* ===== RESET, HEADER, etc. (se mantienen) ===== */
 body {
   font-family: 'Arial', sans-serif;
   background-color: var(--color-primario-oscuro);
@@ -31,6 +31,7 @@ body {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  z-index: 20;
 }
 
 #bg-video {
@@ -50,14 +51,14 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+  z-index: 15;
 }
 
 .header-content {
   position: relative;
   z-index: 2;
   max-width: 800px;
-  padding: 10% 5%;
+  padding: 15% 5% 10% 5%;
   color: white;
 }
 
@@ -75,20 +76,20 @@ body {
 }
 
 .hero-btn {
-  background-color: #d8442d;
+  background-color: var(--color-acento-alt);
+  color: var(--color-base);
   border: none;
-  padding: 15px 28px;
-  font-size: 20px;
+  padding: 12px 25px;
+  font-size: 1.1em;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease, transform 0.1s ease;
   font-weight: bold;
-  color: #fff;
-  
 }
 
 .hero-btn:hover {
-  background-color: #dd361c;
+  background-color: var(--color-acento-secundario);
+  color: var(--color-blanco);
   transform: translateY(-2px);
 }
 
@@ -102,44 +103,43 @@ body {
   left: 0;
   background-color: var(--color-sidebar-fondo);
   overflow: hidden;
-  padding-top: 60px;
+  /* 🟢 SOLUCIÓN CLAVE: Reducir el padding superior (60px -> 20px) */
+  padding-top: 20px;
   transition: 0.5s;
   border-right: none;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
 }
 
+.sidebar.active {
+  border-right: 2px solid var(--color-blanco);
+}
+
 .sidebar-title {
-  padding: 20px 15px;
+  padding: 20px 20px;
   font-size: 1.3em;
   font-weight: bold;
   color: var(--color-blanco);
   text-align: center;
-  margin-top: -30px;
+  margin-bottom: 10x;
   border-bottom: 2px solid var(--color-blanco);
   display: flex;
   align-items: center;
   justify-content: center;
   height: 30px;
-  /* Altura fija para centrado consistente */
 }
 
 .sidebar a {
-  padding: 25px 8px 25px 32px;
+  padding: 22px 8px 22px 32px;
+  margin-top: -25px;
   text-decoration: none;
   font-size: 18px;
   color: var(--color-blanco);
   display: flex;
   align-items: center;
-  transition: background-color 0.3s, color 0.3s;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-}
-
-/* 🟢 AÑADIMOS EL BORDE SOLO CUANDO EL SIDEBAR ESTÁ ABIERTO */
-.sidebar.active {
-    border-right: 2px solid var(--color-blanco);
 }
 
 .sidebar a:hover {
@@ -156,8 +156,7 @@ body {
   color: var(--color-gris-claro);
   opacity: 0;
   transition: opacity 0.5s ease 0.4s, color 0.3s;
-  cursor: pointer;
-  background-color: transparent;
+  margin: 0;
   border: none;
   line-height: 1;
 }
@@ -210,10 +209,8 @@ body {
   top: 15px;
   left: 15px;
   z-index: 10;
-  /* 🟢 Botón de menú con Z-Index bajo */
   border-radius: 4px;
   transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
-  /* Añadir opacidad a la transición */
 }
 
 .openbtn:hover {
@@ -221,31 +218,10 @@ body {
   border-color: var(--color-acento-alt);
 }
 
-/* 🟢 CAMBIO CLAVE 1: La barra azul superior (video-header) */
-.video-header {
-  /* Mantener position: relative; z-index: 2; y todo el resto de propiedades */
-  z-index: 20;
-  /* 🟢 Z-Index mayor que el botón de menú (10) para que lo cubra */
-  position: relative;
-  /* Es necesario para que z-index funcione correctamente */
-  /* El alto de 100vh asegura que es más grande que el botón de menú */
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* 🟢 CAMBIO CLAVE 2: Ocultar el botón de menú cuando el sidebar está abierto (usando la clase del body) */
-.sidebar.active + #main .openbtn {
+.sidebar.active~#main .openbtn {
   opacity: 0;
   pointer-events: none;
-  /* Deshabilita clics cuando es invisible */
 }
-
-/* 🟢 Asegurar que el overlay del header también tenga el z-index correcto */
-.overlay {
-  z-index: 15;
-  /* Mayor que el openbtn (10) */
-}
-
 
 /* ===== CONTENIDO PRINCIPAL Y BOTONES (Se mantienen) ===== */
 .container {
