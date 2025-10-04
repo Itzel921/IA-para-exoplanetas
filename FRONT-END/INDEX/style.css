@@ -1,21 +1,29 @@
 /* Variables CSS basadas en la paleta proporcionada */
 :root {
-    --color-primario: #105bd8; /* Azul Brillante */
-    --color-primario-oscuro: #061f4a; /* Azul Profundo (Fondo principal) */
-    --color-base: #212121; /* Negro/Gris muy oscuro (Texto base) */
-    --color-gris-oscuro: #323a45; /* Gris Oscuro (Contenedores/Fondo secundario) */
-    --color-gris-claro: #aeb0b5; /* Gris claro (Énfasis sutil) */
-    --color-blanco: #ffffff; /* Blanco (Texto principal) */
-    --color-acento-secundario: #dd361c; /* Rojo (Énfasis/Botón hover) */
-    --color-acento-alt: #02bfe7; /* Azul Turquesa (Énfasis sutil) */
+    --color-primario: #105bd8;
+    /* Azul Brillante */
+    --color-primario-oscuro: #061f4a;
+    /* Azul Profundo (Fondo principal) */
+    --color-base: #212121;
+    /* Negro/Gris muy oscuro (Texto base) */
+    --color-gris-oscuro: #323a45;
+    /* Gris Oscuro (Contenedores/Fondo secundario) */
+    --color-gris-claro: #aeb0b5;
+    /* Gris claro (Énfasis sutil) */
+    --color-blanco: #ffffff;
+    /* Blanco (Texto principal) */
+    --color-acento-secundario: #dd361c;
+    /* Rojo (Énfasis/Botón hover) */
+    --color-acento-alt: #02bfe7;
+    /* Azul Turquesa (Énfasis sutil) */
 }
 
 body {
     font-family: 'Arial', sans-serif;
     /* Fondo Azul Profundo */
-    background-color: var(--color-primario-oscuro); 
+    background-color: var(--color-primario-oscuro);
     /* Texto Blanco para contraste */
-    color: var(--color-blanco); 
+    color: var(--color-blanco);
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -23,7 +31,7 @@ body {
 
 header {
     /* Fondo Azul Brillante/Primario */
-    background-color: var(--color-primario); 
+    background-color: var(--color-primario);
     padding: 20px 0;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -43,7 +51,7 @@ h1 {
 
 section {
     /* Fondo Gris Oscuro para secciones */
-    background-color: var(--color-gris-oscuro); 
+    background-color: var(--color-gris-oscuro);
     padding: 30px;
     margin-bottom: 30px;
     border-radius: 8px;
@@ -52,8 +60,9 @@ section {
 
 h2 {
     /* Títulos en Azul Brillante */
-    color: var(--color-primario); 
-    border-bottom: 2px solid var(--color-acento-alt); /* Línea de acento Turquesa */
+    color: var(--color-primario);
+    border-bottom: 2px solid var(--color-acento-alt);
+    /* Línea de acento Turquesa */
     padding-bottom: 10px;
     margin-top: 0;
     font-size: 2em;
@@ -69,12 +78,14 @@ li {
     padding-left: 1.5em;
     position: relative;
     /* Texto de lista en blanco */
-    color: var(--color-blanco); 
+    color: var(--color-blanco);
 }
 
 li::before {
-    content: '🚀'; /* Icono de cohete como viñeta */
-    color: var(--color-acento-alt); /* Turquesa para que destaque */
+    content: '🚀';
+    /* Icono de cohete como viñeta */
+    color: var(--color-acento-alt);
+    /* Turquesa para que destaque */
     position: absolute;
     left: 0;
 }
@@ -82,7 +93,7 @@ li::before {
 /* Estilos para el botón de interacción con JS */
 #btn-explorar {
     /* Botón en Azul Brillante */
-    background-color: var(--color-primario); 
+    background-color: var(--color-primario);
     color: var(--color-blanco);
     border: none;
     padding: 12px 25px;
@@ -97,7 +108,7 @@ li::before {
 
 #btn-explorar:hover {
     /* Hover con el color secundario (Rojo) para una alerta visual (uso con moderación) */
-    background-color: var(--color-acento-secundario); 
+    background-color: var(--color-acento-secundario);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
@@ -107,15 +118,16 @@ li::before {
     margin-top: 25px;
     padding: 15px;
     /* Fondo del mensaje un tono de azul más claro/frío de la paleta: dce4ef */
-    background-color: #dce4ef; 
+    background-color: #dce4ef;
     /* Borde en el azul primario */
-    border: 2px solid var(--color-primario); 
+    border: 2px solid var(--color-primario);
     border-radius: 5px;
     text-align: center;
 }
 
 /* El texto dentro del mensaje debe ser oscuro para cumplir la accesibilidad sobre el fondo claro */
 #mensaje-ia p {
-    color: var(--color-base); /* Color base (Negro/Gris oscuro) */
+    color: var(--color-base);
+    /* Color base (Negro/Gris oscuro) */
     font-weight: 600;
 }
