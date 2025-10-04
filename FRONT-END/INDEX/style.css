@@ -8,9 +8,16 @@
   --color-acento-secundario: #dd361c;
   --color-acento-alt: #02bfe7;
   --sidebar-width: 350px;
+
+  /* 🆕 NUEVOS COLORES PARA EL SIDEBAR OSCURO */
+  --color-sidebar-fondo: #011124;
+  /* Un azul muy oscuro, casi negro */
+  --color-sidebar-hover: #105bd8;
+  /* Usamos el color primario brillante */
 }
 
-/* ===== RESET ===== */
+/* ===== RESET, HEADER Y CONTENIDO PRINCIPAL (Se mantienen) ===== */
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: var(--color-primario-oscuro);
@@ -21,7 +28,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ======= HEADER CON VIDEO ======= */
+/* ======= HEADER CON VIDEO (Se mantiene) ======= */
 .video-header {
   position: relative;
   height: 100vh;
@@ -95,7 +102,8 @@ body {
   z-index: 10;
   top: 0;
   left: 0;
-  background-color: var(--color-primario-oscuro);
+  /* 🟢 CAMBIO: Fondo más oscuro para el sidebar */
+  background-color: var(--color-sidebar-fondo);
   overflow: hidden;
   padding-top: 60px;
   transition: 0.5s;
@@ -124,19 +132,36 @@ body {
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
+/* 🟢 CAMBIO: Nuevo color de hover para las opciones del menú */
 .sidebar a:hover {
-  color: var(--color-primario);
-  background-color: var(--color-gris-oscuro);
+  color: var(--color-blanco);
+  /* El texto sigue siendo blanco */
+  background-color: var(--color-sidebar-hover);
+  /* Fondo azul brillante */
 }
 
+/* 🟢 CORRECCIÓN DE ALINEACIÓN Y APARIENCIA DE LA 'X' */
 .sidebar .closebtn {
   position: absolute;
   top: 0;
-  right: 25px;
+  right: 0;
+  /* 🟢 CAMBIO: Alineado a la derecha del todo */
+  padding: 10px 15px;
+  /* 🟢 CAMBIO: Padding para darle espacio y área de hover */
   font-size: 40px;
-  margin-left: 50px;
+  color: var(--color-gris-claro);
+  /* Color gris claro para la 'X' */
   opacity: 0;
-  transition: opacity 0.5s ease 0.3s;
+  transition: opacity 0.5s ease 0.4s, color 0.3s;
+  /* El margen que veías desalineado era el margen del link 'a' */
+}
+
+/* 🟢 CAMBIO: Hover específico para la 'X' */
+.sidebar .closebtn:hover {
+  color: var(--color-acento-secundario);
+  /* Rojo de acento al pasar el cursor */
+  background-color: transparent;
+  /* Sin fondo de color al hacer hover */
 }
 
 .sidebar.active .sidebar-link,
@@ -145,31 +170,57 @@ body {
   transform: translateX(0);
 }
 
+/* Retrasos escalonados (se mantienen) */
+.sidebar.active .sidebar-link:nth-child(3) {
+  transition-delay: 0.1s;
+}
+
+.sidebar.active .sidebar-link:nth-child(4) {
+  transition-delay: 0.15s;
+}
+
+.sidebar.active .sidebar-link:nth-child(5) {
+  transition-delay: 0.2s;
+}
+
+.sidebar.active .sidebar-link:nth-child(6) {
+  transition-delay: 0.25s;
+}
+
+.sidebar.active .sidebar-link:nth-child(7) {
+  transition-delay: 0.3s;
+}
+
 #main {
   transition: margin-left 0.5s;
   padding: 0;
 }
 
+/* 🟢 CAMBIO: Botón de menú transparente */
 .openbtn {
   font-size: 20px;
   cursor: pointer;
-  background-color: var(--color-primario);
+  background-color: transparent;
+  /* 🟢 TRANSPARENTE */
   color: var(--color-blanco);
   padding: 10px 15px;
-  border: none;
+  border: 1px solid var(--color-blanco);
+  /* Borde blanco sutil para visibilidad */
   position: fixed;
   top: 15px;
   left: 15px;
   z-index: 5;
   border-radius: 4px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .openbtn:hover {
-  background-color: #0b3d91;
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Fondo muy sutil al pasar el cursor */
+  border-color: var(--color-acento-alt);
 }
 
-/* ===== CONTENIDO PRINCIPAL ===== */
+/* ===== CONTENIDO PRINCIPAL Y BOTONES (Se mantienen) ===== */
 .container {
   max-width: 1000px;
   margin: 60px auto;
@@ -192,7 +243,6 @@ h2 {
   font-size: 2em;
 }
 
-/* ===== BOTONES E INTERACCIÓN ===== */
 #btn-explorar {
   background-color: var(--color-primario);
   color: var(--color-blanco);
