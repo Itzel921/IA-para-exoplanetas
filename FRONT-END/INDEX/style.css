@@ -109,21 +109,27 @@ body {
 }
 
 .sidebar-title {
-  padding: 15px;
+  padding: 20px 15px;
   font-size: 1.3em;
   font-weight: bold;
   color: var(--color-blanco);
   text-align: center;
-  margin-bottom: 10px;
+  margin-top: -30px;
   border-bottom: 2px solid var(--color-blanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  /* Altura fija para centrado consistente */
 }
 
 .sidebar a {
-  padding: 20px 8px 20px 32px;
+  padding: 25px 8px 25px 32px;
   text-decoration: none;
   font-size: 18px;
   color: var(--color-blanco);
-  display: block;
+  display: flex;
+  align-items: center;
   transition: background-color 0.3s, color 0.3s;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   opacity: 0;
@@ -228,7 +234,7 @@ body {
 }
 
 /* 🟢 CAMBIO CLAVE 2: Ocultar el botón de menú cuando el sidebar está abierto (usando la clase del body) */
-.sidebar.active~#main .openbtn {
+.sidebar.active + #main .openbtn {
   opacity: 0;
   pointer-events: none;
   /* Deshabilita clics cuando es invisible */
