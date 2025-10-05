@@ -44,3 +44,8 @@ document.addEventListener('DOMContentLoaded', ()  => {
     // No hay funcionalidad dinámica o eventos complejos en esta página.
     console.log("Página 'Aprende Más' cargada correctamente.");
 });
+
+window.addEventListener("scroll", function() {
+  const header = document.querySelector(".page-header");
+  header.classList.toggle("shrink", window.scrollY > 50);
+});

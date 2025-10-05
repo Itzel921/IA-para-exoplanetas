@@ -38,23 +38,49 @@ body {
 
 /* ======= ENCABEZADO DE PÁGINA (SIN VIDEO) ======= */
 .page-header {
-    background-color: var(--color-azul-frio);
-    padding: 60px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000;
+    padding: 20px 0;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    color: var(--color-blanco);
-    z-index: 10;
-    position: relative;
+    z-index: 1000;
 }
 
-.page-header h1 {
+
+.main-header {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.logo-container {
+    pointer-events: all; /* Restaura la interactividad solo para el logo */
+    text-decoration: none;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 0 0 10px 10px;
+}
+
+.site-logo {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+
+.texto_inicio h1 {
     font-size: 3em;
     margin-bottom: 0.5rem;
 }
 
-.page-header p {
+.texto_inicio p {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0;
     padding: 0 20px;
     font-size: 1.1em;
     line-height: 2.0;
@@ -63,10 +89,11 @@ body {
 /* Contenedor principal de secciones */
 .container {
     max-width: 1300px;
-    margin: 60px auto;
+    margin: 120px auto 60px auto; /* antes era 60px auto */
     padding: 0 20px;
     opacity: 0.95;
 }
+
 
 section {
     background-color: var(--color-gris-oscuro);
@@ -266,7 +293,6 @@ h2 {
 }
 
 .resource-list li a::before {
-    content: '➡️'; /* Nueva viñeta visual */
     position: absolute;
     left: -5px;
     color: var(--color-primario);
@@ -275,4 +301,9 @@ h2 {
 .resource-list li a:hover {
     color: var(--color-primario);
     text-decoration: underline;
+}
+
+.page-header.shrink {
+  padding: 10px 0;
+  background: rgba(0,0,0,0.9);
 }
