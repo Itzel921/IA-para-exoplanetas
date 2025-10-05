@@ -10,7 +10,7 @@ import logging
 import logging.handlers
 import os
 import sys
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 from datetime import datetime
 from pathlib import Path
 import json
