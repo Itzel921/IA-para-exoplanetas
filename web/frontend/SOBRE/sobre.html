@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - AI Exploration</title>
+    <link rel="icon" href="/web/frontend/RECURSOS/logo_equipo.ico" type="image/x-icon" /> 
+    <link rel="stylesheet" href="/web/frontend/SOBRE/style.css" />
+</head>
+
+<body>
+    <video autoplay muted loop id="bg-video">
+        <source src="/web/frontend/RECURSOS/fondo_nosotros.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+    </video>
+    <div class="overlay"></div>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+            <div class="sidebar-title">MENU</div>
+            <a href="/web/frontend/INDEX/index.html" class="sidebar-link">🏠 HOME</a>
+            <a href="/web/frontend/EXPLORAR/explorar.html" class="sidebar-link">🔭 EXPLORE DATA</a>
+            <a href="/web/frontend/DETECTAR/detectar.html" class="sidebar-link">🧠 DETECT EXOPLANETS</a>
+            <a href="/web/frontend/RESULTADOS/resultados.html" class="sidebar-link">📈 RESULTS</a>
+            <a href="/web/frontend/APRENDE/aprende.html" class="sidebar-link">📚 LEARN MORE</a>
+            <a href="/web/frontend/SOBRE/sobre.html" class="sidebar-link active-link">ℹ️ ABOUT US</a>
+    </div>
+
+    <div id="main">
+    <button class="openbtn" onclick="openNav()">☰ Menu</button>
+
+        <header class="page-header">
+            <div class="header-content">
+                <h1>About us</h1>
+                <p>
+                    Learn about the purpose, mission and vision that drive this interactive space exploration platform.
+                </p>
+            </div>
+        </header>
+
+
+        
+        <div class="container about-layout">
+
+            <section id="objetivo">
+                <h2>🔭 Project goal</h2>
+                <p>Make exoplanet exploration accessible to anyone by combining <b>science, open data and artificial intelligence models</b>. Our goal is for students, enthusiasts and curious minds to interact with real NASA data and understand how new worlds are discovered.</p>
+            </section>
+            
+            <section id="mision-vision">
+                <div class="mission-vision-grid">
+                    <div class="card">
+                        <h2>🌟 Mission</h2>
+                        <p>Bring astronomy and space exploration closer to everyone through an interactive platform that allows exploring, analyzing and discovering exoplanets using real data and artificial intelligence technologies.</p>
+                        <p>We aim to inspire scientific curiosity and promote hands-on learning in astrophysics and data analysis.</p>
+                    </div>
+                    <div class="card">
+                        <h2>🌌 Vision</h2>
+                        <p>To be an educational and scientific reference that connects the global community with the search for other worlds, promoting understanding of the universe and supporting everyone's participation in the future of space exploration.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="fuentes">
+                <h2>📊 Data sources and credits</h2>
+                <p>Based on public NASA catalogs (Exoplanet Archive) and discoveries from missions such as <b>Kepler, K2 and TESS</b>.</p>
+                <p>This project is possible thanks to the efforts of researchers, engineers and communicators who share their knowledge with the world.</p>
+            </section>
+            
+            <section id="contacto">
+                <h2>🤝 Community and contact</h2>
+                <p>We invite users to <b>explore, share findings, ask questions or contribute ideas</b> to improve the platform.</p>
+                <div class="contact-info">
+                    <p>Find us at:</p>
+                    <ul>
+                        <li>Email: <a href="mailto:contacto@exoplanetasia.com">contacto@exoplanetasia.com</a></li>
+                        <li>Repository: <a href="#github" target="_blank">Project GitHub</a></li>
+                        <li>Social Media: <a href="#twitter" target="_blank">@ExoplanetasIA</a></li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="/web/frontend/SOBRE/script.js" defer></script>
+</body>
+
+</html>

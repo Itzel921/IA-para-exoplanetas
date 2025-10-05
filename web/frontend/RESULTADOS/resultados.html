@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analysis History - AI</title>
+    <link rel="icon" href="/web/frontend/RECURSOS/logo_equipo.ico" type="image/x-icon" /> 
+    <link rel="stylesheet" href="/web/frontend/RESULTADOS/style.css" />
+</head>
+
+<body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="sidebar-title">MENU</div>
+    <a href="/web/frontend/INDEX/index.html" class="sidebar-link">🏠 HOME</a>
+    <a href="/web/frontend/EXPLORAR/explorar.html" class="sidebar-link">🔭 EXPLORE DATA</a>
+    <a href="/web/frontend/DETECTAR/detectar.html" class="sidebar-link">🧠 DETECT EXOPLANETS</a>
+    <a href="/web/frontend/RESULTADOS/resultados.html" class="sidebar-link active-link">📈 RESULTS</a>
+    <a href="/web/frontend/APRENDE/aprende.html" class="sidebar-link">📚 LEARN MORE</a>
+    <a href="/web/frontend/SOBRE/sobre.html" class="sidebar-link">ℹ️ ABOUT US</a>
+    </div>
+
+    <div id="main">
+    <button class="openbtn" onclick="openNav()">☰ Menu</button>
+
+        <header class="page-header">
+            <div class="header-content">
+                <h1>Analysis History</h1>
+                <p>
+                    Here you will find the history of recent analyses and you can compare predictions with data already confirmed by NASA.
+                </p>
+            </div>
+        </header>
+
+        <div class="container results-layout">
+
+            <aside id="gallery-sidebar" class="results-gallery">
+                <h2>🖼️ Discoveries Gallery</h2>
+                <div id="prediction-history" class="history-list">
+                    <p class="initial-message">Prediction history is empty.</p>
+                </div>
+            </aside>
+
+            <div class="visual-area">
+                
+                <section id="curve-visualization">
+                    <h2>🌠 Light curve with transits marked</h2>
+                        <div id="light-curve-chart" class="chart-box">
+                            <p class="initial-message">Select a result from the gallery to view the light curve.</p>
+                            </div>
+                </section>
+
+                <section id="comparison-area">
+                    <h2>🔗 Comparisons with known planets</h2>
+                    <div id="comparison-details" class="comparison-box">
+                        <p>Match your prediction with exoplanets similar in size, orbital period, or type.</p>
+                        <div id="similar-planets-list">
+                            </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/web/frontend/RESULTADOS/script.js" defer></script>
+</body>
+
+</html>

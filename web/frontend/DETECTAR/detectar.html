@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detect Exoplanets with AI</title>
+    <link rel="icon" href="/web/frontend/RECURSOS/logo_equipo.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/web/frontend/DETECTAR/style.css" />
+</head>
+
+<body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="sidebar-title">MENU</div>
+    <a href="/web/frontend/INDEX/index.html" class="sidebar-link">🏠 HOME</a>
+    <a href="/web/frontend/EXPLORAR/explorar.html" class="sidebar-link">🔭 EXPLORE DATA</a>
+    <a href="/web/frontend/DETECTAR/detectar.html" class="sidebar-link">🧠 DETECT EXOPLANETS</a>
+    <a href="/web/frontend/RESULTADOS/resultados.html" class="sidebar-link">📈 RESULTS</a>
+    <a href="/web/frontend/APRENDE/aprende.html" class="sidebar-link active-link">📚 LEARN MORE</a>
+    <a href="/web/frontend/SOBRE/sobre.html" class="sidebar-link">ℹ️ ABOUT US</a>
+    </div>
+
+    <div id="main">
+    <button class="openbtn" onclick="openNav()">☰ Menu</button>
+
+        <header class="page-header">
+            <div class="header-content">
+                <h1>Detect Exoplanets</h1>
+                <p>
+                    Want to try how the AI works? Here you can upload your own astronomical data in simple formats (<b>CSV, FITS or JSON</b>). The system will analyze the light curves and tell you if they contain the signal of a possible planet.
+                </p>
+            </div>
+        </header>
+
+        <div class="container detect-layout">
+
+            <section id="upload-form" class="detection-panel">
+                <h2>Upload Light Curve</h2>
+                <div class="upload-box">
+                    <p>Drag or select a file (CSV, FITS, JSON)</p>
+                    <input type="file" id="file-upload" accept=".csv, .fits, .json" class="hidden-input">
+                    <label for="file-upload" class="upload-label hero-btn">Select File</label>
+                    <span id="file-name" class="file-status">No file selected.</span>
+                </div>
+
+                <button id="run-analysis-btn" class="hero-btn run-btn" disabled>
+                    Run AI Analysis
+                </button>
+            </section>
+
+            <section id="prediction-results" class="detection-panel">
+                <h2>🔍 Prediction Results</h2>
+                <div id="result-box" class="result-display">
+                    <p class="initial-message">Upload a file and run the analysis to get a prediction.</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="/web/frontend/DETECTAR/script.js" defer></script>
+</body>
+
+</html>
