@@ -153,12 +153,12 @@ li::before {
     transform: translateY(-2px);
 }
 
-/* ====== SIDEBAR AND MENU (Required Format) ====== */
+/* ====== SIDEBAR ESTILOS (Formato Requerido) ====== */
 .sidebar {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1000; /* Sidebar: Mayor Z-Index para cubrir el botón al abrir */
+    z-index: 1000;
     top: 0;
     left: 0;
     background-color: var(--color-sidebar-fondo);
@@ -241,6 +241,26 @@ li::before {
 #main {
     transition: margin-left 0.5s;
     padding: 0;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color-blanco);
+    padding: 10px 15px;
+    border: 1px solid var(--color-blanco);
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
+}
+
+.openbtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-acento-alt);
 }
 
 /* ------------------------------------------- */
