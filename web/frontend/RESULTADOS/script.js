@@ -48,11 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Datos simulados para el historial
     const historyData = [
-        { id: 1, name: "Análisis 2025-01-15", result: "Exoplaneta confirmado", prob: 92, radius: 1.4, period: 3.5, similar: ["WASP-96b", "Kepler-186f"] },
-        { id: 2, name: "Análisis 2025-01-14", result: "Falso positivo", prob: 88, radius: 0.9, period: 1.1, similar: ["Ninguno cercano"] },
-        { id: 3, name: "Análisis 2025-01-13", result: "Candidato planetario", prob: 65, radius: 2.1, period: 10.2, similar: ["TOI-700 d"] },
-        { id: 4, name: "Análisis 2025-01-12", result: "Exoplaneta confirmado", prob: 78, radius: 3.0, period: 55.0, similar: ["K2-18 b"] },
-        { id: 5, name: "Análisis 2025-01-11", result: "Falso positivo", prob: 95, radius: 0.6, period: 0.9, similar: ["Ninguno cercano"] },
+        { id: 1, name: "Analysis 2025-01-15", result: "Exoplanet confirmed", prob: 92, radius: 1.4, period: 3.5, similar: ["WASP-96b", "Kepler-186f"] },
+        { id: 2, name: "Analysis 2025-01-14", result: "False positive", prob: 88, radius: 0.9, period: 1.1, similar: ["None nearby"] },
+        { id: 3, name: "Analysis 2025-01-13", result: "Candidate planet", prob: 65, radius: 2.1, period: 10.2, similar: ["TOI-700 d"] },
+        { id: 4, name: "Analysis 2025-01-12", result: "Exoplanet confirmed", prob: 78, radius: 3.0, period: 55.0, similar: ["K2-18 b"] },
+        { id: 5, name: "Analysis 2025-01-11", result: "False positive", prob: 95, radius: 0.6, period: 0.9, similar: ["None nearby"] },
     ];
 
     // 1. Load the history gallery
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         curveChartContainer.innerHTML = `
             <h3>Curva de Luz: ${data.name}</h3>
-            <p>Predicción: ${data.result} (${data.prob}%)</p>
+            <p>Prediction: ${data.result} (${data.prob}%)</p>
             <div style="width: 90%; height: 250px; background-color: ${data.result.includes('false') ? '#dd361c30' : '#2c7be530'}; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-top: 10px;">
                 <p style="color: var(--color-acento-alt);">[Gráfico de la Curva de Luz - Tránsitos Simulados]</p>
             </div>
@@ -131,9 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
 
         comparisonDetailsContainer.innerHTML = `
-            <p>Tu predicción (Radio: <b>${data.radius} RE</b>, Periodo: <b>${data.period} días</b>) es similar a:</p>
+            <p>Your prediction (Radius: <b>${data.radius} RE</b>, Period: <b>${data.period} days</b>) is similar to:</p>
             <div id="similar-planets-list">
-                ${similarListHTML || '<p class="item-status">No se encontraron planetas similares en el catálogo.</p>'}
+            ${similarListHTML || '<p class="item-status">No similar planets found in the catalog.</p>'}
             </div>
         `;
     }

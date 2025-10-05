@@ -87,18 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('exoplanet-table-container');
         // Simulación de datos (solo la primera columna se anima por el CSS de la pestaña)
         const dummyData = [
-            { nombre: "Kepler-186f", mision: "Kepler", estado: "Confirmado" },
-            { nombre: "TOI-700 d", mision: "TESS", estado: "Confirmado" },
-            { nombre: "K2-18 b", mision: "K2", estado: "Confirmado" },
-            { nombre: "KOI-7923.01", mision: "Kepler", estado: "Candidato" },
-            { nombre: "K2-FAKE-X1", mision: "K2", estado: "Falso Positivo" },
+            { nombre: "Kepler-186f", mision: "Kepler", estado: "Confirmed" },
+            { nombre: "TOI-700 d", mision: "TESS", estado: "Confirmed" },
+            { nombre: "K2-18 b", mision: "K2", estado: "Confirmed" },
+            { nombre: "KOI-7923.01", mision: "Kepler", estado: "Candidate" },
+            { nombre: "K2-FAKE-X1", mision: "K2", estado: "False Positive" },
             // ... (más datos)
         ];
 
         let tableHTML = `
             <table class="data-table">
                 <thead>
-                    <tr><th>Nombre</th><th>Misión</th><th>Clasificación</th></tr>
+                    <tr><th>Name</th><th>Mission</th><th>Classification</th></tr>
                 </thead>
                 <tbody>
         `;
@@ -120,15 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(loadExoplanetList, 1000); // Simula un retraso de carga
 
 
-    // --- EFECTO DE SCROLL DEL HEADER (Se mantiene, pero se aplica al body) ---
-    // (Asegúrate de que este bloque no interfiera con tu lógica de index.html si usas el mismo script)
-    // En esta página, este efecto no es estrictamente necesario ya que el header es fijo, pero lo dejamos por consistencia
+   
     window.addEventListener('scroll', () => {
-        // La lógica de scroll de opacidad se aplicaba al video header, que no está aquí.
-        // Se elimina la lógica de opacidad de scroll del header para esta página, si se usa este script.js.
+       
     });
 });
-
-// Note: The AI simulation logic (activarExploracion) and buttons (btn-explorar, btn-prueba)
-// se ha omitido aquí ya que esta es la página de exploración. Si copias y pegas todo el JS anterior,
-// you can remove those functions.
