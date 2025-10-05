@@ -5,12 +5,10 @@ Team: Planetaxies
 A webapp focused on prossessing big amounts of information taken by spacial telescopes to filtrate the ones that doesn't count with the caracteristics of an exoplanet.
 
 ## Map of Contents
-   "1- About the proyect"
-   "2- Introduction"
+   1- About the proyect
+   2- Introduction
 ---
 ## About the project
-Submission for the https://www.spaceappschallenge.org/2025/challenges/a-world-away-hunting-for-exoplanets-with-ai/
-
 The astronomers get a higher workload, every year the telescopes (TESS) send back to earth the information of spacial objects that its system considers its a exolpanet, offcourse it can be a false positive, this is the reason why astronomers are hired to prossess this information in order to check what objects have the caracteristics to be indentified as an exoplanet.
 
 In case it doesn't count with the parameters to be an exoplanet it is cataloged as a false positive.
@@ -19,7 +17,11 @@ This is what we take as an oportunity, we made system that take the information 
 
 ---
 ## Introduction
-This system uses a predefined API developed by NASA ()
+This system uses a predefined API developed by NASA (Transit and Ephemeris)
+
+---
+##
+
 
 # 🚀 Exoplanet Detection AI
 ## NASA Space Apps Challenge 2025
