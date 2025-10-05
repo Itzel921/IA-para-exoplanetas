@@ -5,8 +5,9 @@ Team: Planetaxies
 A webapp focused on prossessing big amounts of information taken by spacial telescopes to filtrate the ones that doesn't count with the caracteristics of an exoplanet.
 
 ## Map of Contents
-   1- About the proyect
+   1- [Ir a la sección de instalación](#About the project)
    2- Introduction
+   
 ---
 ## About the project
 The astronomers get a higher workload, every year the telescopes (TESS) send back to earth the information of spacial objects that its system considers its a exolpanet, offcourse it can be a false positive, this is the reason why astronomers are hired to prossess this information in order to check what objects have the caracteristics to be indentified as an exoplanet.
