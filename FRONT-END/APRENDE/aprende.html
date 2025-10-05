@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aprende Más sobre Exoplanetas</title>
+    <link rel="icon" href="../RECURSOS/nasa.ico" type="image/x-icon" /> 
+    <link rel="stylesheet" href="/FRONT-END/APRENDE/style.css" />
+</head>
+
+<body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <div class="sidebar-title">MENÚ</div>
+        <a href="/FRONT-END/INDEX/index.html" class="sidebar-link">🏠 INICIO</a>
+        <a href="/FRONT-END/EXPLORAR/explorar.html" class="sidebar-link">🔭 EXPLORAR DATOS</a>
+        <a href="/FRONT-END/DETECTAR/detectar.html" class="sidebar-link">🧠 DETECTAR EXOPLANETAS</a>
+        <a href="/FRONT-END/RESULTADOS/resultados.html" class="sidebar-link">📈 RESULTADOS</a>
+        <a href="/FRONT-END/APRENDE/aprende.html" class="sidebar-link active-link">📚 APRENDE MÁS</a>
+        <a href="/FRONT-END/SOBRE/sobre.html" class="sidebar-link">ℹ️ SOBRE NOSOTROS</a>
+    </div>
+
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">☰ Menú</button>
+
+        <header class="page-header">
+            <div class="header-content">
+                <h1>Aprende más</h1>
+                <p>
+                    Este apartado está diseñado para que cualquier persona pueda entender la ciencia detrás de la herramienta.
+                </p>
+            </div>
+        </header>
+
+        <div class="container learn-layout">
+
+            <section id="metodo-transito">
+                <h2>✨ El método de tránsito explicado</h2>
+                <p>Un planeta que cruza frente a su estrella bloquea una fracción mínima de luz. Detectar esa caída en el brillo es como ver una sombra lejana en el universo. </p>
+                <p>La curva de luz resultante de un tránsito planetario proporciona datos clave como el tamaño del planeta (relacionado con la profundidad de la caída de luz) y el periodo orbital (relacionado con el tiempo entre tránsitos).</p>
+                
+                <div class="visual-placeholder">
+                    [Diagrama que muestra un planeta transitando una estrella y la curva de luz resultante]
+                </div>
+            </section>
+            
+            <section id="misiones">
+                <h2>🛰️ Misiones espaciales</h2>
+                <div class="mision-grid">
+                    <div class="mision-card">
+                        <h3>Kepler</h3>
+                        <p>Pionero en la caza de exoplanetas. Utilizó una única región fija del cielo para buscar miles de planetas, confirmando más de 2,600.</p>
+                    </div>
+                    <div class="mision-card">
+                        <h3>K2</h3>
+                        <p>Extensión de la misión Kepler original, observando nuevas regiones del cielo tras la falla de los volantes de reacción del telescopio.</p>
+                    </div>
+                    <div class="mision-card">
+                        <h3>TESS</h3>
+                        <p>El presente de la exploración. Está rastreando estrellas brillantes cercanas para futuras investigaciones, cubriendo casi todo el cielo.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="recursos">
+                <h2>🔗 Recursos educativos</h2>
+                <p>Accede a materiales interactivos, artículos y bases de datos de la NASA para seguir aprendiendo sobre el universo de los exoplanetas.</p>
+                
+                <ul class="resource-list">
+                    <li><a href="https://exoplanets.nasa.gov/" target="_blank">Catálogo de Exoplanetas de la NASA</a></li>
+                    <li><a href="https://www.nasa.gov/specials/exoplanets/" target="_blank">Página oficial de Exploración de Exoplanetas</a></li>
+                    <li><a href="#contacto" target="_blank">Documentación sobre el modelo de Inteligencia Artificial (IA)</a></li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="/FRONT-END/APRENDE/script.js" defer></script>
+</body>
+
+</html>

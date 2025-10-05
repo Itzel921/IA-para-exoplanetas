@@ -236,6 +236,11 @@ li::before {
     line-height: 1;
 }
 
+.sidebar .closebtn:hover {
+    color: var(--color-acento-secundario);
+    background-color: transparent;
+}
+
 .sidebar.active .sidebar-link,
 .sidebar.active .closebtn {
     opacity: 1;
