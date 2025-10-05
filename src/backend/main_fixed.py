@@ -156,78 +156,6 @@ class MLService:
             logger.error(f"❌ Error en predicción batch: {e}")
             raise HTTPException(status_code=500, detail=f"Error en predicción batch: {str(e)}")
 
-class PredictionResponse(BaseModel):
-    """Respuesta de predicción individual"""
-    prediction: str
-    confidence: float
-    probabilities: Dict[str, float]
-    processing_time: float
-    timestamp: str
-
-class BatchPredictionResponse(BaseModel):
-    """Respuesta de predicción en lote"""
-    total_processed: int
-    successful_predictions: int
-    failed_predictions: int
-    results: List[Dict[str, Any]]
-    processing_time: float
-    timestamp: str
-
-class ModelInfoResponse(BaseModel):
-    """Información del modelo"""
-    model_name: str
-    version: str
-    accuracy: float
-    last_updated: str
-    features_count: int
-
-# Servicios integrados
-class MLService:
-    """Servicio de Machine Learning integrado"""
-    
-    def __init__(self):
-        self.model = None
-        self.model_loaded = False
-        
-    async def load_model(self):
-        """Cargar el modelo ML"""
-        try:
-            # Intentar importar y usar el modelo real
-            try:
-                import predict_exoplanets
-                self.model = predict_exoplanets
-                self.model_loaded = True
-                logger.info("Modelo ML cargado exitosamente")
-            except ImportError as e:
-                logger.warning(f"No se pudo cargar el modelo real: {e}")
-                self.model_loaded = False
-        except Exception as e:
-            logger.error(f"Error cargando modelo: {e}")
-            self.model_loaded = False
-    
-    def predict_single(self, features: Dict[str, Any]) -> Dict[str, Any]:
-        """Predicción individual"""
-        try:
-            if self.model_loaded and hasattr(self.model, 'predict_single'):
-                return self.model.predict_single(features)
-            else:
-                # Predicción mock para testing
-                import random
-                confidence = random.uniform(0.6, 0.95)
-                is_planet = confidence > 0.8
-                
-                return {
-                    'prediction': 'CONFIRMED' if is_planet else 'FALSE_POSITIVE',
-                    'confidence': confidence,
-                    'probabilities': {
-                        'CONFIRMED': confidence if is_planet else 1 - confidence,
-                        'FALSE_POSITIVE': 1 - confidence if is_planet else confidence
-                    }
-                }
-        except Exception as e:
-            logger.error(f"Error en predicción: {e}")
-            raise HTTPException(status_code=500, detail=f"Error en predicción: {str(e)}")
-
 # Instanciar servicio ML
 ml_service = MLService()
 
@@ -285,59 +213,62 @@ except Exception as e:
 
 @app.get("/", response_class=HTMLResponse)
 async def root():
-    """Servir la página principal del frontend"""
-    index_path = FRONTEND_PATH / "index.html"
-    if index_path.exists():
-        return FileResponse(index_path)
-    else:
-        raise HTTPException(status_code=404, detail="Frontend no encontrado")
-
-# ============= ENDPOINTS DE LA API =============
+    """Página principal - sirve el frontend"""
+    try:
+        index_path = FRONTEND_PATH / "index.html"
+        if index_path.exists():
+            return FileResponse(index_path)
+        else:
+            return HTMLResponse("""
+            <html>
+                <head><title>Exoplanet Detection API</title></head>
+                <body>
+                    <h1>🌟 Exoplanet Detection API</h1>
+                    <p>Backend funcionando correctamente</p>
+                    <p><a href="/api/docs">📚 Documentación API</a></p>
+                    <p><a href="/api/health">🏥 Estado del servicio</a></p>
+                </body>
+            </html>
+            """)
+    except Exception as e:
+        logger.error(f"❌ Error sirviendo página principal: {e}")
+        return HTMLResponse(f"<h1>Error: {str(e)}</h1>", status_code=500)
 
 @app.get("/api/health")
 async def health_check():
-    """Health check del sistema"""
+    """Health check del servicio"""
     return {
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
         "model_loaded": ml_service.model_loaded,
-        "version": "1.0.0"
+        "service": "Exoplanet Detection API"
     }
 
 @app.get("/api/model-info", response_model=ModelInfoResponse)
 async def get_model_info():
     """Información del modelo ML"""
-    try:
-        return ModelInfoResponse(
-            model_name="Ensemble Exoplanet Detector",
-            version="1.0.0",
-            accuracy=0.83,
-            last_updated="2025-10-05",
-            features_count=50
-        )
-        return ModelInfoResponse(**model_info)
-    except Exception as e:
-        logger.error(f"Error obteniendo info del modelo: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+    return ModelInfoResponse(
+        model_name="Ensemble Exoplanet Detector",
+        version="1.0.0",
+        accuracy=0.83,
+        last_updated="2025-10-05",
+        features_count=50
+    )
 
 @app.post("/api/predict", response_model=PredictionResponse)
 async def predict_single(features: ExoplanetFeatures):
     """Predicción individual de exoplaneta"""
-    import time
     start_time = time.time()
     
     try:
-        logger.info(f"🔮 Predicción individual solicitada")
-        
         # Convertir a diccionario y filtrar valores None
         feature_dict = {k: v for k, v in features.dict().items() if v is not None}
         
-        # Realizar predicción
+        # Hacer predicción
         result = ml_service.predict_single(feature_dict)
         
         processing_time = time.time() - start_time
         
-        logger.info(f"✅ Predicción completada: {result['prediction']}")
         return PredictionResponse(
             prediction=result['prediction'],
             confidence=result['confidence'],
@@ -348,20 +279,17 @@ async def predict_single(features: ExoplanetFeatures):
         
     except Exception as e:
         logger.error(f"❌ Error en predicción individual: {e}")
-        raise HTTPException(status_code=400, detail=f"Error en predicción: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/batch-predict", response_model=BatchPredictionResponse)
 async def batch_predict(file: UploadFile = File(...)):
     """Predicción en lote desde archivo CSV"""
-    import time
     start_time = time.time()
     
     try:
-        logger.info(f"📄 Predicción en lote solicitada: {file.filename}")
-        
         # Validar archivo
         if not file.filename.endswith('.csv'):
-            raise HTTPException(status_code=400, detail="Solo se permiten archivos CSV")
+            raise HTTPException(status_code=400, detail="Solo se aceptan archivos CSV")
         
         # Leer archivo CSV
         contents = await file.read()
@@ -369,7 +297,7 @@ async def batch_predict(file: UploadFile = File(...)):
         
         logger.info(f"📊 Procesando archivo: {file.filename} ({len(df)} filas)")
         
-        # Realizar predicción en lote
+        # Hacer predicciones
         results = ml_service.predict_batch(df)
         
         processing_time = time.time() - start_time
@@ -378,7 +306,6 @@ async def batch_predict(file: UploadFile = File(...)):
         successful = len([r for r in results if 'prediction' in r])
         failed = len(results) - successful
         
-        logger.info(f"✅ Predicción en lote completada: {len(results)} objetos procesados")
         return BatchPredictionResponse(
             total_processed=len(df),
             successful_predictions=successful,
@@ -389,30 +316,24 @@ async def batch_predict(file: UploadFile = File(...)):
         )
         
     except Exception as e:
-        logger.error(f"❌ Error en predicción en lote: {e}")
-        raise HTTPException(status_code=400, detail=f"Error en procesamiento: {str(e)}")
+        logger.error(f"❌ Error en predicción batch: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/results/{filename}")
-async def download_results(filename: str):
+async def get_result_file(filename: str):
     """Descargar archivo de resultados"""
     try:
         file_path = RESULTS_PATH / filename
-        
-        if not file_path.exists():
+        if file_path.exists():
+            return FileResponse(file_path)
+        else:
             raise HTTPException(status_code=404, detail="Archivo no encontrado")
-        
-        return FileResponse(
-            path=str(file_path),
-            filename=filename,
-            media_type='application/octet-stream'
-        )
-        
     except Exception as e:
-        logger.error(f"❌ Error descargando archivo: {e}")
+        logger.error(f"❌ Error obteniendo archivo: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/results")
-async def list_results():
+async def list_result_files():
     """Listar archivos de resultados disponibles"""
     try:
         files = []
@@ -426,35 +347,31 @@ async def list_results():
                 })
         
         return {"files": files}
-        
     except Exception as e:
-        logger.error(f"❌ Error listando resultados: {e}")
+        logger.error(f"❌ Error listando archivos: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-# ============= WEBSOCKET PARA PROGRESO EN TIEMPO REAL =============
+# ==================== WEBSOCKET ====================
 
 class ConnectionManager:
     """Gestor de conexiones WebSocket"""
     
     def __init__(self):
-        self.active_connections: list[WebSocket] = []
+        self.active_connections: List[WebSocket] = []
     
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
         self.active_connections.append(websocket)
-        logger.info(f"🔌 Nueva conexión WebSocket: {len(self.active_connections)} activas")
     
     def disconnect(self, websocket: WebSocket):
         if websocket in self.active_connections:
             self.active_connections.remove(websocket)
-            logger.info(f"🔌 Conexión WebSocket cerrada: {len(self.active_connections)} activas")
     
-    async def send_personal_message(self, message: dict, websocket: WebSocket):
+    async def send_message(self, message: dict, websocket: WebSocket):
         try:
             await websocket.send_text(json.dumps(message))
         except Exception as e:
-            logger.error(f"Error enviando mensaje WebSocket: {e}")
-            self.disconnect(websocket)
+            logger.error(f"❌ Error enviando mensaje WebSocket: {e}")
 
 manager = ConnectionManager()
 
@@ -465,86 +382,90 @@ async def websocket_batch_progress(websocket: WebSocket):
     
     try:
         while True:
-            # Recibir datos del cliente
+            # Esperar datos del cliente
             data = await websocket.receive_text()
             request_data = json.loads(data)
             
-            logger.info(f"📨 WebSocket: procesamiento solicitado")
-            
-            # Simular procesamiento con actualizaciones de progreso
+            # Simular procesamiento con progreso
             total_items = request_data.get('total', 100)
             
             for i in range(total_items):
                 # Simular trabajo
-                await asyncio.sleep(0.1)
+                await asyncio.sleep(0.05)
                 
                 progress = {
                     'type': 'progress',
                     'progress': (i + 1) / total_items * 100,
                     'processed': i + 1,
                     'total': total_items,
-                    'current_item': f"Procesando objeto {i + 1}",
-                    'timestamp': datetime.now().isoformat()
+                    'message': f"Procesando objeto {i + 1}/{total_items}"
                 }
                 
-                await manager.send_personal_message(progress, websocket)
+                await manager.send_message(progress, websocket)
             
             # Enviar resultado final
             final_result = {
                 'type': 'completed',
-                'status': 'success',
+                'message': 'Procesamiento completado',
                 'summary': {
                     'total_processed': total_items,
                     'confirmed_planets': max(1, total_items // 10),
-                    'false_positives': total_items - max(1, total_items // 10),
-                    'timestamp': datetime.now().isoformat()
+                    'false_positives': total_items - max(1, total_items // 10)
                 }
             }
             
-            await manager.send_personal_message(final_result, websocket)
+            await manager.send_message(final_result, websocket)
             
     except WebSocketDisconnect:
         manager.disconnect(websocket)
         logger.info("🔌 Cliente WebSocket desconectado")
     except Exception as e:
         logger.error(f"❌ Error en WebSocket: {e}")
-        error_message = {
+        await manager.send_message({
             'type': 'error',
-            'status': 'error',
-            'message': str(e),
-            'timestamp': datetime.now().isoformat()
-        }
-        await manager.send_personal_message(error_message, websocket)
-        manager.disconnect(websocket)
+            'message': f'Error: {str(e)}'
+        }, websocket)
 
-# ============= ENDPOINTS DE DESARROLLO =============
+# ==================== RUTAS DE DEBUG ====================
 
 @app.get("/api/debug/features")
 async def debug_features():
-    """Endpoint de debug para ver características del modelo"""
-    try:
-        return {
-            "expected_features": [
-                "period", "radius", "temp", "star_radius", 
-                "star_mass", "star_temp", "depth", "duration", "snr"
-            ],
-            "optional_features": "All features are optional",
-            "model_status": {
-                "loaded": ml_service.model_loaded,
-                "type": "Real ML Model" if ml_service.model_loaded else "Mock Predictor"
-            }
+    """Debug: mostrar características esperadas"""
+    return {
+        "expected_features": [
+            "period", "radius", "temp", "star_radius", 
+            "star_mass", "star_temp", "depth", "duration", "snr"
+        ],
+        "optional_features": "All features are optional",
+        "model_status": {
+            "loaded": ml_service.model_loaded,
+            "type": "Real ML Model" if ml_service.model_loaded else "Mock Predictor"
         }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    }
 
-# ============= CONFIGURACIÓN DEL SERVIDOR =============
+@app.get("/api/debug/paths")
+async def debug_paths():
+    """Debug: mostrar rutas configuradas"""
+    return {
+        "project_root": str(PROJECT_ROOT),
+        "frontend_path": str(FRONTEND_PATH),
+        "frontend_exists": FRONTEND_PATH.exists(),
+        "upload_path": str(UPLOAD_PATH),
+        "results_path": str(RESULTS_PATH),
+        "ml_dev_path": str(ml_dev_path)
+    }
+
+# ==================== SERVIDOR ====================
 
 if __name__ == "__main__":
-    # Configuración para desarrollo
+    print("🚀 Iniciando servidor Exoplanet Detection API...")
+    print("📍 Documentación disponible en: http://localhost:8000/api/docs")
+    print("🏠 Frontend disponible en: http://localhost:8000/")
+    
     uvicorn.run(
-        "main:app",
+        "main_fixed:app",
         host="0.0.0.0",
         port=8000,
         reload=True,
-        log_level="info"
+        reload_dirs=["src/backend"]
     )

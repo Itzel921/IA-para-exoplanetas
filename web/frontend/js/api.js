@@ -7,8 +7,13 @@
 
 class ApiClient {
     constructor() {
-        this.baseUrl = 'http://localhost:8000/api';
+        // Detectar automáticamente la URL base
+        this.baseUrl = window.location.hostname === 'localhost' 
+            ? 'http://localhost:8000/api' 
+            : `${window.location.origin}/api`;
         this.timeout = 30000; // 30 seconds
+        
+        console.log(`🔗 API Client inicializado: ${this.baseUrl}`);
     }
 
     /**
