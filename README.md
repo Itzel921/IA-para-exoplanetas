@@ -1,4 +1,37 @@
+<<<<<<< HEAD
 # AI for Exoplanets
+=======
+# ExoData
+---
+Team: Planetaxies
+
+A webapp focused on prossessing big amounts of information taken by spacial telescopes to filtrate the ones that doesn't count with the caracteristics of an exoplanet.
+
+## Map of Contents
+   1- [About the project](#about-the-project)  
+   2- [Introduction](#introduction)
+   3- Members of the team
+   4- 
+   
+---
+## About the project
+The astronomers get a higher workload, every year the telescopes (TESS) send back to earth the information of spacial objects that its system considers its a exolpanet, offcourse it can be a false positive, this is the reason why astronomers are hired to prossess this information in order to check what objects have the caracteristics to be indentified as an exoplanet.
+
+In case it doesn't count with the parameters to be an exoplanet it is cataloged as a false positive.
+
+This is what we take as an oportunity, we made system that take the information that has been already prossessed by the astronomers and train a machine that is capable to read the information and learn what are the parameters that can be indentified as an exoplanet.
+
+---
+## Introduction
+This system uses a predefined API developed by NASA (Transit and Ephemeris Service) that use the data
+
+---
+##
+
+
+# 🚀 Exoplanet Detection AI
+## NASA Space Apps Challenge 2025
+>>>>>>> dbd11381613ae3f16bc45abdab9646e10363d330
 
 ## Description
 
