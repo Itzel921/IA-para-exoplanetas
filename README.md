@@ -1,166 +1,135 @@
-# 🚀 Exoplanet Detection AI
-## NASA Space Apps Challenge 2025
+# AI for Exoplanets
 
-[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green.svg)](https://fastapi.tiangolo.com)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-Latest-orange.svg)](https://scikit-learn.org)
-[![LightGBM](https://img.shields.io/badge/LightGBM-Latest-yellow.svg)](https://lightgbm.readthedocs.io)
+## Description
 
-**AI/ML system for exoplanet detection using ensemble learning algorithms**
+Artificial Intelligence system for exoplanet detection using ensemble learning algorithms with data from NASA's Kepler, TESS, and K2 missions. The project implements a Stacking ensemble model that achieves 83.08% accuracy in the classification of celestial objects.
+
+**Team: Planetaxies** - A web application focused on processing large amounts of information captured by space telescopes to filter objects that don't have the characteristics of an exoplanet, reducing the workload of astronomers in manual verification of candidates.
 
 ---
 
-## 🌟 Overview
+## 📊 Project Status and Branches
 
-This project implements a **state-of-the-art ensemble learning system** for detecting exoplanets from NASA's Kepler, TESS, and K2 mission data. Based on research achieving **83.08% accuracy** with Stacking ensemble methods.
+### Current Status
+✅ **Stable Production Version**: Functional system with trained model and API ready for use.
 
-### Key Features
-- 🤖 **Stacking Ensemble** model (best performer with 83.08% accuracy)
-- 🌐 **FastAPI REST API** for predictions
-- 📊 **Interactive Jupyter notebook** for experimentation  
-- 🔧 **Astronomical feature engineering** with domain knowledge
-- 📈 **Production-ready deployment** with Docker
-- 🎯 **NASA datasets**: KOI, TOI, K2 with unified preprocessing
+### Branch Structure
+
+- **`main`**: Main branch with stable and tested code. Contains the functional version of the project with the implemented Stacking ensemble model.
+- **`dev`**: Active development branch where new features are integrated before merging to `main`.
+- **`feature/*`**: Specific branches for developing individual new features.
+
+**Workflow:**
+```
+feature/* → dev → main
+```
+
+### Project Roadmap
+
+- [x] Collect initial datasets (KOI, TOI, K2)
+- [x] Define ML baseline (Random Forest / XGBoost)
+- [x] Implement light curve preprocessing
+- [x] Build API with FastAPI
+- [ ] Connect web interface (React Frontend)
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Installation and Setup
 
-### Option 1: Interactive Menu
+### Prerequisites
+
+- **Python 3.8+** (Python 3.9 or higher recommended)
+- **pip** for package management
+- **Git** to clone the repository
+- **Virtual environment** (venv or conda recommended)
+
+### Quick Start
+
 ```bash
+# Run the interactive setup script
 python quick_start.py
 ```
 
-### Option 2: Manual Setup
+### Manual Installation
+
+#### 1. Clone the Repository
+
 ```bash
-# 1. Install dependencies
+git clone https://github.com/Itzel921/IA-para-exoplanetas.git
+cd IA-para-exoplanetas
+```
+
+#### 2. Create and Activate Virtual Environment
+
+```bash
+# Create virtual environment
+python -m venv .venv
+
+# Activate on Linux/Mac
+source .venv/bin/activate
+
+# Activate on Windows
+.venv\Scripts\activate
+```
+
+#### 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-# 2. Train the model
+#### 4. Configure Jupyter Notebook (Optional)
+
+```bash
+pip install jupyter ipykernel
+python -m ipykernel install --user --name exoplanet-detection
+```
+
+---
+
+## 💻 Running the Project
+
+### Train the Model
+
+```bash
 python train_models.py
+```
 
-# 3. Start API server
+This script runs the complete pipeline:
+- Load and preprocess data (KOI, TOI, K2)
+- Astronomical feature engineering
+- Training of base models and meta-learner
+- Evaluation and model saving
+
+### Start the API Server
+
+```bash
 python -m uvicorn src.api.main:app --reload
-
-# 4. Open Jupyter notebook
-jupyter notebook exoplanet_detection_notebook.ipynb
 ```
 
----
+Or for production:
 
-## 📊 Model Performance
-
-| Metric | Score | Interpretation |
-|--------|-------|----------------|
-| **Accuracy** | 83.08% | Overall classification performance |
-| **Precision** | 81.42% | Reliability (fraction of detections that are real planets) |
-| **Recall** | 82.76% | Completeness (fraction of real planets detected) |
-| **AUC-ROC** | 91.56% | Excellent discrimination capability |
-
-### Astronomical Context
-- **Completeness**: 82.76% of real planets are detected
-- **Reliability**: 81.42% of detections are confirmed planets  
-- **False Discovery Rate**: 18.58% (acceptable for follow-up observations)
-- **Missed Planet Rate**: 17.24% (room for improvement)
-
----
-
-## 🏗️ Architecture
-
-### System Overview
-```
-Raw Data (KOI/TOI/K2) → Preprocessing → Feature Engineering → Ensemble Models → FastAPI → React Frontend
-```
-
-### Ensemble Algorithm (Stacking)
-```
-Base Models (Level-0):
-├── Random Forest (1600 estimators)
-├── AdaBoost (200 estimators)  
-├── Extra Trees (1000 estimators)
-└── LightGBM (500 estimators)
-            ↓
-Meta-Model (Level-1):
-└── LightGBM Meta-Learner
-```
-
----
-
-## � Project Structure
-
-```
-IA-para-exoplanetas/
-├── 🐍 quick_start.py              # Interactive setup script
-├── 🤖 train_models.py             # Main training pipeline
-├── 📓 exoplanet_detection_notebook.ipynb
-├── 📄 requirements.txt
-├── ⚙️ pyproject.toml
-├── 📁 src/
-│   ├── 🤖 models/
-│   │   ├── ensemble_algorithms.py  # Stacking & Random Subspace
-│   │   └── __init__.py
-│   ├── 📊 data/
-│   │   ├── data_loader.py          # NASA data + preprocessing
-│   │   └── __init__.py
-│   ├── 🌐 api/
-│   │   ├── main.py                 # FastAPI application
-│   │   └── __init__.py
-│   ├── 🔧 utils.py                 # Utilities & validation
-│   └── __init__.py
-├── 📁 data/                        # NASA datasets (cached)
-├── 📁 models/                      # Trained model artifacts
-├── 📁 outputs/                     # Results, plots, reports
-└── 📁 docs/                        # Research papers (PDFs)
-```
-
----
-
-## 🔬 Scientific Foundation
-
-### Dataset Details
-- **KOI (Kepler)**: 9,654 objects × 50+ features (2009-2017)
-- **TOI (TESS)**: 6,000+ objects (2018-present, continuously updated)
-- **K2**: Multiple campaigns (C0-C19) with diverse stellar fields
-
-### Key Features Used
-- **Orbital Parameters**: Period, planet radius, stellar radius
-- **Transit Characteristics**: Depth, duration, signal-to-noise ratio
-- **Stellar Properties**: Temperature, mass, metallicity, age
-- **Derived Features**: Habitable zone indicators, equilibrium temperature
-
-### Feature Engineering
-```python
-# Example derived features with astronomical significance
-planet_star_radius_ratio = koi_prad / koi_srad
-equilibrium_temp_ratio = koi_teq / koi_steff  
-transit_depth_expected = (koi_prad / koi_srad) ** 2 * 1e6  # ppm
-in_habitable_zone = (200 <= koi_teq <= 320)  # Earth-like temps
-```
-
----
-
-## 🌐 API Usage
-
-### Start the API
 ```bash
 python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-### API Endpoints
-- **POST** `/api/predict` - Single exoplanet prediction
-- **POST** `/api/batch-predict` - Batch predictions from CSV
-- **GET** `/api/model-info` - Model metadata and performance
-- **WebSocket** `/ws/batch-progress` - Real-time batch processing
+### Run Interactive Notebook
 
-### Example Usage
+```bash
+jupyter notebook exoplanet_detection_notebook.ipynb
+```
+
+### Make Predictions
+
+#### REST API - Single Prediction
+
 ```python
 import requests
 
-# Single prediction
 response = requests.post("http://localhost:8000/api/predict", json={
     "period": 365.25,
     "planet_radius": 1.0,
-    "stellar_radius": 1.0, 
+    "stellar_radius": 1.0,
     "stellar_temperature": 5778,
     "equilibrium_temperature": 288
 })
@@ -171,145 +140,380 @@ print(f"Probability: {result['probability']:.3f}")
 print(f"Confidence: {result['confidence']}")  # HIGH/MEDIUM/LOW
 ```
 
----
+#### REST API - Batch Prediction
 
-## 📈 Performance Optimization
-
-### Preprocessing Pipeline
-- **Missing Value Imputation**: Domain-specific strategies
-  - Stellar parameters: Median imputation
-  - Planetary parameters: Conditional median by disposition
-- **Outlier Handling**: Winsorization (1%-99% percentiles) 
-- **Feature Scaling**: RobustScaler (outlier-resistant)
-- **Feature Engineering**: 15+ derived astronomical features
-
-### Model Optimization
-- **Hyperparameter Tuning**: Grid search with 5-fold cross-validation
-- **Class Imbalance**: Stratified sampling, SMOTE (optional)
-- **Feature Selection**: Recursive feature elimination
-- **Ensemble Diversity**: Different algorithms with varied hyperparameters
-
----
-
-## 🔧 Development
-
-### Environment Setup
 ```bash
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-# Install development dependencies
-pip install -r requirements.txt
-pip install pytest jupyter ipykernel
-
-# Configure Jupyter kernel
-python -m ipykernel install --user --name exoplanet-detection
+# POST /api/batch-predict with CSV file
+curl -X POST "http://localhost:8000/api/batch-predict" \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@candidates.csv"
 ```
 
+### Available Endpoints
+
+- **POST** `/api/predict` - Single exoplanet prediction
+- **POST** `/api/batch-predict` - Batch predictions from CSV
+- **GET** `/api/model-info` - Model metadata and performance metrics
+- **WebSocket** `/ws/batch-progress` - Real-time batch processing progress
+
 ### Testing
+
 ```bash
-# Run tests (when implemented)
+# Run unit tests (when implemented)
 pytest tests/
 
 # Type checking
 mypy src/
 
-# Code formatting  
+# Code formatting
 black src/
 ```
 
 ---
 
-## 🐳 Deployment
+## 🏗️ Architecture and Technologies
 
-### Docker Deployment
+### Technology Stack
+
+#### Backend and API
+- **FastAPI**: Modern, high-performance web framework
+- **Uvicorn**: ASGI server for production
+- **Pydantic**: Data validation and settings
+
+#### Machine Learning
+- **Scikit-learn**: ML algorithms and pipeline
+- **LightGBM**: High-performance gradient boosting
+- **Imbalanced-learn**: Class imbalance handling
+- **Joblib**: Model serialization
+
+#### Data Processing
+- **Pandas**: Data manipulation and analysis
+- **NumPy**: Numerical operations
+- **SciPy**: Advanced scientific functions
+
+#### Visualization
+- **Matplotlib**: Static plots
+- **Seaborn**: Statistical visualizations
+- **Plotly**: Interactive graphics
+
+#### Development Tools
+- **Jupyter**: Interactive notebooks
+- **pytest**: Testing framework
+- **mypy**: Static type checking
+- **black**: Automatic code formatting
+
+### Ensemble Model Architecture
+
+The system implements **Stacking Ensemble Learning** with two levels:
+
+```
+Prediction Pipeline:
+Raw Data (KOI/TOI/K2) → Preprocessing → Feature Engineering → Ensemble Models → FastAPI → React Frontend
+
+Model Architecture:
+Base Models (Level-0):
+├── Random Forest (1600 estimators)
+├── AdaBoost (200 estimators)
+├── Extra Trees (1000 estimators)
+└── LightGBM (500 estimators)
+    ↓
+Meta-Model (Level-1):
+└── LightGBM Meta-Learner
+```
+
+### Performance Metrics
+
+| Metric | Value | Interpretation |
+|--------|-------|----------------|
+| **Accuracy** | 83.08% | Overall classification performance |
+| **Precision** | 81.42% | Reliability (fraction of detections that are real planets) |
+| **Recall** | 82.76% | Completeness (fraction of real planets detected) |
+| **AUC-ROC** | 91.56% | Excellent discrimination capability |
+
+**Practical Interpretation:**
+- ✅ **Completeness**: 82.76% of real planets are detected
+- ✅ **Reliability**: 81.42% of detections are confirmed as planets
+- ⚠️ **False Discovery Rate**: 18.58% (acceptable for follow-up observations)
+- ⚠️ **Missed Planet Rate**: 17.24% (room for improvement)
+
+### Directory Structure
+
+```
+IA-para-exoplanetas/
+│
+├── 🐍 quick_start.py                    # Interactive setup script
+├── 🤖 train_models.py                   # Main training pipeline
+├── 📓 exoplanet_detection_notebook.ipynb # Experimentation notebook
+├── 📄 requirements.txt                  # Project dependencies
+├── ⚙️ pyproject.toml                    # Project configuration
+├── 📜 LICENSE                           # MIT License
+├── 📖 README.md                         # This file
+│
+├── 📁 src/                              # Main source code
+│   ├── __init__.py
+│   ├── 🤖 models/
+│   │   ├── __init__.py
+│   │   └── ensemble_algorithms.py       # Stacking & Random Subspace
+│   │
+│   ├── 📊 data/
+│   │   ├── __init__.py
+│   │   └── data_loader.py               # NASA data loading and preprocessing
+│   │
+│   ├── 🌐 api/
+│   │   ├── __init__.py
+│   │   └── main.py                      # FastAPI application
+│   │
+│   └── 🔧 utils.py                      # Utilities and validation
+│
+├── 📁 data/                             # NASA datasets (cached)
+│   ├── koi_data.csv                     # Kepler Objects of Interest
+│   ├── toi_data.csv                     # TESS Objects of Interest
+│   └── k2_data.csv                      # K2 Mission data
+│
+├── 📁 models/                           # Trained model artifacts
+│   ├── stacking_ensemble.pkl            # Main model
+│   ├── random_forest.pkl                # RF base model
+│   ├── adaboost.pkl                     # AdaBoost base model
+│   ├── extra_trees.pkl                  # ET base model
+│   └── lightgbm.pkl                     # LGBM base model
+│
+├── 📁 outputs/                          # Results, plots, and reports
+│   ├── plots/                           # Generated visualizations
+│   ├── reports/                         # Evaluation reports
+│   └── predictions/                     # Saved predictions
+│
+└── 📁 docs/                             # Documentation and research papers
+    └── research_papers.pdf              # Scientific reference articles
+```
+
+### Datasets Used
+
+The project works with three main datasets from NASA missions:
+
+1. **KOI (Kepler Objects of Interest)**
+   - 9,654 objects × 50+ features
+   - Period: 2009-2017
+   - Source: Kepler Mission
+
+2. **TOI (TESS Objects of Interest)**
+   - 6,000+ objects (continuously updated)
+   - Period: 2018-present
+   - Source: TESS Mission
+
+3. **K2 (Kepler Second Light)**
+   - Multiple campaigns (C0-C19)
+   - Diverse stellar fields
+   - Source: K2 Mission
+
+### Feature Engineering
+
+The system implements 15+ derived features with astronomical significance:
+
+#### Orbital Parameters
+- Orbital period
+- Planet radius
+- Stellar radius
+
+#### Transit Characteristics
+- Transit depth
+- Transit duration
+- Signal-to-noise ratio
+
+#### Stellar Properties
+- Effective temperature
+- Stellar mass
+- Metallicity
+- Stellar age
+
+#### Derived Features
+```python
+# Examples of calculated features
+planet_star_radius_ratio = koi_prad / koi_srad
+equilibrium_temp_ratio = koi_teq / koi_steff
+transit_depth_expected = (koi_prad / koi_srad) ** 2 * 1e6  # in ppm
+in_habitable_zone = (200 <= koi_teq <= 320)  # Earth-like temperatures
+```
+
+### Preprocessing Pipeline
+
+1. **Missing Value Imputation**: Domain-specific strategies
+   - Stellar parameters: Median imputation
+   - Planetary parameters: Conditional median by disposition
+
+2. **Outlier Handling**: Winsorization (1%-99% percentiles)
+
+3. **Feature Scaling**: RobustScaler (outlier-resistant)
+
+4. **Feature Engineering**: 15+ derived astronomical features
+
+5. **Hyperparameter Tuning**: Grid search with 5-fold cross-validation
+
+6. **Class Imbalance**: 
+   - Stratified sampling
+   - SMOTE (optional)
+
+7. **Feature Selection**: Recursive feature elimination
+
+8. **Ensemble Diversity**: Different algorithms with varied hyperparameters
+
+---
+
+## 🐳 Docker Deployment
+
+### Build the Image
+
 ```bash
-# Build image
 docker build -t exoplanet-detection-ai .
+```
 
-# Run container
+### Run the Container
+
+```bash
 docker run -p 8000:8000 exoplanet-detection-ai
 ```
 
-### Production Deployment
+### Production Deployment Architecture
+
 - **Backend**: FastAPI + Gunicorn + nginx
-- **Database**: PostgreSQL for logging, Redis for caching
+- **Database**: PostgreSQL for logging
+- **Cache**: Redis for frequent results
 - **Monitoring**: Prometheus + Grafana
 - **Scaling**: Kubernetes with horizontal pod autoscaling
 
 ---
 
-## 📚 Research Background
+## 📚 Scientific Foundation
 
-This implementation is based on peer-reviewed research:
+This project is based on peer-reviewed scientific research:
 
-1. **"Assessment of Ensemble-Based Machine Learning..."** (Electronics 2024)
-   - Stacking ensemble achieves 83.08% accuracy
-   - Random Forest: 82.64%, AdaBoost: 82.52%
-   - Comprehensive comparison of 5 ensemble methods
+### Main Paper
+**"Assessment of Ensemble-Based Machine Learning Algorithms for Exoplanet Detection"** (Electronics 2024)
+- Stacking ensemble achieves 83.08% accuracy
+- Random Forest: 82.64%, AdaBoost: 82.52%
+- Comprehensive comparison of 5 ensemble methods
 
-2. **"Exoplanet Detection Using Machine Learning"** (MNRAS 2022)
-   - Feature importance analysis for astronomical parameters
-   - Time-series analysis with TSFRESH (789 features)
+### Additional References
+- **"Exoplanet Detection Using Machine Learning"** (MNRAS 2022)
+  - Feature importance analysis for astronomical parameters
+  - Time-series analysis with TSFRESH (789 features)
 
-3. **NASA Exoplanet Archive** methodology papers
-   - Data validation and vetting procedures
-   - Statistical significance thresholds
+- **NASA Exoplanet Archive Methodology**
+  - Data validation and vetting procedures
+  - Statistical significance thresholds
 
 ---
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
+### Contribution Workflow
 
-### Development Guidelines
-- Follow PEP 8 style guide
-- Add docstrings to all functions
-- Include unit tests for new features
-- Update documentation as needed
+1. **Fork the Repository**
+```bash
+git clone https://github.com/your-username/IA-para-exoplanetas.git
+cd IA-para-exoplanetas
+```
+
+2. **Create Feature Branch from `dev`**
+```bash
+git checkout dev
+git pull origin dev
+git checkout -b feature/descriptive-name
+```
+
+3. **Develop Your Feature**
+   - Write code following PEP 8 style guide
+   - Add docstrings to all functions
+   - Include unit tests for new features
+   - Update documentation as needed
+
+4. **Commit Changes**
+```bash
+git add .
+git commit -m "feat: clear description of your change"
+```
+
+**Commit convention:**
+- `feat:` New feature
+- `fix:` Bug fix
+- `docs:` Documentation changes
+- `refactor:` Code refactoring
+- `test:` Test addition or modification
+- `style:` Formatting changes
+- `perf:` Performance improvements
+
+5. **Push and Pull Request**
+```bash
+git push origin feature/descriptive-name
+```
+- Open a Pull Request to the **`dev`** branch
+- Clearly describe the changes made
+- Reference related issues if applicable
+- Wait for team review
+
+### Style Guide
+
+- Follow **PEP 8** for Python code
+- Maximum line length: 88 characters (Black compatible)
+- Use **type hints** in all functions
+- Document with **docstrings** (Google format)
+- Descriptive names for variables and functions
+
+### Code Quality Tools
+
+```bash
+# Automatic formatting
+black src/
+
+# Style checking
+flake8 src/
+
+# Type checking
+mypy src/
+```
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
 
 ---
 
-## 🙏 Acknowledgments
+## 🌟 Acknowledgments
 
-- **NASA Exoplanet Archive** for providing high-quality datasets
-- **Kepler/K2** and **TESS** mission teams for groundbreaking observations
-- **Space Apps Challenge** for the opportunity to contribute to space science
-- **Research community** for open-access publications and methodologies
+- **NASA** for providing open access to Kepler, TESS, and K2 data
+- **NASA Exoplanet Archive** for maintaining high-quality databases
+- **Kepler/K2 and TESS Missions** for groundbreaking observations
+- **Space Apps Challenge 2025** for the opportunity to contribute to space science
+- **Scientific community** for open-access publications and methodologies
 
 ---
 
-## � Contact
+## 📧 Contact
 
-**NASA Space Apps Challenge 2025 Team**
+**NASA Space Apps Challenge 2025 Team - Planetaxies**
+
 - 📧 Email: [team@example.com](mailto:team@example.com)
 - 🐙 GitHub: [Itzel921/IA-para-exoplanetas](https://github.com/Itzel921/IA-para-exoplanetas)
 - 🌐 Website: [Coming Soon]
 
 ---
 
-⭐ **Star this repository if you find it useful!** ⭐  
-  - `dev` → desarrollo  
-  - `feature/*` → ramas de features  
+## 🔗 References and Resources
+
+### APIs and Data
+- [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/)
+- [TESS Mission](https://tess.mit.edu/)
+- [Kepler Mission](https://www.nasa.gov/mission_pages/kepler/overview/index.html)
+
+### Technical Documentation
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html)
+- [LightGBM Documentation](https://lightgbm.readthedocs.io/)
+
+### Research Papers
+Available in the `docs/` folder of the repository.
 
 ---
 
-### 📌 Próximos pasos
-1. Recolectar datasets iniciales (KOI, TOI, K2).  
-2. Definir baseline ML (Random Forest / XGBoost).  
-3. Implementar preprocesamiento de curvas de luz.  
-4. Construir API mínima (Flask/FastAPI).  
-5. Conectar interfaz web.  
-
----
+⭐ **If you find this project useful, give us a star!** ⭐
