@@ -1,0 +1,4 @@
+Dataset,Original_Count,Confirmed_Original,Confirmed_Percentage,ML_Predictions_Found,ML_Exoplanets_Found,Average_Confidence
+KOI,9564,2746,28.7%,5,2,0.866
+TOI,7703,5262,68.3%,0,0,N/A
+K2,4004,2315,57.8%,0,0,N/A

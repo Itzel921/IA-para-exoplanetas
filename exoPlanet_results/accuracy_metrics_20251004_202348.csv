@@ -1,0 +1,13 @@
+Metric,Value,Percentage
+Sample Size (with labels),5,N/A
+True Positives (TP),2,N/A
+False Positives (FP),0,N/A
+True Negatives (TN),2,N/A
+False Negatives (FN),1,N/A
+Accuracy,0.8000,80.00%
+Precision (Reliability),1.0000,100.00%
+Recall (Completeness),0.6667,66.67%
+Specificity,1.0000,100.00%
+F1-Score,0.8000,80.00%
+False Discovery Rate,0.0000,0.00%
+Miss Rate,0.3333,33.33%

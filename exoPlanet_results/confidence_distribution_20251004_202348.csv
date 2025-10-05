@@ -1,0 +1,9 @@
+Confidence_Range,Min_Confidence,Max_Confidence,Object_Count,Percentage
+Extremely High (95-100%),0.95,1.0,1,0.01%
+Very High (90-95%),0.9,0.95,2,0.02%
+High (85-90%),0.85,0.9,9555,99.96%
+Good (80-85%),0.8,0.85,0,0.00%
+Medium (70-80%),0.7,0.8,0,0.00%
+Low (60-70%),0.6,0.7,1,0.01%
+Very Low (50-60%),0.5,0.6,0,0.00%
+Poor (<50%),0.0,0.5,0,0.00%
