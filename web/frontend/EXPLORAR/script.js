@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateRadioRange() {
         const min = parseFloat(radioMin.value);
         const max = parseFloat(radioMax.value);
-        radioValor.textContent = `${min} a ${max} $R_E$`;
+        radioValor.textContent = `${min} a ${max} RE`;
     }
 
     // Función para actualizar el valor visible del período
