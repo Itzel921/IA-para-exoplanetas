@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang=es>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exoplanet Exploration with AI - Home</title>
+    <link rel="icon" href="/web/frontend/RECURSOS/nasa.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/web/frontend/INDEX/style.css" />
+</head>
+
+<body>
+    <video autoplay muted loop id="bg-video">
+        <source src="/web/frontend/RECURSOS/luna.mp4" type="video/mp4" />
+        Tu navegador no soporta videos HTML5.
+    </video>
+    <div class="overlay"></div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="sidebar-title">MENU</div>
+    <a href="/web/frontend/EXPLORAR/explorar.html" class="sidebar-link">🔭 EXPLORE DATA</a>
+    <a href="/web/frontend/DETECTAR/detectar.html" class="sidebar-link">🧠 DETECT EXOPLANETS</a>
+    <a href="/web/frontend/RESULTADOS/resultados.html" class="sidebar-link">📈 RESULTS</a>
+    <a href="/web/frontend/APRENDE/aprende.html" class="sidebar-link">📚 LEARN MORE</a>
+    <a href="/web/frontend/SOBRE/sobre.html" class="sidebar-link">ℹ️ ABOUT US</a>
+    </div>
+
+    <div id="main">
+    <button class="openbtn" onclick="openNav()">☰ Menu</button>
+
+        <div class="main-header">
+            <a href="/web/frontend/INDEX/index.html" class="logo-container">
+                <img src="/web/frontend/RECURSOS/logo_equipo.png" alt="Logo del equipo" class="site-logo">
+            </a>
+        </div>
+
+        <header class="video-header"></header>
+            <div class="header-content">
+                <h1>Exoplanets</h1>
+                <p>
+                    Over recent decades, space telescopes like <b>Kepler</b>, <b>K2</b> and <b>TESS</b> have observed millions of stars to discover worlds outside our solar system. These planets are called <b>exoplanets</b>.
+                </p>
+                <button class="hero-btn" id="btn-prueba">TRY AI</button>
+            </div>
+        
+
+        <div class="container">
+            <section id="bienvenida">
+                <h2>Welcome</h2>
+                <p>
+                    Over the past few decades, space telescopes such as <b>Kepler</b>, <b>K2</b>, and <b>TESS</b> have observed millions of stars to discover worlds outside our solar system. These planets, called <b>exoplanets</b>, are primarily detected using the transit method.
+                </p>
+                <p>
+                    This project combines these astronomical data with the power of <b>artificial intelligence</b>. This way, anyone can explore, analyze and discover how the models that help identify possible new planets in real NASA data work.
+                </p>
+                <p>
+                    This platform is not only a scientific tool, it is also a window into the future of space exploration: <b>bringing the search for other worlds closer to everyone.</b>
+                </p>
+            </section>
+
+            <section id="numeros">
+                <h2>Discoveries in numbers</h2>
+                <ul>
+                    <li><b>+5,500 exoplanets</b> confirmed to date (NASA, 2025).</li>
+                    <li>Thousands of planetary candidates still under review, which could become future discoveries.</li>
+                </ul>
+
+                <h3>🛰️ Key missions:</h3>
+                <ul>
+                    <li><b>Kepler (2009-2018):</b> over 2,600 confirmed planets.</li>
+                    <li><b>K2 (2014-2018):</b> hundreds of additional findings following Kepler's success.</li>
+                    <li><b>TESS (2018 - present):</b> over 400 confirmed and thousands of candidates under observation.</li>
+                </ul>
+                <p>
+                    Cada punto de luz que ves en el cielo puede ocultar sistemas planetarios completos. Gracias al análisis automatizado, la ciencia avanza más rápido que nunca en la búsqueda de mundos que algún día podríamos explorar.
+                </p>
+            </section>
+
+            <section id="interaccion">
+                <h2>🚀 Start your exploration!</h2>
+                <p>Press the button to simulate an initial query to our AI model and see its welcome message.</p>
+                <button id="btn-explorar">Activate AI Model</button>
+                <div id="mensaje-ia">
+                    <p>Waiting for activation...</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

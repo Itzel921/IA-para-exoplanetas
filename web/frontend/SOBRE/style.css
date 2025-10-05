@@ -1,0 +1,258 @@
+/* === PALETA INSPIRADA EN NASA === */
+:root {
+    --nasa-blue: #0b3d91;
+    --nasa-blue-light: #1a5ed9;
+    --nasa-dark: #1b1b1b;
+    --nasa-gray: #f4f4f4;
+    --nasa-red: #fc3d21;
+    --nasa-white: #ffffff;
+    --nasa-accent: #00bfe7;
+    --sidebar-width: 350px;
+}
+
+/* === RESETEO GENERAL === */
+body {
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    background-color: var(--nasa-gray);
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* === VIDEO DE FONDO === */
+#bg-video,
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+}
+.overlay {
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
+}
+
+/* === ENCABEZADO CON ESTILO NASA === */
+.page-header {
+    text-align: center;
+    color: #ffffff;;
+    background: transparent;
+    padding: 120px 20px 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.page-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 60px;
+    height: 4px;
+    background: var(--nasa-red);
+    transform: translateX(-50%);
+}
+
+.page-header h1 {
+    font-size: 3.2em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+.page-header p {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.1em;
+    line-height: 1.9;
+    color: #e0e0e0;
+}
+
+/* === CONTENEDOR PRINCIPAL === */
+.container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* === SECCIONES DE TEXTO === */
+section {
+    background: #323a45;
+    backdrop-filter: blur(6px);
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+    color: #ffffff;
+    border-left: 6px solid var(--nasa-red);
+    padding-left: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* === TARJETAS DE MISIÓN Y VISIÓN === */
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+
+
+.mission-vision-grid h2 {
+    border-left: none;
+    color: var(--nasa-blue-light);
+    font-size: 1.8em;
+}
+
+/* ====== SIDEBAR ESTILOS (Formato Requerido) ====== */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: var(--color-sidebar-fondo);
+    overflow: hidden;
+    padding-top: 20px;
+    transition: 0.5s;
+    border-right: none;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.sidebar.active {
+    border-right: 2px solid var(--color-blanco);
+}
+
+.sidebar-title {
+    padding: 10px 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--color-blanco);
+    text-align: center;
+    margin-bottom: 0px;
+    border-bottom: 2px solid var(--color-blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+}
+
+.sidebar a {
+    padding: 22px 8px 22px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--color-blanco);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.sidebar a:hover {
+    color: var(--color-blanco);
+    background-color: var(--color-sidebar-hover);
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 15px;
+    font-size: 40px;
+    color: var(--color-gris-claro);
+    opacity: 0;
+    transition: opacity 0.5s ease 0.4s, color 0.3s;
+    margin: 0;
+    border: none;
+    line-height: 1;
+}
+
+.sidebar .closebtn:hover {
+    color: var(--color-acento-secundario);
+    background-color: transparent;
+}
+
+.sidebar.active .sidebar-link,
+.sidebar.active .closebtn {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Retrasos escalonados */
+.sidebar.active .sidebar-link:nth-child(3) { transition-delay: 0.1s; }
+.sidebar.active .sidebar-link:nth-child(4) { transition-delay: 0.15s; }
+.sidebar.active .sidebar-link:nth-child(5) { transition-delay: 0.2s; }
+.sidebar.active .sidebar-link:nth-child(6) { transition-delay: 0.25s; }
+.sidebar.active .sidebar-link:nth-child(7) { transition-delay: 0.3s; }
+.sidebar.active .sidebar-link:nth-child(8) { transition-delay: 0.35s; }
+
+#main {
+    transition: margin-left 0.5s;
+    padding: 0;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color-blanco);
+    padding: 10px 15px;
+    border: 1px solid var(--color-blanco);
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
+}
+
+.openbtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-acento-alt);
+}
+
+/* === CONTACTO === */
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+}
+.contact-info li {
+    margin-bottom: 10px;
+}
+.contact-info a {
+    color: #aeb0b5;
+    font-weight: bold;
+    text-decoration: none;
+}
+.contact-info a:hover {
+    color: var(--nasa-red);
+}
+
+/* === RESPONSIVIDAD === */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2.4em;
+    }
+    section {
+        padding: 25px;
+    }
+}

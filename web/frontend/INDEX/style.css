@@ -1,0 +1,318 @@
+:root {
+    --color-primario: #105bd8;
+    --color-primario-oscuro: #061f4a;
+    --color-base: #212121;
+    --color-gris-oscuro: #323a45;
+    --color-gris-claro: #aeb0b5;
+    --color-blanco: #ffffff;
+    --color-acento-secundario: #dd361c;
+    --color-acento-alt: #02bfe7;
+    --sidebar-width: 350px;
+}
+
+/* ===== RESET ===== */
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: var(--color-primario-oscuro);
+    color: var(--color-blanco);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===== HEADER CON VIDEO ===== */
+/* CAMBIOS: El video y el overlay ahora se mueven al body y se fijan */
+#bg-video,
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.video-header {
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin-left: 60px;
+    padding: 10% 5% 0 5%;
+    color: white;
+    pointer-events: auto;
+}
+
+.header-content h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.header-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 650px;
+    line-height: 2.0;
+}
+
+.hero-btn {
+    background-color: #205493;
+    color: var(--color-blanco);
+    border: none;
+    padding: 12px 50px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-weight: bold;
+}
+
+.hero-btn:hover {
+    background-color: #4773aa;
+    color: var(--color-blanco);
+    transform: translateY(-2px);
+}
+
+/* ====== SIDEBAR AND MENU ====== */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: var(--color-sidebar-fondo);
+    overflow: hidden;
+    padding-top: 20px;
+    transition: 0.5s;
+    border-right: none;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.sidebar.active {
+    border-right: 2px solid var(--color-blanco);
+}
+
+.sidebar-title {
+    padding: 10px 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--color-blanco);
+    text-align: center;
+    margin-bottom: 0px;
+    border-bottom: 2px solid var(--color-blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+}
+
+.sidebar a {
+    padding: 22px 8px 22px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--color-blanco);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.sidebar a:hover {
+    color: var(--color-blanco);
+    background-color: var(--color-sidebar-hover);
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 15px;
+    font-size: 40px;
+    color: var(--color-gris-claro);
+    opacity: 0;
+    transition: opacity 0.5s ease 0.4s, color 0.3s;
+    margin: 0;
+    border: none;
+    line-height: 1;
+}
+
+.sidebar .closebtn:hover {
+    color: var(--color-acento-secundario);
+    background-color: transparent;
+}
+
+.sidebar.active .sidebar-link,
+.sidebar.active .closebtn {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Retrasos escalonados (se mantienen) */
+.sidebar.active .sidebar-link:nth-child(3) {
+    transition-delay: 0.1s;
+}
+
+.sidebar.active .sidebar-link:nth-child(4) {
+    transition-delay: 0.15s;
+}
+
+.sidebar.active .sidebar-link:nth-child(5) {
+    transition-delay: 0.2s;
+}
+
+.sidebar.active .sidebar-link:nth-child(6) {
+    transition-delay: 0.25s;
+}
+
+.sidebar.active .sidebar-link:nth-child(7) {
+    transition-delay: 0.3s;
+}
+
+#main {
+    transition: margin-left 0.5s;
+    padding: 0;
+}
+
+/* ===== HEADER Y LOGO ===== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none; /* Permite hacer clic a través del header */
+}
+
+.logo-container {
+    pointer-events: all; /* Restaura la interactividad solo para el logo */
+    text-decoration: none;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 0 0 10px 10px;
+}
+
+.site-logo {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.openbtn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--color-blanco);
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.openbtn:hover {
+    background-color: var(--color-blanco);
+    color: var(--color-primario-oscuro);
+}
+
+.openbtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-acento-alt);
+}
+
+.sidebar.active~#main .openbtn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===== CONTENIDO PRINCIPAL Y BOTONES (Se mantienen) ===== */
+.container {
+    max-width: 1300px;
+    margin: 60px auto;
+    padding: 0 20px;
+    opacity: 0.95;
+}
+
+section {
+    background-color: #323a45;
+    padding: 30px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+h2 {
+    border-bottom: 4px solid #105bd8;
+    color: #ffffff;
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 2em;
+}
+
+#btn-explorar {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: block;
+    margin: 20px auto 0;
+    font-weight: bold;
+}
+
+#btn-explorar:hover {
+    background-color: var(--color-acento-secundario);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+#mensaje-ia {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #dce4ef;
+    border: 2px solid var(--color-primario);
+    border-radius: 5px;
+    text-align: center;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mensaje-ia p {
+    color: var(--color-base);
+    font-weight: 600;
+    margin: 0;
+}
+
+.ia-response-text {
+    color: var(--color-primario) !important;
+    font-weight: bold;
+    font-size: 1.1em;
+}
