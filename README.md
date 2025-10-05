@@ -5,7 +5,7 @@ Team: Planetaxies
 A webapp focused on prossessing big amounts of information taken by spacial telescopes to filtrate the ones that doesn't count with the caracteristics of an exoplanet.
 
 ## Map of Contents
-   1- [Ir a la sección de instalación](#About the project)
+   1- [Ir a la sección de instalación](#about-the-project)
    2- Introduction
    
 ---
