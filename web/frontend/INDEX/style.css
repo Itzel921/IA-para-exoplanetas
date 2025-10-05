@@ -40,8 +40,6 @@ body {
 
 .video-header {
     position: relative;
-    padding-top: 10vh;
-    padding-bottom: 2rem;
     overflow: visible;
     z-index: 1;
 }
@@ -66,7 +64,7 @@ body {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 2rem;
-    max-width: 600px;
+    max-width: 650px;
     line-height: 2.0;
 }
 
@@ -74,7 +72,7 @@ body {
     background-color: #205493;
     color: var(--color-blanco);
     border: none;
-    padding: 12px 25px;
+    padding: 12px 50px;
     font-size: 1.1em;
     cursor: pointer;
     border-radius: 4px;
@@ -191,20 +189,52 @@ body {
     padding: 0;
 }
 
+/* ===== HEADER Y LOGO ===== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none; /* Permite hacer clic a través del header */
+}
+
+.logo-container {
+    pointer-events: all; /* Restaura la interactividad solo para el logo */
+    text-decoration: none;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 0 0 10px 10px;
+}
+
+.site-logo {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
 .openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    background-color: transparent;
-    color: var(--color-blanco);
-    padding: 10px 15px;
-    border: 1px solid var(--color-blanco);
     position: fixed;
     top: 15px;
     left: 15px;
-    z-index: 9999;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--color-blanco);
+    padding: 8px 12px;
+    border: 1px solid var(--color-blanco);
     border-radius: 4px;
-    transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
-    pointer-events: auto;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.openbtn:hover {
+    background-color: var(--color-blanco);
+    color: var(--color-primario-oscuro);
 }
 
 .openbtn:hover {
