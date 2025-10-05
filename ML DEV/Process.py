@@ -11,11 +11,7 @@ from pathlib import Path
 import sys
 
 # Importaciones necesarias para que joblib pueda cargar los modelos correctamente
-try:
-    from train_ensemble import StackingEnsemble, DataPreprocessor, FeatureEngineer
-except ImportError:
-    # Si las importaciones fallan, las clases se definirán cuando se importen los módulos
-    pass
+import model_imports  # Esto asegura que todas las clases estén disponibles
 
 def show_menu():
     """Muestra el menú principal del sistema"""
@@ -26,11 +22,12 @@ def show_menu():
     print("\n📋 OPCIONES DISPONIBLES:")
     print("1. 📊 Cargar y analizar datasets (KOI, TOI, K2)")
     print("2. 🎯 Entrenar modelo ensemble (Stacking + RF + AdaBoost)")
-    print("3. 🔮 Predecir exoplanetas en nuevo dataset")
-    print("4. 📁 Procesar todos los archivos en new_datasets")
-    print("5. 📈 Análisis exploratorio completo")
-    print("6. ❓ Ayuda y documentación")
-    print("7. 🚪 Salir")
+    print("3. ⚡ Entrenar modelo simplificado (RÁPIDO - Random Forest)")
+    print("4. 🔮 Predecir exoplanetas en nuevo dataset")
+    print("5. 📁 Procesar todos los archivos en new_datasets")
+    print("6. 📈 Análisis exploratorio completo")
+    print("7. ❓ Ayuda y documentación")
+    print("8. 🚪 Salir")
     print("\n" + "-"*60)
 
 def option_1_load_datasets():
@@ -38,12 +35,49 @@ def option_1_load_datasets():
     print("\n🔄 Ejecutando análisis de datasets...")
     
     try:
-        # Importar y ejecutar Clasification.py
-        import Clasification
-        print("✅ Análisis de datasets completado!")
+        from Clasification import DataLoader
+        
+        # Configurar paths
+        current_dir = Path(__file__).parent
+        project_root = current_dir.parent
+        
+        # Cargar y mostrar información de datasets
+        loader = DataLoader(project_root)
+        datasets = loader.load_all_datasets()
+        
+        if len(datasets) > 0:
+            print(f"\n📊 RESUMEN DE DATASETS CARGADOS:")
+            print("="*50)
+            
+            total_rows = 0
+            for name, df in datasets.items():
+                print(f"\n📁 Dataset: {name}")
+                print(f"   📏 Dimensiones: {df.shape[0]:,} × {df.shape[1]}")
+                print(f"   📋 Columnas principales: {list(df.columns[:5])}")
+                total_rows += df.shape[0]
+                
+                # Mostrar distribución de clases si existe columna objetivo
+                target_cols = ['koi_disposition', 'tfopwg_disp', 'archive_disp']
+                for col in target_cols:
+                    if col in df.columns:
+                        print(f"   🎯 Distribución {col}:")
+                        value_counts = df[col].value_counts()
+                        for val, count in value_counts.items():
+                            percentage = (count / len(df)) * 100
+                            print(f"      • {val}: {count:,} ({percentage:.1f}%)")
+                        break
+            
+            print(f"\n📊 TOTAL COMBINADO: {total_rows:,} objetos astronómicos")
+            print("✅ Análisis de datasets completado!")
+            
+        else:
+            print("❌ No se pudieron cargar los datasets")
+            print("   Verifica que los archivos CSV estén en data/datasets/")
         
     except Exception as e:
         print(f"❌ Error en análisis: {e}")
+        import traceback
+        traceback.print_exc()
 
 def option_2_train_model():
     """Opción 2: Entrenar modelo ensemble"""
@@ -51,14 +85,70 @@ def option_2_train_model():
     print("⏳ Este proceso puede tomar varios minutos...")
     
     try:
-        import train_ensemble
-        print("✅ Entrenamiento completado!")
+        # Importar las clases necesarias
+        from train_ensemble import ExoplanetMLSystem
+        from Clasification import DataLoader
+        
+        # Configurar paths
+        current_dir = Path(__file__).parent
+        project_root = current_dir.parent
+        
+        print("📂 Cargando datasets de NASA (KOI, TOI, K2)...")
+        
+        # Cargar datasets
+        loader = DataLoader(project_root)
+        datasets = loader.load_all_datasets()
+        
+        if len(datasets) > 0:
+            print(f"✅ {len(datasets)} datasets cargados exitosamente!")
+            
+            # Inicializar y entrenar sistema
+            ml_system = ExoplanetMLSystem(project_root)
+            model_info = ml_system.train_system(datasets)
+            
+            print("✅ Entrenamiento completado!")
+            print(f"🎯 Accuracy alcanzado: {model_info['accuracy']:.4f}")
+            print("🚀 Sistema listo para predicciones!")
+            
+        else:
+            print("❌ No se pudieron cargar los datasets para entrenamiento")
+            print("   Verifica que los archivos CSV estén en data/datasets/")
         
     except Exception as e:
         print(f"❌ Error en entrenamiento: {e}")
+        import traceback
+        traceback.print_exc()
 
-def option_3_predict_single():
-    """Opción 3: Predecir en dataset específico"""
+def option_3_simple_train():
+    """Opción 3: Entrenar modelo simplificado (RÁPIDO)"""
+    print("\n⚡ Iniciando entrenamiento simplificado...")
+    print("🚀 Este proceso es más rápido y usa menos recursos")
+    print("🎯 Usando Random Forest con características astronómicas optimizadas")
+    
+    try:
+        # Importar el entrenador simplificado
+        import simple_retrain
+        
+        print("📂 Ejecutando reentrenamiento simplificado...")
+        model_info = simple_retrain.main()
+        
+        if model_info:
+            print("✅ ¡Entrenamiento simplificado completado exitosamente!")
+            print(f"🎯 Accuracy: {model_info['accuracy']:.4f} ({model_info['accuracy']*100:.1f}%)")
+            print(f"🔬 Características: {model_info['n_features']}")
+            print(f"📊 Precision: {model_info['precision']:.3f}")
+            print(f"📊 Recall: {model_info['recall']:.3f}")
+            print("🚀 El modelo está listo para predicciones!")
+        else:
+            print("❌ Error en el entrenamiento simplificado")
+        
+    except Exception as e:
+        print(f"❌ Error en entrenamiento simplificado: {e}")
+        import traceback
+        traceback.print_exc()
+
+def option_4_predict_single():
+    """Opción 4: Predecir en dataset específico usando predictor corregido"""
     new_datasets_path = Path(__file__).parent.parent / "data" / "new_datasets"
     
     print(f"\n📁 Archivos disponibles en new_datasets:")
@@ -77,21 +167,16 @@ def option_3_predict_single():
         if 1 <= choice <= len(csv_files):
             filename = csv_files[choice - 1].name
             
-            # Asegurar que las clases están disponibles para joblib
-            try:
-                from train_ensemble import StackingEnsemble, DataPreprocessor, FeatureEngineer
-            except ImportError:
-                print("❌ Error: No se pueden importar las clases del modelo")
-                return
+            print(f"\n🔮 Usando predictor corregido compatible con modelo actual...")
             
-            # Ejecutar predicción
-            import predict_exoplanets
-            predictor = predict_exoplanets.ExoplanetPredictor(Path(__file__).parent.parent)
+            # Usar el predictor corregido
+            from simple_predictor_fixed import SimplePredictorFixed
+            predictor = SimplePredictorFixed(Path(__file__).parent.parent)
             
-            if predictor.load_latest_model():
-                predictor.predict_dataset(filename)
+            if predictor.load_model():
+                predictor.process_file(filename)
             else:
-                print("❌ Primero debes entrenar el modelo (opción 2)")
+                print("❌ Primero debes entrenar un modelo")
         else:
             print("❌ Selección inválida")
             
@@ -100,80 +185,95 @@ def option_3_predict_single():
     except Exception as e:
         print(f"❌ Error: {e}")
 
-def option_4_predict_all():
-    """Opción 4: Procesar todos los archivos"""
+def option_5_predict_all():
+    """Opción 5: Procesar todos los archivos usando predictor corregido"""
     print("\n🔄 Procesando todos los archivos en new_datasets...")
     
     try:
-        # Asegurar que las clases están disponibles para joblib
-        try:
-            from train_ensemble import StackingEnsemble, DataPreprocessor, FeatureEngineer
-        except ImportError:
-            print("❌ Error: No se pueden importar las clases del modelo")
-            return
+        print("🔮 Usando predictor corregido compatible con modelo actual...")
         
-        import predict_exoplanets
-        predictor = predict_exoplanets.ExoplanetPredictor(Path(__file__).parent.parent)
+        from simple_predictor_fixed import SimplePredictorFixed
+        predictor = SimplePredictorFixed(Path(__file__).parent.parent)
         
-        if predictor.load_latest_model():
+        if predictor.load_model():
             predictor.process_all_new_datasets()
         else:
-            print("❌ Primero debes entrenar el modelo (opción 2)")
+            print("❌ Primero debes entrenar un modelo")
             
     except Exception as e:
         print(f"❌ Error: {e}")
 
-def option_5_full_analysis():
-    """Opción 5: Análisis exploratorio completo"""
+def option_6_full_analysis():
+    """Opción 6: Análisis exploratorio completo con visualizaciones avanzadas"""
     print("\n📊 Ejecutando análisis exploratorio completo...")
     
     try:
         from Clasification import DataLoader
+        from advanced_visualization import ExoplanetVisualizer
         
         current_dir = Path(__file__).parent
         project_root = current_dir.parent
         
+        # Cargar datasets NASA
+        print("📁 Cargando datasets NASA...")
         loader = DataLoader(project_root)
-        datasets = loader.load_all_datasets()
+        nasa_datasets = loader.load_all_datasets()
         
-        # Análisis comparativo entre datasets
-        print(f"\n🔍 ANÁLISIS COMPARATIVO ENTRE DATASETS")
+        # Cargar new_datasets si existen
+        print("� Cargando new_datasets...")
+        new_datasets = {}
+        new_datasets_path = project_root / "data" / "new_datasets"
+        
+        if new_datasets_path.exists():
+            csv_files = list(new_datasets_path.glob("*.csv"))
+            for csv_file in csv_files:
+                try:
+                    df = pd.read_csv(csv_file, comment='#', sep=',', engine='python')
+                    file_name = csv_file.stem
+                    new_datasets[file_name] = df
+                    print(f"   ✅ {file_name}: {df.shape[0]:,} filas × {df.shape[1]} columnas")
+                except Exception as e:
+                    print(f"   ⚠️ Error cargando {csv_file.name}: {e}")
+        
+        # Crear visualizador
+        visualizer = ExoplanetVisualizer(project_root)
+        
+        # Generar todas las visualizaciones
+        generated_files = visualizer.generate_complete_analysis(nasa_datasets, new_datasets)
+        
+        # Mostrar resumen estadístico
+        print(f"\n📈 RESUMEN ESTADÍSTICO")
         print("="*50)
         
-        for name, df in datasets.items():
+        print("📊 Datasets NASA:")
+        for name, df in nasa_datasets.items():
             analysis = loader.analyze_dataset(df, name)
-            
-            # Crear visualizaciones básicas
-            if 'disposition' in str(analysis.get('target_column', '')).lower():
+            print(f"   • {name}: {df.shape[0]:,} objetos, {df.shape[1]} características")
+            if analysis.get('target_column'):
                 target_col = analysis['target_column']
-                
-                plt.figure(figsize=(12, 4))
-                
-                # Distribución de clases
-                plt.subplot(1, 2, 1)
-                df[target_col].value_counts().plot(kind='bar')
-                plt.title(f'{name} - Distribución de Clases')
-                plt.xticks(rotation=45)
-                
-                # Correlación de características numéricas clave
-                if len(analysis['key_features']) > 1:
-                    plt.subplot(1, 2, 2)
-                    numeric_df = df[analysis['key_features'][:5]].select_dtypes(include=[np.number])
-                    if not numeric_df.empty:
-                        correlation = numeric_df.corr()
-                        sns.heatmap(correlation, annot=True, cmap='coolwarm', center=0)
-                        plt.title(f'{name} - Correlación Características')
-                
-                plt.tight_layout()
-                plt.show()
+                if target_col in df.columns:
+                    class_dist = df[target_col].value_counts()
+                    print(f"     - Clases: {dict(class_dist)}")
         
-        print("✅ Análisis exploratorio completado!")
+        if new_datasets:
+            print("\n📁 New Datasets:")
+            for name, df in new_datasets.items():
+                print(f"   • {name}: {df.shape[0]:,} objetos, {df.shape[1]} características")
+        
+        print(f"\n🎨 Visualizaciones generadas: {len(generated_files)}")
+        print("   📂 Ubicaciones:")
+        print("      • Charts individuales: exoPlanet_results/charts/")
+        print("      • Charts comparativos: exoPlanet_results/comparative_charts/")
+        
+        print("\n✅ Análisis exploratorio completo finalizado!")
         
     except Exception as e:
         print(f"❌ Error en análisis: {e}")
+        import traceback
+        traceback.print_exc()
 
-def option_6_help():
-    """Opción 6: Ayuda y documentación"""
+def option_7_help():
+    """Opción 7: Ayuda y documentación"""
     print("\n📚 DOCUMENTACIÓN DEL SISTEMA")
     print("="*50)
     
@@ -225,26 +325,28 @@ def main():
         show_menu()
         
         try:
-            choice = input("🔢 Selecciona una opción (1-7): ").strip()
+            choice = input("🔢 Selecciona una opción (1-8): ").strip()
             
             if choice == '1':
                 option_1_load_datasets()
             elif choice == '2':
                 option_2_train_model()
             elif choice == '3':
-                option_3_predict_single()
+                option_3_simple_train()
             elif choice == '4':
-                option_4_predict_all()
+                option_4_predict_single()
             elif choice == '5':
-                option_5_full_analysis()
+                option_5_predict_all()
             elif choice == '6':
-                option_6_help()
+                option_6_full_analysis()
             elif choice == '7':
+                option_7_help()
+            elif choice == '8':
                 print("\n👋 ¡Gracias por usar el Sistema de Detección de Exoplanetas!")
                 print("🌟 NASA Space Apps Challenge 2025")
                 break
             else:
-                print("❌ Opción inválida. Por favor selecciona 1-7.")
+                print("❌ Opción inválida. Por favor selecciona 1-8.")
                 
         except KeyboardInterrupt:
             print("\n\n👋 Saliendo del sistema...")

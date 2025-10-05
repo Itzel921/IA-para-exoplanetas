@@ -10,7 +10,6 @@ import pandas as pd
 current_dir = Path(__file__).parent
 project_root = current_dir.parent
 sys.path.append(str(current_dir))
-
 # Importar las clases necesarias ANTES de cargar el modelo
 try:
     from train_ensemble import StackingEnsemble, DataPreprocessor, FeatureEngineer

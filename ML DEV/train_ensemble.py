@@ -266,12 +266,16 @@ class ExoplanetMLSystem:
     
     def __init__(self, project_root):
         self.project_root = Path(project_root)
-        self.models_path = self.project_root / "models"
+        # Guardar modelos en ML DEV/trained_models para mejor organización
+        self.ml_dev_path = Path(__file__).parent  # Directorio actual (ML DEV)
+        self.models_path = self.ml_dev_path / "trained_models"
         self.results_path = self.project_root / "exoPlanet_results"
         
         # Crear directorios si no existen
         self.models_path.mkdir(exist_ok=True)
         self.results_path.mkdir(exist_ok=True)
+        
+        print(f"📁 Modelos se guardarán en: {self.models_path}")
         
         # Componentes del sistema
         self.preprocessor = DataPreprocessor()

@@ -13,6 +13,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Importar clases necesarias del entrenamiento
+import model_imports  # Esto asegura compatibilidad con todos los modelos
 from train_ensemble_FAST import FastStackingEnsemble
 from train_ensemble_CORRECTED import FeatureMapper, ImprovedDataPreprocessor
 

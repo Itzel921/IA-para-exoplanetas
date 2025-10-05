@@ -13,8 +13,18 @@ from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')
 
-# Importar clases necesarias del entrenamiento
-from train_ensemble import StackingEnsemble, DataPreprocessor, FeatureEngineer
+# Importar clases necesarias del entrenamiento (compatibilidad con todos los modelos)
+import model_imports  # Esto asegura que todas las clases estén disponibles
+
+try:
+    from train_ensemble import StackingEnsemble, DataPreprocessor, FeatureEngineer
+    from train_ensemble_CORRECTED import FeatureMapper, ImprovedDataPreprocessor
+    from train_ensemble_FAST import FastStackingEnsemble
+except ImportError as e:
+    print(f"⚠️ Advertencia de importación: {e}")
+    # Continuar para permitir la carga de modelos legacy
+    pass
+
 from Clasification import DataLoader
 
 class ExoplanetPredictor:
@@ -24,7 +34,10 @@ class ExoplanetPredictor:
     
     def __init__(self, project_root):
         self.project_root = Path(project_root)
-        self.models_path = self.project_root / "models"
+        # Buscar modelos en ML DEV/trained_models (nueva ubicación)
+        self.ml_dev_path = Path(__file__).parent  # Directorio actual (ML DEV)
+        self.models_path_new = self.ml_dev_path / "trained_models"
+        self.models_path_legacy = self.project_root / "models"  # Compatibilidad con modelos anteriores
         self.new_datasets_path = self.project_root / "data" / "new_datasets"
         self.results_path = self.project_root / "exoPlanet_results"
         
@@ -35,16 +48,35 @@ class ExoplanetPredictor:
         self.loaded_model_path = None
     
     def load_latest_model(self):
-        """Carga el modelo más reciente"""
+        """Carga el modelo más reciente (busca en nueva ubicación primero, luego en legacy)"""
         try:
-            model_files = list(self.models_path.glob("exoplanet_ensemble_*.pkl"))
-            if not model_files:
-                raise FileNotFoundError("No se encontraron modelos entrenados")
+            # Buscar primero en la nueva ubicación (ML DEV/trained_models)
+            model_files_new = list(self.models_path_new.glob("exoplanet_ensemble_*.pkl")) if self.models_path_new.exists() else []
             
-            # Obtener el modelo más reciente
-            latest_model = max(model_files, key=lambda x: x.stat().st_mtime)
+            # Buscar también en la ubicación legacy (project_root/models)
+            model_files_legacy = list(self.models_path_legacy.glob("exoplanet_ensemble_*.pkl")) if self.models_path_legacy.exists() else []
             
-            print(f"📦 Cargando modelo: {latest_model.name}")
+            # Combinar ambas listas
+            all_model_files = model_files_new + model_files_legacy
+            
+            if not all_model_files:
+                print("❌ No se encontraron modelos entrenados en:")
+                print(f"   • {self.models_path_new}")
+                print(f"   • {self.models_path_legacy}")
+                return False
+            
+            # Obtener el modelo más reciente de todas las ubicaciones
+            latest_model = max(all_model_files, key=lambda x: x.stat().st_mtime)
+            
+            # Indicar de dónde viene el modelo
+            if latest_model in model_files_new:
+                location = "nueva ubicación (ML DEV/trained_models)"
+            else:
+                location = "ubicación legacy (project_root/models)"
+            
+            print(f"📦 Cargando modelo desde {location}:")
+            print(f"   📄 Archivo: {latest_model.name}")
+            
             self.model_info = joblib.load(latest_model)
             self.loaded_model_path = latest_model
             
