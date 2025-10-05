@@ -223,10 +223,10 @@ body {
     left: 15px;
     font-size: 20px;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: transparent;
     color: var(--color-blanco);
     padding: 8px 12px;
-    border: 1px solid var(--color-blanco);
+    border: none;
     border-radius: 4px;
     transition: all 0.3s ease;
     z-index: 9999;
