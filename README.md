@@ -7,6 +7,8 @@ A webapp focused on prossessing big amounts of information taken by spacial tele
 ## Map of Contents
    1- [About the project](#about-the-project)  
    2- [Introduction](#introduction)
+   3- Members of the team
+   4- 
    
 ---
 ## About the project
