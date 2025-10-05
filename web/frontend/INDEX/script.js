@@ -38,15 +38,15 @@ window.closeNav = closeNav;
 // --- LÓGICA DE SIMULACIÓN DE IA ---
 
 /* Función para simular la activación y respuesta de la IA (mensajes aleatorios) */
-function activarExploracion() {
-    const mensajeElemento = document.getElementById('mensaje-ia');
-    if (!mensajeElemento) return;
-    const mensajes = [
-        "IA: 'Análisis de datos iniciado. 12 nuevos candidatos detectados en el sector TESS.'",
-        "IA: 'Módulo de aprendizaje profundo cargado. Preparando curva de luz.'",
-        "IA: '¡Bienvenido/a al panel de control! Tu primera tarea: verificar la señal Kepler-1647b.'",
-        "IA: 'Procesando tránsitos. La probabilidad de falso positivo es del 1.5%.'",
-    ];
+    function activarExploracion() {
+        const mensajeElemento = document.getElementById('mensaje-ia');
+        if (!mensajeElemento) return;
+        const mensajes = [
+            "IA: 'Data analysis started. 12 new candidates detected in the TESS sector.'",
+            "IA: 'Deep learning module loaded. Preparing light curve.'",
+            "IA: 'Welcome to the control panel! Your first task: verify the Kepler-1647b signal.'",
+            "IA: 'Processing transits. The false positive probability is 1.5%.'",
+        ];
 
     // Selecciona un mensaje aleatorio
     const mensajeAleatorio = mensajes[Math.floor(Math.random() * mensajes.length)];
@@ -61,13 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const botonPrueba = document.getElementById("btn-prueba");
     const mensajeDiv = document.getElementById('mensaje-ia');
 
-    // 1. Botón "Activar Modelo de IA"
+    // 1. Button "Activate AI Model"
     if (botonExplorar) {
         botonExplorar.addEventListener('click', activarExploracion);
 
         // Muestra el mensaje inicial de espera
         if (mensajeDiv) {
-            mensajeDiv.innerHTML = '<p>Pulsa <strong>Activar Modelo de IA</strong> para comenzar la simulación.</p>';
+            mensajeDiv.innerHTML = '<p>Press <strong>Activate AI Model</strong> to start the simulation.</p>';
         }
     }
 

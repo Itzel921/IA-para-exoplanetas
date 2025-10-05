@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detectar Exoplanetas con IA</title>
+    <title>Detect Exoplanets with AI</title>
     <link rel="icon" href="/web/frontend/RECURSOS/nasa.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/web/frontend/DETECTAR/style.css" />
 </head>
@@ -12,23 +12,23 @@
 <body>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <div class="sidebar-title">MENÚ</div>
-        <a href="/web/frontend/INDEX/index.html" class="sidebar-link">🏠 INICIO</a>
-        <a href="/web/frontend/EXPLORAR/explorar.html" class="sidebar-link">🔭 EXPLORAR DATOS</a>
-        <a href="/web/frontend/DETECTAR/detectar.html" class="sidebar-link">🧠 DETECTAR EXOPLANETAS</a>
-        <a href="/web/frontend/RESULTADOS/resultados.html" class="sidebar-link">📈 RESULTADOS</a>
-        <a href="/web/frontend/APRENDE/aprende.html" class="sidebar-link">📚 APRENDE MÁS</a>
-        <a href="/web/frontend/SOBRE/sobre.html" class="sidebar-link">ℹ️ SOBRE NOSOTROS</a>
+    <div class="sidebar-title">MENU</div>
+    <a href="/web/frontend/INDEX/index.html" class="sidebar-link">🏠 HOME</a>
+    <a href="/web/frontend/EXPLORAR/explorar.html" class="sidebar-link">🔭 EXPLORE DATA</a>
+    <a href="/web/frontend/DETECTAR/detectar.html" class="sidebar-link">🧠 DETECT EXOPLANETS</a>
+    <a href="/web/frontend/RESULTADOS/resultados.html" class="sidebar-link">📈 RESULTS</a>
+    <a href="/web/frontend/APRENDE/aprende.html" class="sidebar-link">📚 LEARN MORE</a>
+    <a href="/web/frontend/SOBRE/sobre.html" class="sidebar-link">ℹ️ ABOUT US</a>
     </div>
 
     <div id="main">
-        <button class="openbtn" onclick="openNav()">☰ Menú</button>
+    <button class="openbtn" onclick="openNav()">☰ Menu</button>
 
         <header class="page-header">
             <div class="header-content">
-                <h1>Detectar exoplanetas</h1>
+                <h1>Detect Exoplanets</h1>
                 <p>
-                    ¿Quieres probar cómo trabaja la IA? Aquí podrás cargar tus propios datos astronómicos en formatos simples (<b>CSV, FITS o JSON</b>). El sistema analizará las curvas de luz y te dirá si contienen la señal de un posible planeta.
+                    Want to try how the AI works? Here you can upload your own astronomical data in simple formats (<b>CSV, FITS or JSON</b>). The system will analyze the light curves and tell you if they contain the signal of a possible planet.
                 </p>
             </div>
         </header>
@@ -36,23 +36,23 @@
         <div class="container detect-layout">
 
             <section id="upload-form" class="detection-panel">
-                <h2>Cargar Curva de Luz</h2>
+                <h2>Upload Light Curve</h2>
                 <div class="upload-box">
-                    <p>Arrastra o selecciona un archivo (CSV, FITS, JSON)</p>
+                    <p>Drag or select a file (CSV, FITS, JSON)</p>
                     <input type="file" id="file-upload" accept=".csv, .fits, .json" class="hidden-input">
-                    <label for="file-upload" class="upload-label hero-btn">Seleccionar Archivo</label>
-                    <span id="file-name" class="file-status">Ningún archivo seleccionado.</span>
+                    <label for="file-upload" class="upload-label hero-btn">Select File</label>
+                    <span id="file-name" class="file-status">No file selected.</span>
                 </div>
 
                 <button id="run-analysis-btn" class="hero-btn run-btn" disabled>
-                    Ejecutar Análisis de IA
+                    Run AI Analysis
                 </button>
             </section>
 
             <section id="prediction-results" class="detection-panel">
-                <h2>🔍 Resultados de la predicción</h2>
+                <h2>🔍 Prediction Results</h2>
                 <div id="result-box" class="result-display">
-                    <p class="initial-message">Carga un archivo y ejecuta el análisis para obtener una predicción.</p>
+                    <p class="initial-message">Upload a file and run the analysis to get a prediction.</p>
                 </div>
             </section>
 

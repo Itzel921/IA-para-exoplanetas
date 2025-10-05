@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Explorar Datos de Exoplanetas</title>
+    <title>Explore Exoplanet Data</title>
     <link rel="icon" href="/web/frontend/RECURSOS/nasa.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/web/frontend/EXPLORAR/style.css" />
 </head>
@@ -13,7 +13,7 @@
     <!-- NASA-style navigation bar -->
     <nav class="nasa-nav">
         <div class="nav-left">
-            <button class="openbtn" onclick="openNav()">☰ Menú</button>
+            <button class="openbtn" onclick="openNav()">☰ Menu</button>
         </div>
         <div class="nav-center">
             <a href="/web/frontend/INDEX/index.html">
@@ -30,22 +30,22 @@
     <!-- Sidebar -->
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <div class="sidebar-title">MENÚ</div>
-        <a href="/web/frontend/INDEX/index.html" class="sidebar-link">🏠 INICIO</a>
+    <div class="sidebar-title">MENU</div>
+    <a href="/web/frontend/INDEX/index.html" class="sidebar-link">🏠 HOME</a>
         <a href="/web/frontend/EXPLORAR/explorar.html" class="sidebar-link">🔭 EXPLORAR DATOS</a>
         <a href="/web/frontend/DETECTAR/detectar.html" class="sidebar-link">🧠 DETECTAR EXOPLANETAS</a>
         <a href="/web/frontend/RESULTADOS/resultados.html" class="sidebar-link">📈 RESULTADOS</a>
-        <a href="/web/frontend/APRENDE/aprende.html" class="sidebar-link">📚 APRENDE MÁS</a>
-        <a href="/web/frontend/SOBRE/sobre.html" class="sidebar-link">ℹ️ SOBRE NOSOTROS</a>
+    <a href="/web/frontend/APRENDE/aprende.html" class="sidebar-link">📚 LEARN MORE</a>
+    <a href="/web/frontend/SOBRE/sobre.html" class="sidebar-link">ℹ️ ABOUT US</a>
     </div>
 
     <!-- Main content -->
     <div id="main">
         <div class="hero-section">
             <div class="hero-content">
-                <h1>Explorar datos de exoplanetas</h1>
+                <h1>Explore exoplanet data</h1>
                 <p class="hero-text">
-                    Descubre mundos más allá de nuestro sistema solar a través de datos reales de las misiones NASA
+                    Discover worlds beyond our solar system through real mission data from NASA
                 </p>
                
             </div>
@@ -54,11 +54,11 @@
         <div class="container explore-layout">
 
             <aside id="filtros-simples" class="filter-panel">
-                <h2>Filtros simples</h2>
-                <p>Refina la visualización según criterios astronómicos clave.</p>
+                <h2>Simple filters</h2>
+                <p>Refine the visualization by key astronomical criteria.</p>
 
                 <div class="filter-group">
-                    <label for="mision-select">Misión de Detección:</label>
+                    <label for="mision-select">Detection mission:</label>
                     <select id="mision-select" class="control-input">
                         <option value="">Todas</option>
                         <option value="kepler">Kepler</option>
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="filter-group">
-                    <label for="estado-select">Estado:</label>
+                    <label for="estado-select">Status:</label>
                     <select id="estado-select" class="control-input">
                         <option value="">Todos</option>
                         <option value="confirmado">Confirmado</option>
@@ -78,50 +78,50 @@
                 </div>
 
                 <div class="filter-group">
-                    <label for="radio-rango">Rango de Radio (RE):</label>
+                    <label for="radio-rango">Radius range (RE):</label>
                     <input type="range" id="radio-rango-min" min="0.5" max="5" step="0.1" value="0.5"
                         class="range-input">
                     <input type="range" id="radio-rango-max" min="0.5" max="5" step="0.1" value="5" class="range-input">
-                    <span id="radio-valor">0.5 a 5 RE</span>
+                    <span id="radio-valor">0.5 to 5 RE</span>
                 </div>
 
                 <div class="filter-group">
-                    <label for="periodo-rango">Período Orbital (Días):</label>
+                    <label for="periodo-rango">Orbital Period (Days):</label>
                     <input type="range" id="periodo-rango" min="1" max="1000" step="1" value="1000" class="range-input">
-                    <span id="periodo-valor">Máx 1000 Días</span>
+                    <span id="periodo-valor">Max 1000 Days</span>
                 </div>
 
-                <button class="hero-btn filter-btn">Aplicar Filtros</button>
+                <button class="hero-btn filter-btn">Apply Filters</button>
             </aside>
 
             <div class="visual-area">
 
                 <div class="tabs">
-                    <button class="tab-btn active" data-tab="lista">📋 Lista interactiva</button>
-                    <button class="tab-btn" data-tab="graficas">📊 Visualizaciones dinámicas</button>
+                    <button class="tab-btn active" data-tab="lista">📋 Interactive list</button>
+                    <button class="tab-btn" data-tab="graficas">📊 Dynamic visualizations</button>
                 </div>
 
                 <section id="lista" class="tab-content active">
-                    <h2>Lista de Exoplanetas</h2>
-                    <p>Consulta el nombre del exoplaneta, la misión que lo descubrió y su clasificación.</p>
+                    <h2>List of Exoplanets</h2>
+                    <p>Lookup the exoplanet name, the mission that discovered it, and its classification.</p>
                     <div id="exoplanet-table-container" class="data-table-container">
-                        <p class="loading-message">Cargando datos...</p>
+                        <p class="loading-message">Loading data...</p>
                     </div>
                 </section>
 
                 <section id="graficas" class="tab-content hidden">
-                    <h2>Visualizaciones Comparativas</h2>
-                    <p>Explora gráficas que muestran la diversidad de mundos encontrados.</p>
+                    <h2>Comparative visualizations</h2>
+                    <p>Explore charts that show the diversity of discovered worlds.</p>
 
                     <div class="chart-grid">
-                        <div id="chart-radio-periodo" class="chart-box">
-                            <p>Diagrama de Radio vs. Período Orbital (Scatter Plot)</p>
+                            <div id="chart-radio-periodo" class="chart-box">
+                            <p>Radius vs. Orbital Period diagram (Scatter Plot)</p>
                         </div>
                         <div id="chart-distribucion-tamano" class="chart-box">
-                            <p>Distribución de Tamaños (Histograma)</p>
+                            <p>Size distribution (Histogram)</p>
                         </div>
                         <div id="chart-deteccion-mision" class="chart-box">
-                            <p>Detecciones por Misión (Gráfico de Barras)</p>
+                            <p>Detections by Mission (Bar Chart)</p>
                         </div>
                     </div>
                 </section>

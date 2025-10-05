@@ -38,15 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const targetTab = button.dataset.tab;
 
-            // 1. Desactivar todos
+            // 1. Deactivate all
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabContents.forEach(content => content.classList.add('hidden'));
 
-            // 2. Activar el seleccionado
+            // 2. Activate the selected one
             button.classList.add('active');
             document.getElementById(targetTab).classList.remove('hidden');
 
-            // Nota: Aquí se ejecutaría la función para renderizar el gráfico si el targetTab es 'graficas'
+            // Note: This is where the function to render the chart would run if targetTab is 'graficas'
             if (targetTab === 'graficas') {
                 // TODO: Llamar a una función de renderizado de gráficos (e.g., renderCharts();)
                 console.log("Gráficas seleccionadas. Se necesita biblioteca (Chart.js/D3) para renderizar.");
@@ -129,6 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Nota: La lógica de simulación de IA (activarExploracion) y botones (btn-explorar, btn-prueba)
+// Note: The AI simulation logic (activarExploracion) and buttons (btn-explorar, btn-prueba)
 // se ha omitido aquí ya que esta es la página de exploración. Si copias y pegas todo el JS anterior,
-// puedes eliminar esas funciones.
+// you can remove those functions.

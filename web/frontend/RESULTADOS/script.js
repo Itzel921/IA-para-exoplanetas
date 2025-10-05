@@ -12,7 +12,7 @@ function openNav() {
         mainContent.style.marginLeft = sidebarWidth;
         sidebar.classList.add('active'); 
         
-        // OCULTAR BOTÓN AL ABRIR EL MENÚ
+    // HIDE BUTTON WHEN OPENING THE MENU
         openBtn.style.opacity = '0';
         openBtn.style.pointerEvents = 'none';
     }
@@ -28,7 +28,7 @@ function closeNav() {
         mainContent.style.marginLeft = "0";
         sidebar.classList.remove('active'); 
         
-        // MOSTRAR BOTÓN AL CERRAR EL MENÚ
+    // SHOW BUTTON WHEN CLOSING THE MENU
         openBtn.style.opacity = '1';
         openBtn.style.pointerEvents = 'auto';
     }
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 5, name: "Análisis 2025-01-11", result: "Falso positivo", prob: 95, radius: 0.6, period: 0.9, similar: ["Ninguno cercano"] },
     ];
 
-    // 1. Cargar la galería de historial
+    // 1. Load the history gallery
     function loadHistoryGallery() {
         if (!historyContainer) return;
         
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             historyContainer.appendChild(item);
         });
 
-        // Seleccionar el primer elemento por defecto al cargar
+    // Select the first element by default on load
         if (historyData.length > 0) {
             handleItemClick(historyData[0].id);
         }
@@ -139,6 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // Ejecutar al inicio
+    // Run on startup
     loadHistoryGallery();
 });

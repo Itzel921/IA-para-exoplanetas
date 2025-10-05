@@ -12,7 +12,7 @@ function openNav() {
         mainContent.style.marginLeft = sidebarWidth;
         sidebar.classList.add('active'); 
         
-        // OCULTAR BOTÓN AL ABRIR EL MENÚ
+    // HIDE BUTTON WHEN OPENING THE MENU
         openBtn.style.opacity = '0';
         openBtn.style.pointerEvents = 'none';
     }
@@ -28,7 +28,7 @@ function closeNav() {
         mainContent.style.marginLeft = "0";
         sidebar.classList.remove('active'); 
         
-        // MOSTRAR BOTÓN AL CERRAR EL MENÚ
+    // SHOW BUTTON WHEN CLOSING THE MENU
         openBtn.style.opacity = '1';
         openBtn.style.pointerEvents = 'auto';
     }
@@ -38,9 +38,9 @@ window.openNav = openNav;
 window.closeNav = closeNav;
 
 
-// --- LÓGICA ESPECÍFICA DE SOBRE.HTML (Placeholder) ---
+// --- SOBRE.HTML SPECIFIC LOGIC (Placeholder) ---
 
 document.addEventListener('DOMContentLoaded', () => {
     // No hay funcionalidad dinámica o eventos complejos en esta página.
-    console.log("Página 'Sobre Nosotros' cargada correctamente.");
+    console.log("'About Us' page loaded successfully.");
 });

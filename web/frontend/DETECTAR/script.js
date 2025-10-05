@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             runAnalysisBtn.disabled = false; // Habilita el botón de análisis
         } else {
             selectedFile = null;
-            fileNameSpan.textContent = 'Ningún archivo seleccionado.';
+            fileNameSpan.textContent = 'No file selected.';
             runAnalysisBtn.disabled = true;
         }
     });
