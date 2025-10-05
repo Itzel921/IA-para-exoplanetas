@@ -1,0 +1,11 @@
+Metric,Value
+Total Objects Analyzed,9559
+Exoplanets Predicted,9556
+Non-Planets Predicted,3
+Average Confidence,0.8547
+Maximum Confidence,0.9630
+Minimum Confidence,0.6106
+High Confidence (>80%),9558
+Very High Confidence (>90%),3
+Medium Confidence (60-80%),1
+Low Confidence (<60%),0
