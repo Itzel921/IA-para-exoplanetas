@@ -17,7 +17,7 @@ This is what we take as an oportunity, we made system that take the information 
 
 ---
 ## Introduction
-This system uses a predefined API developed by NASA (Transit and Ephemeris)
+This system uses a predefined API developed by NASA (Transit and Ephemeris Service) that use the data
 
 ---
 ##
