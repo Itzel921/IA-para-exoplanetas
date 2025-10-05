@@ -38,11 +38,39 @@ body {
     background: rgba(0, 0, 0, 0.6);
 }
 
-.video-header {
-    position: relative;
-    overflow: visible;
-    z-index: 1;
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    display: flex;
+    justify-content: space-between; /* Logo a un lado, menú al otro */
+    align-items: center;
+    padding: 0 20px;
+    background-color: black; /* <-- Fondo negro sólido */
+    z-index: 1000;
 }
+
+/* Ajustes para el logo */
+.logo-container {
+    text-decoration: none;
+}
+
+.site-logo {
+    height: 50px;
+    width: auto;
+}
+
+/* Ajuste del botón menú */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
 
 .header-content {
     position: relative;

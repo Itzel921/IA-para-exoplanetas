@@ -9,7 +9,7 @@
 
 <body>
     <video autoplay muted loop id="bg-video">
-        <source src="/web/frontend/RECURSOS/luna.mp4" type="video/mp4" />
+        <source src="/web/frontend/RECURSOS/oppo.mp4" type="video/mp4" />
         Tu navegador no soporta videos HTML5.
     </video>
     <div class="overlay"></div>
@@ -33,14 +33,25 @@
             </a>
         </div>
 
-        <header class="video-header"></header>
-            <div class="header-content">
-                <h1>Exoplanets</h1>
-                <p>
-                    Over recent decades, space telescopes like <b>Kepler</b>, <b>K2</b> and <b>TESS</b> have observed millions of stars to discover worlds outside our solar system. These planets are called <b>exoplanets</b>.
-                </p>
-                <button class="hero-btn" id="btn-prueba">Prueba</button>
-            </div>
+        <!-- HEADER solo con logo y menú -->
+<header class="main-header">
+    <button class="openbtn" onclick="openNav()">☰ Menu</button>
+    <a href="/web/frontend/INDEX/index.html" class="logo-container">
+        <img src="/web/frontend/RECURSOS/logo_equipo.png" alt="Logo del equipo" class="site-logo">
+    </a>
+</header>
+
+<!-- HERO con el título y párrafo -->
+<div class="hero-section">
+    <div class="header-content">
+        <h1>Exoplanets</h1>
+        <p>
+            Over recent decades, space telescopes like <b>Kepler</b>, <b>K2</b> and <b>TESS</b> have observed millions of stars to discover worlds outside our solar system. These planets are called <b>exoplanets</b>.
+        </p>
+        <button class="hero-btn" id="btn-prueba">Prueba</button>
+    </div>
+</div>
+
         
 
         <div class="container">
