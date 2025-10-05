@@ -305,10 +305,12 @@ if __name__ == "__main__":
 - `02_class_distributions_20251005_012151.png` - Class distributions per dataset
 - `03_correlation_matrices_20251005_012151.png` - Feature correlation matrices
 - `04_scatter_plots_20251005_012151.png` - Key variable scatter plots
+![Matriz de Correlacion de caracteristicas astronomicas](../exoPlanet_results/charts/03_correlation_matrices_20251005_011850.png)
 
 **Comparative Charts in `exoPlanet_results/comparative_charts/`:**
 - `nasa_vs_new_comparison_20251005_012151.png` - NASA vs new datasets comparison
 - `prediction_results_analysis_20251005_012151.png` - Prediction results analysis
+![Comparacion de los new datasets vs datos de la nasa](../exoPlanet_results/comparative_charts/nasa_vs_new_comparison_20251005_012151.png)
 
 **CSV Result Files:**
 - `cumulative_2025.10.04_18.21.10Prueba1_predictions_20251005_012139.csv` - Predictions with ML_Probability, ML_Prediction, ML_Classification
