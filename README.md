@@ -16,6 +16,7 @@ The astronomers get a higher workload, every year the telescopes (TESS) send bac
 In case it doesn't count with the parameters to be an exoplanet it is cataloged as a false positive.
 
 This is what we take as an oportunity, we made system that take the information that has been already prossessed by the astronomers and train a machine that is capable to read the information and learn what are the parameters that can be indentified as an exoplanet.
+
 ---
 ## Introduction
 This system uses a predefined API developed by NASA ()
