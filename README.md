@@ -1,3 +1,8 @@
+# ExoData
+
+Team: Planetaxies
+
+A webapp focused on prossessing big amounts of information taken by spacial telescopes to filtrate the ones that 
 # 🚀 Exoplanet Detection AI
 ## NASA Space Apps Challenge 2025
 
