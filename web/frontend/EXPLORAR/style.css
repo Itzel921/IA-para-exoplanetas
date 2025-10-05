@@ -5,7 +5,9 @@
     /* Azul Profundo (Fondo principal) */
     --color-base: #212121;
     /* Negro/Gris muy oscuro (Texto base) */
-    --color-gris-oscuro: #323a45;
+    --color-gris-oscuro: #212121
+
+;
     /* Gris Oscuro (Contenedores/Fondo secundario) */
     --color-gris-claro: #aeb0b5;
     /* Gris claro (Énfasis sutil) */
