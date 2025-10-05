@@ -5,8 +5,8 @@ Team: Planetaxies
 A webapp focused on prossessing big amounts of information taken by spacial telescopes to filtrate the ones that doesn't count with the caracteristics of an exoplanet.
 
 ## Map of Contents
-1- About the project
 ---
+1- About the proyect
 ## About the project
 Submission for the https://www.spaceappschallenge.org/2025/challenges/a-world-away-hunting-for-exoplanets-with-ai/
 
