@@ -10,6 +10,24 @@
 </head>
 
 <body>
+    <!-- NASA-style navigation bar -->
+    <nav class="nasa-nav">
+        <div class="nav-left">
+            <button class="openbtn" onclick="openNav()">☰ Menú</button>
+        </div>
+        <div class="nav-center">
+            <a href="/web/frontend/INDEX/index.html">
+                <img src="/web/frontend/RECURSOS/logo_equipo.png" alt="Logo del equipo" class="nav-logo">
+            </a>
+        </div>
+        <div class="nav-right">
+            <div class="search-container">
+                <input type="search" placeholder="Buscar exoplanetas..." class="search-input">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <div class="sidebar-title">MENÚ</div>
@@ -21,19 +39,17 @@
         <a href="/web/frontend/SOBRE/sobre.html" class="sidebar-link">ℹ️ SOBRE NOSOTROS</a>
     </div>
 
+    <!-- Main content -->
     <div id="main">
-        <button class="openbtn" onclick="openNav()">☰ Menú</button>
-
-        <header class="page-header">
-            <div class="header-content">
+        <div class="hero-section">
+            <div class="hero-content">
                 <h1>Explorar datos de exoplanetas</h1>
-                <p>
-                    En esta sección podrás sumergirte en el catálogo de exoplanetas descubiertos por misiones como
-                    <b>Kepler, K2 y TESS<b>. Todos los registros provienen de bases de datos abiertas de la NASA y
-                    contienen información clave sobre cada planeta identificado.
+                <p class="hero-text">
+                    Descubre mundos más allá de nuestro sistema solar a través de datos reales de las misiones NASA
                 </p>
+               
             </div>
-        </header>
+        </div>
 
         <div class="container explore-layout">
 
