@@ -1,57 +1,111 @@
 # NASA Space Apps Challenge 2025 - Exoplanet Detection System
-# HTML/CSS/JavaScript + FastAPI Stack
+# Backend Dependencies - Modular Architecture
 
-# Core ML Libraries (Ensemble Learning - Target 83.08% accuracy)
-scikit-learn>=1.3.0
-lightgbm>=4.0.0              # Stacking ensemble (best performance)
-pandas>=2.0.0
-numpy>=1.24.0
-xgboost>=1.7.0               # Alternative gradient boosting
+# ==============================================================================
+# CORE BACKEND DEPENDENCIES
+# ==============================================================================
 
-# Time Series Feature Engineering (789 features with TSFRESH)
-tsfresh>=0.20.0
-
-# FastAPI Backend (serves HTML frontend)
+# Web Framework & API
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
 pydantic>=2.0.0
 python-multipart>=0.0.6     # File upload support
 aiofiles>=23.0.0             # Async file operations
 
-# Data Processing & Feature Engineering
+# Data Processing & Scientific Computing
+pandas>=2.0.0
+numpy>=1.24.0
 scipy>=1.11.0
+
+# Machine Learning (Ensemble Focus - Target 83.08% accuracy)
+scikit-learn>=1.3.0
+lightgbm>=4.0.0              # Stacking ensemble (best performance)
+xgboost>=1.7.0               # Alternative gradient boosting
 joblib>=1.3.0                # Model persistence
+imbalanced-learn>=0.11.0     # Class imbalance handling
+
+# Time Series Feature Engineering (789 features with TSFRESH)
+tsfresh>=0.20.0
+
+# Astronomical Calculations & NASA Data Access
 astropy>=5.3.0               # Astronomical calculations
+requests>=2.31.0
+astroquery>=0.4.6            # NASA Exoplanet Archive API
+
+# Database - MongoDB Integration
+pymongo>=4.5.0               # MongoDB driver
+motor>=3.3.0                 # Async MongoDB driver for FastAPI
+beanie>=1.23.0               # ODM for MongoDB with Pydantic
+
+# ==============================================================================
+# BACKEND UTILITIES & INFRASTRUCTURE
+# ==============================================================================
+
+# Configuration & Environment
+python-dotenv>=1.0.0         # Environment variable management
+
+# Logging & Monitoring
+structlog>=23.1.0            # Structured logging
+psutil>=5.9.0                # System monitoring
+
+# Validation & Security
+email-validator>=2.0.0      # Email validation for pydantic
+cryptography>=41.0.0        # Security utilities
+
+# ==============================================================================
+# DEVELOPMENT & TESTING
+# ==============================================================================
+
+# Testing Framework
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0           # Coverage reporting
+httpx>=0.24.0                # Async HTTP client for testing
+
+# Code Quality
+black>=23.0.0                # Code formatting
+isort>=5.12.0                # Import sorting
+flake8>=6.0.0                # Linting
+mypy>=1.5.0                  # Type checking
+
+# Development Tools
+jupyter>=1.0.0
+ipykernel>=6.25.0
+
+# ==============================================================================
+# OPTIONAL PRODUCTION DEPENDENCIES
+# ==============================================================================
+
+# Production WSGI/ASGI Servers
+gunicorn>=21.0.0             # Production WSGI server
+hypercorn>=0.14.0            # Alternative ASGI server
+
+# Database Support (Optional)
+psycopg2-binary>=2.9.0       # PostgreSQL driver
+redis>=5.0.0                 # Redis for caching/sessions
+databases>=0.8.0             # Async database toolkit
+
+# Performance & Optimization
+hyperopt>=0.2.7              # Hyperparameter optimization
 
 # Visualization (backend charts, not frontend)
 matplotlib>=3.7.0
 seaborn>=0.12.0
 plotly>=5.17.0
 
-# NASA Data Access
-requests>=2.31.0
-astroquery>=0.4.6            # NASA Exoplanet Archive API
+# ==============================================================================
+# CONTAINERIZATION & DEPLOYMENT
+# ==============================================================================
 
-# Enhanced ML Features
-imbalanced-learn>=0.11.0     # Class imbalance handling
-hyperopt>=0.2.7              # Hyperparameter optimization
+# Container Support
+# docker>=6.1.0              # Commented - installed separately
 
-# Development and Testing
-pytest>=7.4.0
-pytest-asyncio>=0.21.0
-jupyter>=1.0.0
-black>=23.0.0                # Code formatting
-
-# Production Deployment
-gunicorn>=21.0.0             # Production WSGI server
-redis>=4.6.0                 # Optional caching
-psycopg2-binary>=2.9.0       # Optional PostgreSQL
-ipykernel>=6.25.0
-
-# Database (optional for production)
-psycopg2-binary>=2.9.0
-redis>=5.0.0
-
-# Deployment
-docker>=6.1.0
-gunicorn>=21.2.0
+# ==============================================================================
+# VERSION COMPATIBILITY NOTES
+# ==============================================================================
+# - Python >= 3.8 required
+# - FastAPI 0.104+ for latest async features
+# - Pydantic 2.0+ for performance improvements
+# - LightGBM 4.0+ for ensemble stacking optimization
+# - TSFRESH 0.20+ for 789 time-series features
+# - Target: 83.08% accuracy with Stacking ensemble
